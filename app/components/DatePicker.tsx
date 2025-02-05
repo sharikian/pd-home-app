@@ -1,0 +1,192 @@
+"use client"
+import React, { useState } from 'react';
+
+export const DatePicker = () => {
+  const [selectedDay, setSelectedDay] = useState(null);
+  const [currentDate, setCurrentDate] = useState(new Date());
+  
+  // Persian month names and their day counts (approximate)
+  const persianMonths = [
+    { name: 'فروردین', days: 31 },
+    { name: 'اردیبهشت', days: 31 },
+    { name: 'خرداد', days: 31 },
+    { name: 'تیر', days: 31 },
+    { name: 'مرداد', days: 31 },
+    { name: 'شهریور', days: 31 },
+    { name: 'مهر', days: 30 },
+    { name: 'آبان', days: 30 },
+    { name: 'آذر', days: 30 },
+    { name: 'دی', days: 30 },
+    { name: 'بهمن', days: 30 },
+    { name: 'اسفند', days: 29 }
+  ];
+
+  // Get current Persian date
+  const getPersianDate = (date) => ({
+    year: date.getFullYear(),
+    month: date.getMonth() + 1,
+    day: date.getDate()
+  });
+
+  // Generate proper calendar days
+  const generateCalendar = () => {
+    const days = [];
+    const { year, month } = getPersianDate(currentDate);
+    const monthIndex = month - 1;
+    
+    // Get number of days in current month
+    const daysInMonth = persianMonths[monthIndex].days;
+    
+    // Create proper day objects
+    for (let i = 1; i <= daysInMonth; i++) {
+      days.push({
+        number: i,
+        isCurrentMonth: true,
+        isWeekend: i % 7 === 0 
+      });
+    }
+
+    // Fill remaining grid cells (42 total)
+    while (days.length < 42) {
+      days.push({
+        number: days.length - daysInMonth + 1,
+        isCurrentMonth: false,
+        isWeekend: false
+      });
+    }
+
+    return days;
+  };
+
+  // Handle month/year change with boundary checks
+  const handleDateChange = (type, value) => {
+    const newDate = new Date(currentDate);
+    
+    if (type === 'year') {
+      newDate.setFullYear(value);
+    } else if (type === 'month') {
+      if (value < 1) {
+        newDate.setFullYear(newDate.getFullYear() - 1);
+        newDate.setMonth(11);
+      } else if (value > 12) {
+        newDate.setFullYear(newDate.getFullYear() + 1);
+        newDate.setMonth(0);
+      } else {
+        newDate.setMonth(value - 1);
+      }
+    }
+    
+    setCurrentDate(newDate);
+  };
+
+  // Handle today button
+  const handleToday = () => {
+    const today = new Date();
+    setCurrentDate(today);
+    setSelectedDay(getPersianDate(today).day);
+  };
+
+  return (
+    <div dir="rtl" className="w-full h-full flex flex-col bg-white rounded-lg shadow-lg p-4">
+      {/* Year/Month Selector */}
+      <div className="flex justify-between items-center mb-4">
+        {/* Year Selector */}
+        <div className="flex items-center gap-2 text-black">
+          <button 
+            onClick={() => handleDateChange('year', currentDate.getFullYear() - 1)}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-all border border-gray-300 shadow-sm hover:shadow-md px-3"
+          >
+            -
+          </button>
+          <select
+            value={currentDate.getFullYear()}
+            onChange={(e) => handleDateChange('year', parseInt(e.target.value))}
+            className="bg-transparent py-2 px-4 rounded-lg border border-gray-200"
+          >
+            {Array.from({ length: 401 }, (_, i) => i + 1200).map(year => (
+              <option key={year} value={year}>{year}</option>
+            ))}
+          </select>
+          <button 
+            onClick={() => handleDateChange('year', currentDate.getFullYear() + 1)}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-all border border-gray-300 shadow-sm hover:shadow-md px-3"
+          >
+            +
+          </button>
+        </div>
+
+        {/* Month Selector */}
+        <div className="flex items-center gap-2 text-black">
+          <button 
+            onClick={() => handleDateChange('month', currentDate.getMonth())}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-all border border-gray-300 shadow-sm hover:shadow-md px-3"
+          >
+            -
+          </button>
+          <select
+            value={currentDate.getMonth() + 1}
+            onChange={(e) => handleDateChange('month', parseInt(e.target.value))}
+            className="bg-transparent py-2 px-4 rounded-lg border border-gray-200"
+          >
+            {persianMonths.map((month, index) => (
+              <option key={index + 1} value={index + 1}>{month.name}</option>
+            ))}
+          </select>
+          <button 
+            onClick={() => handleDateChange('month', currentDate.getMonth() + 2)}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-all border border-gray-300 shadow-sm hover:shadow-md px-3"
+          >
+            +
+          </button>
+        </div>
+      </div>
+
+      {/* Days Grid */}
+      <div className="grid grid-cols-7 gap-2 flex-1">
+        {/* Week Days Header */}
+        {['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'].map((day, index) => (
+          <div 
+            key={day} 
+            className={`text-center font-bold py-2 ${
+              index === 6 ? 'text-red-500' : 'text-gray-700'
+            } bg-gray-100 rounded-lg`}
+          >
+            {day}
+          </div>
+        ))}
+
+        {/* Calendar Days */}
+        {generateCalendar().map((day, index) => (
+          <div
+            key={index}
+            onClick={() => day.isCurrentMonth && setSelectedDay(day.number)}
+            className={`
+              flex items-center justify-center h-12 cursor-pointer
+              transition-all rounded-lg border border-transparent
+              hover:bg-gray-100 hover:scale-110
+              ${selectedDay === day.number && day.isCurrentMonth ? 'bg-green-700 text-white' : ''}
+              ${day.isCurrentMonth ? 
+                (day.isWeekend ? 'text-red-500' : 'text-gray-800') : 
+                'text-gray-400 opacity-50'}
+            `}
+          >
+            {day.number}
+          </div>
+        ))}
+      </div>
+
+      {/* Footer Buttons */}
+      <div className="flex justify-between mt-4">
+        <button
+          onClick={handleToday}
+          className="px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-blue-600 transition-all shadow-md"
+        >
+          امروز
+        </button>
+        <button className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-all border border-gray-200">
+          خالی
+        </button>
+      </div>
+    </div>
+  );
+};
