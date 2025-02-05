@@ -1,0 +1,12 @@
+@font-face {
+	font-family: "Pelak";
+	src:
+		local("Pelak"),
+		url("./Pelak/Pelak-Medium.eot"),
+		url("./Pelak/Pelak-Medium.woff2"),
+		url("./Pelak/Pelak-Medium.woff"),
+		url("./Pelak/Pelak-Medium.ttf") format("truetype");
+}
+*{
+    font-family: "Pelak", Vazir, Arial, Helvetica, sans-serif;
+}
