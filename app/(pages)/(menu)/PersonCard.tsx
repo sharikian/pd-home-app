@@ -1,12 +1,11 @@
 import { Clock } from "@/public/icons";
-import Rectangle from "./imgs/rectangle.png";
+import Rectangle from "@/public/imgs/menu/rectangle.png";
 import Image from "next/image";
 
 export const PersonCard = () => {
     return (
-        <div className="flex flex-col gap-4 py-[20px] px-3.5 rounded-[15px] bg-[#B9D0AA]">
+        <div className="flex flex-col py-[20px] px-3.5 rounded-[15px] bg-[#B9D0AA]" style={{width:'370px'}}>
             <Image
-              className="h-[170px]"
               src={Rectangle}
               alt="person card"
             />
@@ -24,7 +23,7 @@ export const PersonCard = () => {
                 <p className="whitespace-nowrap font-medium text-[#0000008f]">
                   دقیقه ۱۵
                 </p>
-                <img
+                <Image
                   alt="Lucide clock"
                   src={Clock}
                   width={20}

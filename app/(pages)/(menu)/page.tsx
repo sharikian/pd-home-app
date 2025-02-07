@@ -19,7 +19,7 @@ const Page = (): JSX.Element => {
   return (
     <div className="flex flex-col w-[1220px] items-center gap-[71px]">
       <MainCarousel/>
-      <div className="flex items-center justify-between relative gap-25">
+      <div className="flex items-center gap-40">
         {toggles.map((data, index) => (
             <ToggleShow title={data.title} Icon={data.icon} key={index} />
         ))}
@@ -27,10 +27,10 @@ const Page = (): JSX.Element => {
 
       <div className="flex gap-[19px] pl-[19px] pr-[19px] py-[23px] w-full bg-[#1a604eba] rounded-[15px]">
         <div className="flex-1 overflow-x-auto scroll-smooth">
-            <div className="flex gap-[13px] flex-nowrap">
+            <div className="flex gap-[13px] flex-nowrap w-[100%]">
             {Array.from({ length: 4 }, (_, i) => (
                 <div key={i} className="flex-shrink-0">
-                <PersonCard />
+                  <PersonCard />
                 </div>
             ))}
             </div>

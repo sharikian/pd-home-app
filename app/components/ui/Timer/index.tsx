@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from "react";
 import { AnimatedNumber } from "./AnimatedNumber";
-import { convertToPersian } from "../../../util";
+import { convertToPersian } from "@/app/util";
 
 interface Props {
   day: number;

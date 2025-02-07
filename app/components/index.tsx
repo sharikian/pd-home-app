@@ -11,7 +11,7 @@ export { StarRating } from "./ui/StarRating";
 export { FAQ } from "./ui/FAQ";
 export { Notice } from "./ui/Notice";
 export { Timeline } from "./ui/Timeline";
-export { TickRing } from "../static/icons";
+export { TickRing } from "@/public/icons";
 export { Timer } from "./ui/Timer";
 export { Card } from "./ui/Card";
 export { DatePicker } from "./DatePicker";

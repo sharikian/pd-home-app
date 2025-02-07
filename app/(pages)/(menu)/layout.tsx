@@ -1,10 +1,12 @@
-import { Header, NavBar } from "@/app/components";
+import { Header, NavBar, Tabs } from "@/app/components";
+import { ReactNode } from "react";
 
 interface Prop {
   haveTabs?: boolean;
+  children: ReactNode
 }
 
-export const Layout = ({haveTabs = false}:Prop) => {
+const Layout = ({children, haveTabs = false}:Prop) => {
   return (
     <>
       <div className="flex justify-between">
@@ -16,7 +18,7 @@ export const Layout = ({haveTabs = false}:Prop) => {
           />
           {haveTabs && (<Tabs varient={"ligth"} />)}
           <div className="flex flex-col justify-center w-[95%] mx-8 rounded-[2.1875rem] p-8 border border-[#00000010] bg-white shadow-[8px_-23px_81.4px_#FFF,_-8px_23px_81.4px_rgba(26,_96,_78,_0.10)]">
-            <Outlet />
+            {children}
           </div>
         </div>
 
@@ -25,3 +27,5 @@ export const Layout = ({haveTabs = false}:Prop) => {
     </>
   );
 };
+
+export default Layout;

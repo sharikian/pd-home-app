@@ -1,6 +1,8 @@
-import { Help, MessageEmoji, SettingTwo, Remind } from "../static/icons";
+import { Help, MessageEmoji, SettingTwo, Remind } from "@/public/icons";
 import { DarkLightToggle } from "./ui/DarkLigthToggle/DarkLigthToggle";
-import Amo from "../static/imgs/amo.jpeg";
+import Amo from "@/public/imgs/amo.jpeg";
+import Image from "next/image";
+import { JSX } from "react";
 
 interface Props {
 	userName: string;
@@ -16,17 +18,17 @@ export const Header = ({ userName, userId, className }: Props): JSX.Element => {
 			<div className="flex h-full items-center justify-between px-4 md:px-8">
 				{/* Left Side Icons */}
 				<div className="flex items-center gap-4 md:gap-6">
-					<img
+					<Image
 						className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
 						alt="Settings"
 						src={SettingTwo}
 					/>
-					<img
+					<Image
 						className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
 						alt="Help"
 						src={Help}
 					/>
-					<img
+					<Image
 						className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
 						alt="Messages"
 						src={MessageEmoji}
@@ -47,12 +49,12 @@ export const Header = ({ userName, userId, className }: Props): JSX.Element => {
 								{userId}
 							</span>
 						</div>
-						<img
+						<Image
 							className="h-10 w-10 rounded-full border-2 border-white object-cover md:h-12 md:w-12"
 							alt="Profile"
 							src={Amo}
 						/>
-						<img
+						<Image
 						className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
 						alt="Notifications"
 						src={Remind}

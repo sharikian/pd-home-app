@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { RadixIconsCrossCircled } from "../../static/icons";
+import { RadixIconsCrossCircled } from "@/public/icons";
 
 type Variant = "primary" | "secondary" | "warning";
 

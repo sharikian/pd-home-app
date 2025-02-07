@@ -1,8 +1,8 @@
 "use client"
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
-import Main1 from './imgs/main1.png';
-import Main2 from './imgs/main2.png';
+import Main1 from '@/public/imgs/menu/main1.png';
+import Main2 from '@/public/imgs/menu/main2.png';
 import Image from "next/image";
 
 export const MainCarousel = () => {

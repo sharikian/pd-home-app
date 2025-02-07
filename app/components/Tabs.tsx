@@ -1,8 +1,8 @@
 "use client"
 import PropTypes from "prop-types";
-import { Line1, Subtract } from "../static/icons";
+import { Line1, Subtract } from "@/public/icons";
 import { useRef, useState, useEffect } from "react";
-import React from "react";
+import React, { JSX } from "react";
 
 interface Props {
   varient: string;

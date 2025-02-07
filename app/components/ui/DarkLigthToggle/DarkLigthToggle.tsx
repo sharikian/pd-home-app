@@ -1,8 +1,9 @@
 "use client"
-import { useState } from "react";
+import { useState, JSX } from "react";
 import cloudsBack from "./svgs/clouds-back.svg";
 import cloudsFront from "./svgs/clouds-front.svg";
 import stars from "./svgs/stars.svg";
+import Image from "next/image";
 
 interface Props {
     activate: boolean; // New boolean prop to control the toggle state
@@ -32,14 +33,14 @@ export const DarkLightToggle = ({ activate, className }: Props): JSX.Element => 
                     </div>
                 </div>
 
-                <img
+                <Image
                     className={`absolute ${isDark ? "w-[1.75rem] h-[1.29rem]" : "w-[4.25rem] h-[1.75rem]"} ${isDark ? "left-0 top-[1.44rem]" : "left-[1.29rem] top-[1.22rem]"} transition-transform duration-500`}
                     alt="Clouds back"
-                    src={cloudsBack}
+                    src={isDark ? stars : cloudsBack}
                 />
 
                 {!isDark && (
-                    <img
+                    <Image
                         className="absolute w-[4.18rem] h-[1.69rem] top-[1.22rem] left-[1.29rem] transition-transform duration-500"
                         alt="Clouds front"
                         src={cloudsFront}
@@ -61,17 +62,17 @@ export const DarkLightToggle = ({ activate, className }: Props): JSX.Element => 
 
             {isDark && (
                 <div className="absolute top-[-5rem] left-[1.5rem] h-[4rem] w-[7rem] transition-transform duration-500">
-                    <img
+                    <Image
                         className="absolute top-0 left-0 h-full w-full"
                         alt="Clouds back"
                         src={cloudsBack}
                     />
-                    <img
+                    <Image
                         className="absolute top-[10%] left-[10%] h-full w-full"
                         alt="Clouds front"
                         src={cloudsFront}
                     />
-                    <img
+                    <Image
                         className="absolute w-[1.75rem] h-[1.29rem] top-[1.44rem] left-0 transition-transform duration-500"
                         alt="Stars"
                         src={stars}
@@ -80,7 +81,7 @@ export const DarkLightToggle = ({ activate, className }: Props): JSX.Element => 
             )}
 
             {!isDark && (
-                <img
+                <Image
                     className="absolute top-[-4rem] left-[2rem] h-[1.29rem] w-[1.75rem] transition-transform duration-500"
                     alt="Stars"
                     src={stars}

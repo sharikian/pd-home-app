@@ -1,6 +1,6 @@
 "use client"
 import { useState } from 'react';
-import { ArrowDown } from '../../static/icons';
+import { ArrowDown } from "@/public/icons";
 
 interface FAQProps {
   title: string;

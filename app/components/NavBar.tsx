@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useState, JSX } from "react";
 import {
   BookOpen,
   ConnectionPointTwo,
@@ -8,7 +8,8 @@ import {
   PeopleSpeak,
   MingcuteExitLine,
 } from '@/public/icons';
-import Logo from "../static/imgs/logo.png";
+import Logo from "@/public/imgs/logo.png";
+import Image from "next/image";
 
 interface Props {
   className?: string;
@@ -31,7 +32,7 @@ const NavBarVal = ({ value, icon, isActive, onClick }: NavBarValProps): JSX.Elem
       }`}
       onClick={onClick}
     >
-      <img
+      <Image
         className="relative h-[31px] w-[31px] transition duration-300 ease-in-out"
         alt={value}
         src={icon}
@@ -66,7 +67,7 @@ export const NavBar = ({ className }: Props): JSX.Element => {
       className={`bg-gray relative flex h-[1099px] w-[180px] flex-col items-center gap-14 px-0 py-3 shadow-[-4px_0px_46.7px_#0000001c] ${className}`}
     >
       {/* Logo */}
-      <img className="!h-[122px] !w-[122px]" src={Logo} alt="Logo" />
+      <Image className="!h-[122px] !w-[122px]" src={Logo} alt="Logo" />
 
       {/* Navigation Items */}
       <div className="relative flex w-full flex-[0_0_auto] flex-col items-end gap-[13px] self-stretch">
@@ -89,7 +90,7 @@ export const NavBar = ({ className }: Props): JSX.Element => {
             : "hover:bg-[#b9d0aa57] hover:translate-x-2"
         }`}
       >
-        <img
+        <Image
           className="relative h-[31px] w-[31px] transition duration-300 ease-in-out"
           alt="خروج"
           src={MingcuteExitLine}

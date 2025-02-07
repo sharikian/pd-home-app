@@ -1,7 +1,7 @@
 "use client"
 import { CheckBox } from "./ui/CheckBox";
 import { RangeDown } from "./ui/RangeDown";
-import { ArrowLeft } from "../static/icons";
+import { ArrowLeft } from "@/public/icons";
 import { useState } from "react";
 
 interface FrameListProps {

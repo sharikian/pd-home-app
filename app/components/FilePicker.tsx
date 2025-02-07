@@ -1,8 +1,7 @@
 "use client"
 import React, { useCallback, useState } from "react";
-import { FolderUpload } from "../static/icons";
+import { FolderUpload, Plus } from "@/public/icons";
 import { Button } from "./ui/Button";
-import { Plus } from "../static/icons";
 
 interface FilePickerProps {
 	buttonName:string;
