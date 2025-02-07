@@ -10,6 +10,7 @@ import {
 } from '@/public/icons';
 import Logo from "@/public/imgs/logo.png";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   className?: string;
@@ -67,7 +68,9 @@ export const NavBar = ({ className }: Props): JSX.Element => {
       className={`bg-gray relative flex h-[1099px] w-[180px] flex-col items-center gap-14 px-0 py-3 shadow-[-4px_0px_46.7px_#0000001c] ${className}`}
     >
       {/* Logo */}
-      <Image className="!h-[122px] !w-[122px]" src={Logo} alt="Logo" />
+      <Link href='/'>
+        <Image className="!h-[122px] !w-[122px]" src={Logo} alt="Logo" />
+      </Link>
 
       {/* Navigation Items */}
       <div className="relative flex w-full flex-[0_0_auto] flex-col items-end gap-[13px] self-stretch">
