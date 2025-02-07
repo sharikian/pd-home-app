@@ -19,11 +19,13 @@ export const Header = ({ userName, userId, className }: Props): JSX.Element => {
       <div className="flex h-full items-center justify-between px-4 md:px-8">
         {/* Left Side Icons */}
         <div className="flex items-center gap-4 md:gap-6">
-          <Image
-            className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
-            alt="Settings"
-            src={SettingTwo}
-          />
+          <Link href="/myplan">
+            <Image
+              className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
+              alt="Settings"
+              src={SettingTwo}
+            />
+          </Link>
           <Image
             className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
             alt="Help"

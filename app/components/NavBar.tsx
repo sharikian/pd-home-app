@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState, JSX } from "react";
 import {
   BookOpen,
@@ -7,7 +7,7 @@ import {
   HomeTwo,
   PeopleSpeak,
   MingcuteExitLine,
-} from '@/public/icons';
+} from "@/public/icons";
 import Logo from "@/public/imgs/logo.png";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,7 +23,12 @@ interface NavBarValProps {
   onClick: () => void;
 }
 
-const NavBarVal = ({ value, icon, isActive, onClick }: NavBarValProps): JSX.Element => {
+const NavBarVal = ({
+  value,
+  icon,
+  isActive,
+  onClick,
+}: NavBarValProps): JSX.Element => {
   return (
     <div
       className={`relative flex w-full flex-[0_0_auto] flex-col items-center justify-center self-stretch rounded-[10px] px-[25px] pt-2.5 pb-0 transition duration-300 ease-in-out whitespace-nowrap ${
@@ -68,7 +73,7 @@ export const NavBar = ({ className }: Props): JSX.Element => {
       className={`bg-gray relative flex h-[1099px] w-[180px] flex-col items-center gap-14 px-0 py-3 shadow-[-4px_0px_46.7px_#0000001c] ${className}`}
     >
       {/* Logo */}
-      <Link href='/'>
+      <Link href="/">
         <Image className="!h-[122px] !w-[122px]" src={Logo} alt="Logo" />
       </Link>
 
@@ -101,7 +106,7 @@ export const NavBar = ({ className }: Props): JSX.Element => {
 
         <div className="relative inline-flex flex-[0_0_auto] items-center justify-center gap-2.5 px-2.5 py-1.5 transition duration-300 ease-in-out">
           <div
-            className={`text-[#1A604E] relative mt-[-1.00px] w-fit  text-lg leading-[normal] font-medium tracking-[0] [direction:rtl] transition duration-300 ease-in-out`}
+            className={`text-[#1A604E] relative mt-[-1.00px] w-fit text-lg leading-[normal] font-medium tracking-[0] transition duration-300 ease-in-out`}
           >
             خروج
           </div>
