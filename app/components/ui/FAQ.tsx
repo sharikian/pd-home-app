@@ -1,6 +1,7 @@
 "use client"
 import { useState } from 'react';
 import { ArrowDown } from "@/public/icons";
+import Image from 'next/image';
 
 interface FAQProps {
   title: string;
@@ -32,10 +33,10 @@ export const FAQ = ({
 
   return (
     <div
-      className={`max-w-[1414px] w-full flex items-start gap-2.5 shadow-[-8px_23px_81.4px_#1a604e1a,8px_-23px_81.4px_#ffffff] p-2.5 overflow-hidden rounded-[15px] bg-[#eaeef1] relative transition-all duration-300 ${className}`}
+      className={`max-w-[1414px] items-center w-full flex gap-2.5 shadow-[-8px_23px_81.4px_#1a604e1a,8px_-23px_81.4px_#ffffff] p-2.5 overflow-hidden rounded-[6px] bg-[#eaeef1] relative transition-all duration-300 ${className}`}
       style={{
         border: `1.5px solid ${variantStyles[variant].border}`,
-        height: isOpen ? 'auto' : '81px'
+        height: isOpen ? 'auto' : '51px'
       }}
     >
       <div className="flex flex-col w-full">
@@ -43,19 +44,18 @@ export const FAQ = ({
           className="flex items-center justify-between w-full p-4 cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
         >
-          <h3 
-            className="flex-1 [font-family:'Pelak-Bold',Helvetica] font-bold text-2xl tracking-[0] leading-[normal] [direction:rtl] transition-colors duration-300"
-            style={{ color: variantStyles[variant].title }}
-          >
-            {title}
-          </h3>
-          
-          <img
+          <Image
             className={`w-8 h-8 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
             style={{ filter: variantStyles[variant].iconFilter }}
             src={ArrowDown}
             alt="Toggle icon"
           />
+          <h3 
+            className="flex-1 font-bold whitespace-nowrap [direction:rtl] transition-colors duration-300"
+            style={{ color: variantStyles[variant].title }}
+          >
+            {title}
+          </h3>
         </div>
 
         <div

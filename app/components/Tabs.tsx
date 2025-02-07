@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Line1, Subtract } from "@/public/icons";
 import { useRef, useState, useEffect } from "react";
 import React, { JSX } from "react";
+import Image from "next/image";
 
 interface Props {
   varient: string;
@@ -61,7 +62,7 @@ export const Tabs = ({ varient, className }: Props): JSX.Element => {
   return (
     <div
       ref={tabContainerRef}
-      className={`flex h-[70px] md:h-[95px] items-center relative w-full rounded-[35px] overflow-hidden shadow-shadows ${
+      className={`flex h-[70px] md:h-[95px] items-center relative w-[80%] rounded-[35px] overflow-hidden shadow-shadows ${
         "bg-[#1a604e]"
       } ${className}`}
     >
@@ -77,7 +78,7 @@ export const Tabs = ({ varient, className }: Props): JSX.Element => {
             onClick={() => handleTabClick(index)}
           >
             <div
-              className={`relative w-fit font-normal text-white tracking-[0] leading-[normal] text-right [direction:rtl] ${
+              className={`relative w-fit font-normal text-white tracking-[0] leading-[normal] text-right whitespace-nowrap ${
                 activate
                   ? "[font-family:'Pelak',Helvetica] [text-shadow:0px_0px_25px_#b9d0aa]"
                   : "[font-family:'Pelak-Regular',Helvetica]"
@@ -106,12 +107,12 @@ const Climb = React.forwardRef<HTMLDivElement>((_props, ref) => {
   return (
     <div ref={ref} className="absolute w-[180px] md:w-[228px] h-[65px] md:h-[85px]">
       <div className="relative h-[68px] md:h-[88px] -top-0.5">
-        <img
+        <Image
           className="absolute w-[80px] md:w-[109px] h-[4px] md:h-[5px] top-0 left-[40px] md:left-[59px] object-cover"
           alt="Line"
           src={Line1}
         />
-        <img
+        <Image
           className="absolute w-[180px] md:w-[228px] h-[65px] md:h-[85px] top-0.5 left-0"
           alt="Subtract"
           src={Subtract}

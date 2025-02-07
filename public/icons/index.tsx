@@ -8,7 +8,7 @@ export { default as Line1 } from "./line-1.svg";
 export { default as Subtract } from "./subtract.svg";
 export { default as SettingTwo } from "./setting-two.svg";
 export { default as Help } from "./help.svg";
-export { default as MessageEmoji } from "./help.svg";
+export { default as MessageEmoji } from "./message-emoji.svg";
 export { default as Remind } from "./remind.svg";
 export { default as ArrowLeft } from "./arrow-left.svg";
 export { default as ArrowDown } from "./arrow-down.svg";
@@ -22,6 +22,7 @@ export { default as Food } from "./food.svg";
 export { default as PersonWalking } from "./person-walking.svg";
 export { default as SpeakAI } from "./speak-ai.svg";
 export { default as Sport } from "./sport.svg";
+export { default as HaveQuestion } from "./have-question.svg";
 
 
 interface Prop {

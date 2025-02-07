@@ -26,11 +26,13 @@ export const Header = ({ userName, userId, className }: Props): JSX.Element => {
               src={SettingTwo}
             />
           </Link>
-          <Image
-            className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
-            alt="Help"
-            src={Help}
-          />
+          <Link href="/FAQ">
+            <Image
+              className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
+              alt="Help"
+              src={Help}
+            />
+          </Link>
           <Image
             className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
             alt="Messages"
@@ -41,7 +43,7 @@ export const Header = ({ userName, userId, className }: Props): JSX.Element => {
 
         {/* Right Side Profile */}
         <div className="ml-auto flex items-center gap-4 md:gap-6">
-          <Link href='/dashboard'>
+          <Link href="/dashboard">
             <div className="flex items-center gap-3 md:gap-4">
               <div className="flex flex-col items-end text-right">
                 <span className="[font-family:'Pelak-Regular',Helvetica] text-sm font-medium text-gray-800 md:text-base">
