@@ -7,7 +7,7 @@ interface Prop {
 export const Together = ({className}:Prop) => {
   return (
     <div className={`rtl relative w-[36.5rem] h-[21.1rem] text-[#1a604e] bg-[#b9d0aa] rounded-[35px] overflow-hidden ${className}`}>
-        <Image alt="together" src='/imgs/dashboard/together.svg' width={250} height={250}/>
+        <Image alt="together" src='/imgs/dashboard/together.svg' width={250} height={250} className="mb-16"/>
 
             <div className="absolute right-8 top-[38%]">
               امروز

@@ -7,13 +7,51 @@ import Image from "next/image";
 
 export const MainCarousel = () => {
     return (
-        <Carousel autoPlay infiniteLoop showArrows showThumbs={false}>
-            <div>
-                <Image src={Main1} alt="carousel" style={{borderRadius: '2rem'}} />
-            </div>
-            <div>
-                <Image src={Main2} alt="carousel" style={{borderRadius: '2rem'}} />
-            </div>
-        </Carousel>
+        <div className="w-full max-w-[1220px] px-4 md:px-0 mx-auto">
+            <Carousel 
+                autoPlay 
+                infiniteLoop 
+                showArrows={true}
+                showThumbs={false}
+                showStatus={false}
+                renderArrowPrev={(onClickHandler, hasPrev, label) =>
+                    hasPrev && (
+                        <button
+                            type="button"
+                            onClick={onClickHandler}
+                            title={label}
+                            className="absolute right-0 md:right-4 z-10 btn-arrow"
+                        />
+                    )
+                }
+                renderArrowNext={(onClickHandler, hasNext, label) =>
+                    hasNext && (
+                        <button
+                            type="button"
+                            onClick={onClickHandler}
+                            title={label}
+                            className="absolute left-0 md:left-4 z-10 btn-arrow rotate-180"
+                        />
+                    )
+                }
+            >
+                <div className="h-[200px] md:h-[400px] lg:h-[500px] relative">
+                    <Image
+                        src={Main1}
+                        alt="carousel"
+                        fill
+                        className="object-cover rounded-2xl md:rounded-[2rem]"
+                    />
+                </div>
+                <div className="h-[200px] md:h-[400px] lg:h-[500px] relative">
+                    <Image
+                        src={Main2}
+                        alt="carousel"
+                        fill
+                        className="object-cover rounded-2xl md:rounded-[2rem]"
+                    />
+                </div>
+            </Carousel>
+        </div>
     );
-  }
+}

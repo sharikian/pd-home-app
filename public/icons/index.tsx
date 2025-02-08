@@ -24,6 +24,7 @@ export { default as SpeakAI } from "./speak-ai.svg";
 export { default as Sport } from "./sport.svg";
 export { default as HaveQuestion } from "./have-question.svg";
 export { default as GreenDanger } from "./green-danger.svg";
+export { default as PlusIcon } from "./plus-white.svg";
 
 
 interface Prop {

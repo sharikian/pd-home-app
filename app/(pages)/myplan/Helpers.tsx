@@ -1,32 +1,16 @@
-import { JSX } from "react";
-
-export const Helpers = (): JSX.Element => {
+export const Helpers = () => {
   return (
-    <div className="inline-flex items-center gap-[27px] relative mt-16" style={{justifyContent:'end'}}>
-      <div className="gap-[7px] inline-flex items-center relative ">
-        <div className="justify-center gap-2.5 p-2.5 inline-flex items-center relative ">
-          <div className="relative w-fit mt-[-1.00px] font-medium text-black text-base text-left ">
-            رزرو شده
-          </div>
+    <div className="flex flex-wrap justify-end gap-4 md:gap-8 mt-8 px-4">
+      {[
+        { text: "رزرو شده", color: "bg-[#1a604e]" },
+        { text: "مراجعه نشده", color: "bg-[#d85562]" },
+        { text: "مراجعه شده", color: "bg-[#b9d0aa]" },
+      ].map((item, index) => (
+        <div key={index} className="flex items-center gap-2">
+          <span className="text-sm md:text-base text-black">{item.text}</span>
+          <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full ${item.color}`} />
         </div>
-        <div className="relative w-[37px] h-[37px] bg-[#1a604e] rounded-[18.5px]" />
-      </div>
-      <div className="gap-[7px] inline-flex items-center relative ">
-        <div className="justify-center gap-2.5 p-2.5 inline-flex items-center relative ">
-          <div className="relative w-fit mt-[-1.00px] font-medium text-black text-base text-left ">
-            مراجعه نشده
-          </div>
-        </div>
-        <div className="bg-[#d85562] relative w-[37px] h-[37px] rounded-[18.5px]" />
-      </div>
-      <div className="gap-[7px] inline-flex items-center relative ">
-        <div className="justify-center gap-2.5 p-2.5 inline-flex items-center relative ">
-          <div className="relative w-fit mt-[-1.00px] font-medium text-black text-base text-left ">
-            مراجعه شده
-          </div>
-        </div>
-        <div className="bg-[#b9d0aa] relative w-[37px] h-[37px] rounded-[18.5px]" />
-      </div>
+      ))}
     </div>
   );
 };

@@ -14,7 +14,7 @@ interface Props {
 export const Header = ({ userName, userId, className }: Props): JSX.Element => {
   return (
     <header
-      className={`relative mx-auto h-20 w-full max-w-screen-2xl bg-[#eaeef1] shadow-lg ${className}`}
+      className={`relative  h-20 w-[90%] max-w-screen-2xl bg-[#eaeef1] shadow-lg ${className} mr-[10rem]`}
     >
       <div className="flex h-full items-center justify-between px-4 md:px-8">
         {/* Left Side Icons */}

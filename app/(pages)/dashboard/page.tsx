@@ -1,30 +1,33 @@
 import { Together } from './Together';
-import { ArrowLeft } from '@/public/icons';
-import { DatePicker } from '../../components';
 import { Activities } from './Activities';
 import { NotDoIt } from './NotDoIt';
+import { DatePicker } from '../../components';
+import { ArrowDown } from '@/public/icons';
 import Image from 'next/image';
 
 const DashBoardPage = () => {
   return (
-    <>
-    <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          borderBottom: '1px solid rgba(0, 0, 0, 0.19)',
-        }}>
-        <Image src='/imgs/dashboard/omid.png' width={720} height={464} alt='omid dashte bash'/>
-        <Together />
-    </div>
-    <div className="border-[#00000030] py-[0.88rem] flex  border-b border-solid items-start gap-10 ">
-      <div className="mb-[0.25rem] flex flex-col gap-[1.75rem] w-1/2">
-        <div className="flex justify-end px-[1.75rem] py-[0.63rem] sm:px-[1.00rem]">
-          <p className='lg:text-[1.25rem] text-[1.50rem] !text-[#000000] font-medium'>
-            مشاور متخصص من
-          </p>
+    <div className="flex flex-col gap-6 md:gap-8 lg:gap-10 p-4 md:p-6">
+      {/* Header Section */}
+      <div className="flex flex-col lg:flex-row gap-4 md:gap-6 items-center border-b border-[#00000030] pb-6">
+        <div className="w-full lg:w-3/5 relative aspect-[1.5] md:aspect-[2]">
+          <Image
+            src='/imgs/dashboard/omid.png'
+            alt='omid dashte bash'
+            fill
+          />
         </div>
-        <div className="rounded-[34px] bg-[#eaeef1] p-5 shadow-lg">
-        <div className="flex flex-col items-center gap-8 rounded-[14px] border border-solid border-[#1a604e] bg-[#eaeef1] p-6 sm:p-4">
+        <Together className="w-full lg:w-2/5 h-full min-h-[200px]" />
+      </div>
+
+      {/* Main Content */}
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 md:gap-8">
+        {/* Doctor Section */}
+        <div className="bg-[#eaeef1] rounded-2xl p-4 md:p-6 shadow-lg ml-5">
+          <h2 className="text-xl md:text-2xl font-medium text-black mb-4 md:mb-6 text-end">
+            مشاور متخصص من
+          </h2>
+          <div className="flex flex-col items-center gap-8 rounded-[14px] border border-solid border-[#1a604e] bg-[#eaeef1] p-6 sm:p-4">
           <div className="mt-7 flex w-[44%] flex-col items-center justify-center gap-3.5 lg:w-full md:w-full">
             <Image src='/imgs/dashboard/doctor.png' width={240} height={240} alt="doctor" />
             <h3 className="!text-[#000000] lg:text-[2.06rem] truncate">
@@ -35,28 +38,32 @@ const DashBoardPage = () => {
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد،
           </h4>
         </div>
-      </div>
+        </div>
 
-      </div>
-      <div className="gap-[1.75rem] flex flex-col w-1/2">
-        <div className="p-[0.38rem] flex items-center justify-center md:flex-col">
-          <div className="flex flex-1 items-center justify-center md:self-stretch">
-            <Image alt='<' src={ArrowLeft} style={{transform:'rotate(90deg)'}} />
-            <div className="py-[0.38rem] flex flex-1">
-              <p className=" lg:text-[0.81rem] text-[1.00rem] !text-[#1a604e] font-normal">شرح فعالیت ها</p>
+        {/* Calendar Section */}
+        <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6">
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl md:text-2xl font-medium text-black">
+                فعالیت های پیش رو
+              </h2>
+              <div className="flex items-center gap-2 text-[#1a604e]">
+                <span className="text-sm md:text-base">شرح فعالیت ها</span>
+                <Image 
+                  src={ArrowDown} 
+                  alt="arrow" 
+                  className="w-5 h-5 transform rotate-90"
+                />
+              </div>
             </div>
-          <p className=" lg:text-[1.25rem] text-[1.50rem] !text-[#000000] font-medium">فعالیت های پیش رو</p>
-         </div>
+            <DatePicker />
+          </div>
+        </div>
       </div>
-      <div className="rounded-[34px] shadow-[-8px_23px_81px_0_#1a604e19] bg-[#ffffff] mx-[1.75rem] py-[0.88rem] px-[1.25rem] h-[36rem] relative content-center lg:h-auto md:mx-0 md:h-auto">
-        <DatePicker/>
-      </div>
-   </div>
-    </div>
 
-    <Activities/>
-    <NotDoIt/>
-    </>
+      <Activities />
+      <NotDoIt />
+    </div>
   );
 };
 

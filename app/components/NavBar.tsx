@@ -16,51 +16,11 @@ interface Props {
   className?: string;
 }
 
-interface NavBarValProps {
-  value: string;
-  icon: string;
-  isActive: boolean;
-  onClick: () => void;
-}
-
-const NavBarVal = ({
-  value,
-  icon,
-  isActive,
-  onClick,
-}: NavBarValProps): JSX.Element => {
-  return (
-    <div
-      className={`relative flex w-full flex-[0_0_auto] flex-col items-center justify-center self-stretch rounded-[10px] px-[25px] pt-2.5 pb-0 transition duration-300 ease-in-out whitespace-nowrap ${
-        isActive
-          ? "shadow-[inset_2px_4px_4px_#00000040] bg-[#b9d0aa57]"
-          : "hover:bg-[#b9d0aa57] hover:translate-x-[-4px]"
-      }`}
-      onClick={onClick}
-    >
-      <Image
-        className="relative h-[31px] w-[31px] transition duration-300 ease-in-out"
-        alt={value}
-        src={icon}
-      />
-
-      <div className="relative inline-flex flex-[0_0_auto] items-center justify-center gap-2.5 px-2.5 py-1.5 transition duration-300 ease-in-out">
-        <div
-          className={`text-[#1A604E] relative mt-[-1.00px] w-fit ext-lg leading-[normal] font-medium transition duration-300 ease-in-out ${
-            isActive ? "text-shadow-active" : ""
-          }`}
-        >
-          {value}
-        </div>
-      </div>
-    </div>
-  );
-};
-
 export const NavBar = ({ className }: Props): JSX.Element => {
   const [activeItem, setActiveItem] = useState<string>("خانه");
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
-  const navels = [
+  const navItems = [
     { value: "خانه", icon: HomeTwo },
     { value: "پرونده", icon: FileCollection },
     { value: "مسیر توانبخشی", icon: ConnectionPointTwo },
@@ -69,49 +29,126 @@ export const NavBar = ({ className }: Props): JSX.Element => {
   ];
 
   return (
-    <div
-      className={`bg-gray relative flex h-[1099px] w-[180px] flex-col items-center gap-14 px-0 py-3 shadow-[-4px_0px_46.7px_#0000001c] ${className}`}
-    >
-      {/* Logo */}
-      <Link href="/">
-        <Image className="!h-[122px] !w-[122px]" src={Logo} alt="Logo" />
-      </Link>
-
-      {/* Navigation Items */}
-      <div className="relative flex w-full flex-[0_0_auto] flex-col items-end gap-[13px] self-stretch">
-        {navels.map((data) => (
-          <NavBarVal
-            key={data.value}
-            value={data.value}
-            icon={data.icon}
-            isActive={activeItem === data.value}
-            onClick={() => setActiveItem(data.value)}
-          />
-        ))}
-      </div>
-
-      {/* Logout Section */}
-      <div
-        className={`absolute top-[918px] flex h-[86px] w-[197px] flex-col items-center justify-center gap-[7px] rounded-[10px] px-[25px] pt-2.5 pb-0 transition duration-300 ease-in-out ${
-          activeItem === "خروج"
-            ? "shadow-[inset_2px_4px_4px_#00000040] bg-[#b9d0aa57]"
-            : "hover:bg-[#b9d0aa57] hover:translate-x-2"
-        }`}
+    <>
+      {/* Mobile Menu Button */}
+      <button
+        className="fixed bottom-6 left-6 z-50 p-3 bg-[#1A604E] rounded-full shadow-lg md:hidden"
+        onClick={() => setIsMobileOpen(!isMobileOpen)}
+        aria-label="Open menu"
       >
-        <Image
-          className="relative h-[31px] w-[31px] transition duration-300 ease-in-out"
-          alt="خروج"
-          src={MingcuteExitLine}
-        />
+        <svg
+          className="w-6 h-6 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
 
-        <div className="relative inline-flex flex-[0_0_auto] items-center justify-center gap-2.5 px-2.5 py-1.5 transition duration-300 ease-in-out">
-          <div
-            className={`text-[#1A604E] relative mt-[-1.00px] w-fit text-lg leading-[normal] font-medium tracking-[0] transition duration-300 ease-in-out`}
-          >
-            خروج
+      {/* Desktop NavBar */}
+      <div className="hidden md:block fixed right-0 top-0 h-full z-40">
+        <div className={`bg-gray relative flex h-full w-[180px] flex-col items-center gap-14 px-0 py-3 shadow-[-4px_0px_46.7px_#0000001c] ${className}`}>
+          <Link href="/" className="mt-4">
+            <Image className="h-[122px] w-[122px]" src={Logo} alt="Logo" />
+          </Link>
+
+          <div className="flex flex-col items-end gap-[13px] w-full px-4">
+            {navItems.map((item) => (
+              <NavBarItem
+                key={item.value}
+                item={item}
+                isActive={activeItem === item.value}
+                onClick={() => setActiveItem(item.value)}
+              />
+            ))}
+          </div>
+
+          <div className="mt-auto w-full px-4">
+            <NavBarItem
+              item={{ value: "خروج", icon: MingcuteExitLine }}
+              isActive={false}
+              onClick={() => {}}
+            />
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Mobile NavBar */}
+      <div
+        className={`fixed inset-0 z-30 bg-white transform transition-transform duration-300 ease-in-out
+          ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
+          md:hidden`}
+      >
+        <div className="flex flex-col h-full p-6">
+          <Link href="/" className="mb-8 self-center">
+            <Image className="h-[100px] w-[100px]" src={Logo} alt="Logo" />
+          </Link>
+
+          <div className="flex flex-col gap-4 flex-1">
+            {navItems.map((item) => (
+              <NavBarItem
+                key={item.value}
+                item={item}
+                isActive={activeItem === item.value}
+                onClick={() => {
+                  setActiveItem(item.value);
+                  setIsMobileOpen(false);
+                }}
+                mobile
+              />
+            ))}
+          </div>
+
+          <div className="mt-8">
+            <NavBarItem
+              item={{ value: "خروج", icon: MingcuteExitLine }}
+              isActive={false}
+              onClick={() => setIsMobileOpen(false)}
+              mobile
+            />
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
+
+const NavBarItem = ({
+  item,
+  isActive,
+  onClick,
+  mobile = false,
+}: {
+  item: { value: string; icon: string };
+  isActive: boolean;
+  onClick: () => void;
+  mobile?: boolean;
+}) => (
+  <div
+    className={`relative flex flex-col items-center justify-center rounded-[10px] px-4 pt-2 pb-1 transition-all duration-300 ${
+      mobile ? "w-full" : "w-[160px]"
+    } ${
+      isActive
+        ? "shadow-[inset_2px_4px_4px_#00000040] bg-[#b9d0aa57]"
+        : "hover:bg-[#b9d0aa57] hover:-translate-x-1"
+    } ${mobile ? "py-3" : "py-2"}`}
+    onClick={onClick}
+  >
+    <Image
+      className="h-[31px] w-[31px] transition duration-300"
+      alt={item.value}
+      src={item.icon}
+      width={31}
+      height={31}
+    />
+    <div className="mt-1 text-[#1A604E] font-medium text-lg whitespace-nowrap">
+      {item.value}
+    </div>
+  </div>
+);

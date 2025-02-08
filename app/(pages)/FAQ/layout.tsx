@@ -6,7 +6,7 @@ interface Prop {
   children: ReactNode
 }
 
-const Layout = ({children}:Prop) => {
+const Layout = ({children, haveTabs = false}:Prop) => {
   return (
     <>
       <div className="flex justify-between">
@@ -16,7 +16,7 @@ const Layout = ({children}:Prop) => {
             userId={20938457}
             className="px-10 py-5"
           />
-          <Tabs varient={"ligth"} />
+          {haveTabs && (<Tabs varient={"ligth"} />)}
           <div className="flex flex-col justify-center w-[95%] mx-8 rounded-[2.1875rem] p-8 border border-[#00000010] bg-white shadow-[8px_-23px_81.4px_#FFF,_-8px_23px_81.4px_rgba(26,_96,_78,_0.10)]">
             {children}
           </div>

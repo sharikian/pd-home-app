@@ -1,82 +1,53 @@
 import { Input, Button } from "@/app/components";
 import Logo from "@/public/imgs/logo.png";
 import Link from "next/link";
-import { JSX } from "react";
 import Image from "next/image";
 
-const RegisterAuthPage = (): JSX.Element => {
+const RegisterAuthPage = () => {
   return (
-    <div className="flex min-h-screen flex-row-reverse bg-gray-100">
-      {/* Form Section */}
-      <div className="relative flex w-1/2 items-center justify-center bg-white p-20">
-        {/* Form Content */}
-        <div className="mx-auto mt-24 flex max-w-md flex-col items-center">
-          <h1
-            className="mb-8 text-right text-4xl text-[#1a604e]"
-            style={{ fontWeight: 300, width: "max-content" }}
-          >
-            ثبت نام در خانه پارکینسون
-          </h1>
-
-          <div className="flex flex-col items-center">
-            <Input
-              title="نام کاربری"
-              placeholder="نام کاربری خود را وارد کنید"
-              variant="primary"
-              centerize={false}
-            />
-
-            <Input
-              title="رمز عبور"
-              placeholder="رمز عبور خود را وارد کنید"
-              variant="primary"
-              centerize={false}
-            />
-
-            <Input
-              title="شماره تماس"
-              placeholder="شماره تماس خود را وارد کنید"
-              variant="primary"
-              centerize={false}
-            />
-
-            <Button
-              text="ثبت نام"
-              variant="secondary"
-              className="text-xl mt-6"
-              style={{
-                boxShadow: "-6px 7px 21px -6px #1A604E",
-              }}
-            />
-          </div>
-        </div>
-      </div>
-
+    <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
       {/* Graphic Section */}
-      <div
-        className="flex w-1/2 items-center justify-center bg-cover bg-center"
-        style={{ backgroundImage: `url(/imgs/fade-login.png)` }}
-      >
-        <Link href='/'>
-            <Image src={Logo} alt="Logo" className="absolute top-6 right-6 w-28" />
-        </Link>
-        <div className="max-w-md text-center text-white">
-          <h2 className="mb-8 text-5xl font-bold">خوش اومدی!</h2>
-          <p className="text-2xl leading-relaxed">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-cover bg-center relative min-h-[400px]"
+        style={{ backgroundImage: `url(/imgs/fade-login.png)` }}>    
+        <div className="text-center text-white max-w-md">
+          <h2 className="mb-4 text-3xl md:text-4xl font-bold">خوش اومدی!</h2>
+          <p className="text-lg md:text-xl leading-relaxed mb-8">
             اگر قبلا حساب کاربری ساختی میتونی وارد حساب شخصیت بشی!
           </p>
-
+          
           <Link href="/auth/login">
             <Button
               text="ورود به حساب کاربری"
               variant="primary"
-              className="mx-auto mt-12 text-lg"
-              style={{
-                boxShadow: "-6px 7px 21px -6px #1A604E",
-                borderRadius: "0.9375rem",
-              }}
+              className="w-full md:w-auto text-lg"
             />
           </Link>
+        </div>
+      </div>
+
+
+      {/* Form Section */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 md:p-8 lg:p-20 bg-white">
+      <Link href="/" className="absolute top-4 right-4">
+          <Image src={Logo} alt="Logo" className="w-20 md:w-28" />
+        </Link>
+        <div className="w-full max-w-md">
+          <h1 className="mb-6 text-2xl md:text-3xl lg:text-4xl text-[#1a604e] text-center">
+            ثبت نام در خانه پارکینسون
+          </h1>
+
+          <div className="space-y-6 w-full">
+            <Input title="نام کاربری" placeholder="نام کاربری خود را وارد کنید" />
+            <Input title="رمز عبور" placeholder="رمز عبور خود را وارد کنید" type="password" />
+            <Input title="شماره تماس" placeholder="شماره تماس خود را وارد کنید" type="tel" />
+
+            <Button
+              text="ثبت نام"
+              variant="secondary"
+              className="w-full text-lg"
+              shadow="[-6px_7px_21px_-6px_#1A604E]"
+            />
+          </div>
         </div>
       </div>
     </div>

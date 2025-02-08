@@ -1,26 +1,39 @@
+import { ArrowDown } from "@/public/icons";
+import { PersonCard } from "./PersonCard";
 import Image from "next/image";
 
-interface Prop {
-    Icon: string;
-    title?: string;
-}
-
-export const ToggleShow = ({Icon, title}:Prop) => {
+export const ToggleShow = () => {
     return (
-        <div className="flex flex-col w-[100px] items-center gap-2.5 relative">
-          <div className="relative w-[100px] h-[100px] bg-[#B9D0AA] rounded-[50px] shadow-[-6px_7px_21px_-6px_#1a604e,2px_-1px_66.3px_18px_#ffffff]">
-            <Image
-              className="absolute w-[51px] h-[51px] top-6 left-6"
-              alt="Fluent person"
-              src={Icon}
-            />
-          </div>
+        <div className="w-full flex flex-col items-start gap-2.5 relative">
+            <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4">
+                <div className="flex items-center gap-2 order-2 md:order-1">
+                    <Image 
+                        className="w-6 h-6" 
+                        src={ArrowDown} 
+                        alt="arrow icon" 
+                        style={{ transform: 'rotate(90deg)' }} 
+                    />
+                    <div className="font-pelak text-[#1a604e] text-sm md:text-base">
+                        ویدیو های بیشتر
+                    </div>
+                </div>
 
-          <div className="inline-flex items-center justify-center gap-2.5 p-2.5 relative flex-[0_0_auto] ml-[-27.50px] mr-[-27.50px]">
-            <div className="relative w-fit mt-[-1.00px]  font-medium text-black text-[21px] tracking-[0] leading-[normal] [direction:rtl]">
-              {title}
+                <div className="order-1 md:order-2">
+                    <div className="font-medium text-black text-xl md:text-2xl lg:text-[32px] [direction:rtl]">
+                        تغذیه
+                    </div>
+                </div>
             </div>
-          </div>
+
+            <div className="w-full overflow-x-auto pb-4">
+                <div className="flex gap-4 md:gap-12 flex-nowrap px-2 md:px-0">
+                    {Array.from({ length: 3 }, (_, i) => (
+                        <div key={i} className="flex-shrink-0 w-[280px] md:w-[320px] lg:w-[370px]">
+                            <PersonCard />
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     )
 }
