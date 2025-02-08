@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 export const DatePicker = () => {
-  const [selectedDay, setSelectedDay] = useState(null);
+  const [selectedDay, setSelectedDay] = useState<number>(0);
   const [currentDate, setCurrentDate] = useState(new Date());
   
   // Persian month names and their day counts (approximate)
@@ -22,7 +22,7 @@ export const DatePicker = () => {
   ];
 
   // Get current Persian date
-  const getPersianDate = (date) => ({
+  const getPersianDate = (date: Date) => ({
     year: date.getFullYear(),
     month: date.getMonth() + 1,
     day: date.getDate()
@@ -31,7 +31,7 @@ export const DatePicker = () => {
   // Generate proper calendar days
   const generateCalendar = () => {
     const days = [];
-    const { year, month } = getPersianDate(currentDate);
+    const { month } = getPersianDate(currentDate);
     const monthIndex = month - 1;
     
     // Get number of days in current month
@@ -59,7 +59,7 @@ export const DatePicker = () => {
   };
 
   // Handle month/year change with boundary checks
-  const handleDateChange = (type, value) => {
+  const handleDateChange = (type: string, value: number) => {
     const newDate = new Date(currentDate);
     
     if (type === 'year') {

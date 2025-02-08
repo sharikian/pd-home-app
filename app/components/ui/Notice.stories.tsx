@@ -1,4 +1,6 @@
 import { Notice } from "./Notice";
+
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   component: Notice,
   title: 'Base/Notice Message',

@@ -1,5 +1,6 @@
 import { Input } from './Input';
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   component: Input,
   title: 'Base/Input',

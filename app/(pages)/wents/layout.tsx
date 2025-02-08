@@ -2,7 +2,7 @@ import { Header, NavBar, Tabs } from "@/app/components";
 import { ReactNode } from "react";
 
 interface Prop {
-  haveTabs?: boolean;
+  
   children: ReactNode;
 }
 

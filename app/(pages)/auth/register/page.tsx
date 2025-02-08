@@ -45,7 +45,7 @@ const RegisterAuthPage = () => {
               text="ثبت نام"
               variant="secondary"
               className="w-full text-lg"
-              shadow="[-6px_7px_21px_-6px_#1A604E]"
+              // shadow="[-6px_7px_21px_-6px_#1A604E]"
             />
           </div>
         </div>

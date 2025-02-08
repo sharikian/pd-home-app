@@ -1,5 +1,14 @@
 "use client"
 import Image from "next/image";
+import { JSX, HTMLAttributes } from "react";
+
+interface Props extends HTMLAttributes<HTMLDivElement> {
+  text: string;
+  className?: string;
+  icon?: string;
+  variant?: "primary" | "warning" | "secondary";
+}
+
 export const Button = ({ text, className, icon, variant = "primary", ...rest }: Props): JSX.Element => {
   return (
     <div

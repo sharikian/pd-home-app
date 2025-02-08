@@ -1,5 +1,6 @@
 import { Timer } from './';
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   component: Timer,
   title: 'Base/Timer Count Down',

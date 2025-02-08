@@ -1,4 +1,5 @@
 import { DropDown } from "./DropDown";
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   component: DropDown,
   title: 'Base/Drop Down',

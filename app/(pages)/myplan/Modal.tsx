@@ -14,7 +14,7 @@ interface Prop {
   children?: ReactNode;
 }
 
-const Modal = ({ onClose, children }: Prop) => {
+const Modal = ({ onClose }: Prop) => {
   const modalContent = (
     <div className="modal-overlay">
       <Card

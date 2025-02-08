@@ -1,4 +1,6 @@
 import { FAQ } from "./FAQ";
+
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   component: FAQ,
   title: 'Base/Frequently Asked Questions',

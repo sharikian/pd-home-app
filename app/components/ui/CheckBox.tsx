@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useReducer } from "react";
+import { useReducer, JSX } from "react";
 
 interface Props {
   active?: boolean;

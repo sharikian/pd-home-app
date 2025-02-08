@@ -2,7 +2,8 @@
 import { CheckBox } from "./ui/CheckBox";
 import { RangeDown } from "./ui/RangeDown";
 import { ArrowLeft } from "@/public/icons";
-import { useState } from "react";
+import { useState, JSX } from "react";
+import Image from "next/image";
 
 interface FrameListProps {
   title: string;
@@ -25,7 +26,7 @@ export const FrameList = ({ title, items }: FrameListProps): JSX.Element => {
         <div className="relative mt-[-1.00px] w-fit  text-lg leading-[normal] font-medium tracking-[0] text-black [direction:rtl]">
           {title}
         </div>
-        <img
+        <Image
           className="relative w-6 transition-transform duration-300"
           alt="Icon park arrow left"
           src={ArrowLeft}

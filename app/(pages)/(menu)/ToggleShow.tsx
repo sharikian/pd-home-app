@@ -1,15 +1,19 @@
-import { ArrowDown } from "@/public/icons";
 import { PersonCard } from "./PersonCard";
 import Image from "next/image";
 
-export const ToggleShow = () => {
+interface Prop {
+    Icon: string;
+    // title?: string;
+}
+
+export const ToggleShow = ({Icon}:Prop) => {
     return (
         <div className="w-full flex flex-col items-start gap-2.5 relative">
             <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-2 order-2 md:order-1">
                     <Image 
                         className="w-6 h-6" 
-                        src={ArrowDown} 
+                        src={Icon} 
                         alt="arrow icon" 
                         style={{ transform: 'rotate(90deg)' }} 
                     />

@@ -1,6 +1,7 @@
 import {Timeline} from "./Timeline";
-import { TickRing } from "../../static/icons";
+import { TickRing } from "@/public/icons";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   component: Timeline,
   title: 'Base/Time Line',

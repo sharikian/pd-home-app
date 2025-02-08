@@ -15,7 +15,7 @@ export const AnimatedNumber = ({ value, className }: AnimatedNumberProps) => {
       setAnimationKey(prev => prev + 1);
       setDisplayValue(value);
     }
-  }, [value]);
+  }, [displayValue, value]);
 
   return (
     <div 

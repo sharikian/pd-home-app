@@ -2,6 +2,7 @@
 import React, { useCallback, useState } from "react";
 import { FolderUpload, Plus } from "@/public/icons";
 import { Button } from "./ui/Button";
+import Image from "next/image";
 
 interface FilePickerProps {
 	buttonName:string;
@@ -69,7 +70,7 @@ export const FilePicker = ({ buttonName, title, onFileSelected }: FilePickerProp
 				{/* Main container */}
 				<div className="relative inline-flex h-[258px] w-[621px] flex-col items-center justify-center gap-4">
 					{/* Upload icon */}
-					<img
+					<Image
 						className="mt-4 h-[70px] w-[70px]"
 						alt="Upload folder"
 						src={FolderUpload}

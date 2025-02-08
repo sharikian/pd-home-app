@@ -1,4 +1,6 @@
 import { FrameList } from "./FrameList";
+
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   component: FrameList,
   title: 'Base/Frame List',

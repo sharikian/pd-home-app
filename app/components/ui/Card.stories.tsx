@@ -1,5 +1,6 @@
 import { Card } from "./Card";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   component: Card,
   title: 'Base/Card',
