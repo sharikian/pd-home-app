@@ -1,15 +1,18 @@
 "use client"
 import React, { useState } from "react";
 import { ArrowDown } from "@/public/icons";
+import Image from "next/image";
 
 interface DropdownProps {
   options: string[];
   placeholder?: string;
+  className?: string;
 }
 
 export const DropDown: React.FC<DropdownProps> = ({
   options,
   placeholder = "گزینه مورد نظر را انتخاب کنید",
+  className = ""
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -22,7 +25,7 @@ export const DropDown: React.FC<DropdownProps> = ({
   };
 
   return (
-    <div className="relative w-[429px]">
+    <div className={`relative w-[429px] ${className}`}>
       <div
         className={`flex flex-col items-start gap-2.5 p-2.5 relative bg-[#eaeef1] rounded-[15px] overflow-hidden shadow-shadows ${
           isOpen ? "rounded-b-none" : ""
@@ -33,7 +36,7 @@ export const DropDown: React.FC<DropdownProps> = ({
           className="flex items-center justify-between px-[5px] py-0.5 relative self-stretch w-full flex-[0_0_auto] rounded-[5px] overflow-hidden border-[1.5px] border-solid border-[#1a604e] cursor-pointer"
           onClick={toggleDropdown}
         >
-          <img
+          <Image
             className="relative w-[34px] transform transition-transform"
             alt="Icon park arrow down"
             src={ArrowDown}

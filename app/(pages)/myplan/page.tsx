@@ -1,11 +1,11 @@
-'use client'
+"use client";
 import FullCalendar from "@fullcalendar/react";
 import faLocale from "@fullcalendar/core/locales/fa";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 import multiMonthPlugin from "@fullcalendar/multimonth";
-import persian from "react-date-object/calendars/persian"
-import gregorian_fa from "react-date-object/locales/gregorian_fa"
+import persian from "react-date-object/calendars/persian";
+import gregorian_fa from "react-date-object/locales/gregorian_fa";
 
 import Calender from "react-multi-date-picker";
 
@@ -53,14 +53,14 @@ const MyPlan = () => {
                         stroke="white"
                         strokeWidth="2"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M5 12.5H19"
                         stroke="white"
                         strokeWidth="2"
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </button>
@@ -91,14 +91,14 @@ const MyPlan = () => {
                           stroke="black"
                           stroke-width="2"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M5 12.5H19"
                           stroke="black"
                           stroke-width="2"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </div>
@@ -116,14 +116,14 @@ const MyPlan = () => {
                           stroke="black"
                           stroke-width="2"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M5 12.5H19"
                           stroke="black"
                           stroke-width="2"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </div>

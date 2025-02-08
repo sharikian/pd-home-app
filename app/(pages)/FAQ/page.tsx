@@ -1,5 +1,5 @@
 import { Help, HaveQuestion } from "@/public/icons";
-import { FAQ, Button, Input } from "@/app/components";
+import { FAQ, Button } from "@/app/components";
 import Image from "next/image";
 
 const FAQPage = () => {

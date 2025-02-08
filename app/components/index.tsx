@@ -15,3 +15,4 @@ export { TickRing } from "@/public/icons";
 export { Timer } from "./ui/Timer";
 export { Card } from "./ui/Card";
 export { DatePicker } from "./DatePicker";
+export { RangeDown } from "./ui/RangeDown";

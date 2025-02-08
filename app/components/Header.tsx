@@ -33,11 +33,13 @@ export const Header = ({ userName, userId, className }: Props): JSX.Element => {
               src={Help}
             />
           </Link>
-          <Image
-            className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
-            alt="Messages"
-            src={MessageEmoji}
-          />
+          <Link href='/wents'>
+            <Image
+              className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
+              alt="Messages"
+              src={MessageEmoji}
+            />
+          </Link>
           <DarkLightToggle activate className={""} />
         </div>
 

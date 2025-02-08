@@ -23,6 +23,7 @@ export { default as PersonWalking } from "./person-walking.svg";
 export { default as SpeakAI } from "./speak-ai.svg";
 export { default as Sport } from "./sport.svg";
 export { default as HaveQuestion } from "./have-question.svg";
+export { default as GreenDanger } from "./green-danger.svg";
 
 
 interface Prop {
