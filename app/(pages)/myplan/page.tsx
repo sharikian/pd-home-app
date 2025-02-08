@@ -11,17 +11,23 @@ import Calender from "react-multi-date-picker";
 
 import { Helpers } from "./Helpers";
 import { Experimental } from "./Experimental";
+import Modal from "./Modal";
+import { useState } from "react";
 
 const MyPlan = () => {
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>Hello from the modal!</Modal>
+      )}
       <div className="grid grid-cols-5 gap-4">
         <div className="col-span-1 p-4 rounded-[0.8rem] text-[#1A604E]">
           <Experimental />
         </div>
         <div className="col-span-4 p-4 rounded-[0.8rem] text-black">
           <div className="grid grid-cols-10 gap-1">
-            <div className="col-span-7">
+            <div className="col-span-7" onClick={() => setShowModal(true)}>
               <FullCalendar
                 plugins={[dayGridPlugin, listPlugin, multiMonthPlugin]}
                 initialView="dayGridMonth"
@@ -89,14 +95,14 @@ const MyPlan = () => {
                         <path
                           d="M12.03 5.5L12.0117 19.5"
                           stroke="black"
-                          stroke-width="2"
+                          strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         />
                         <path
                           d="M5 12.5H19"
                           stroke="black"
-                          stroke-width="2"
+                          strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         />
@@ -114,14 +120,14 @@ const MyPlan = () => {
                         <path
                           d="M12.03 5.5L12.0117 19.5"
                           stroke="black"
-                          stroke-width="2"
+                          strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         />
                         <path
                           d="M5 12.5H19"
                           stroke="black"
-                          stroke-width="2"
+                          strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         />

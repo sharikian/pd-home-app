@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface TimelineItem {
   title: string;
@@ -25,7 +26,7 @@ export const Timeline: React.FC<TimelineProps> = ({ items }) => {
           >
             {/* Icon */}
             <div className="absolute right-0 top-0 w-8 h-8 flex items-center justify-center">
-              <img
+              <Image
                 src={item.iconSrc}
                 alt="timeline-icon"
                 className="w-6 h-6"

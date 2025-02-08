@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useState, JSX } from "react";
 import PropTypes from "prop-types";
 
 interface StarRatingProps {
@@ -39,7 +39,7 @@ export const StarRating = ({
   const stars = Array(5).fill(0);
 
   return (
-    <div className="inline-flex items-center gap-1">
+    <div className="inline-flex items-center gap-1 w-min">
       {stars.map((_, index) => {
         const currentRating = index + 1;
         const isFilled = (hoverValue ?? value) >= currentRating;

@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { RadixIconsCrossCircled } from "@/public/icons";
+import { JSX } from "react";
 
 type Variant = "primary" | "secondary" | "warning";
 
@@ -8,7 +9,7 @@ interface CardProps {
   description: string;
   closeHandler: () => void;
   variant?: Variant;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const Card = ({
@@ -37,7 +38,7 @@ export const Card = ({
   };
 
   return (
-    <div className="shadow-shadows relative flex w-[659px] flex-col items-start gap-[18px] overflow-hidden rounded-[35px] bg-[#eaeef1]">
+    <div className="shadow-shadows relative flex w-fit flex-col items-start gap-[18px] overflow-hidden rounded-[25px] bg-[#eaeef1]">
       {/* Header Section */}
       <div
         className={`relative flex w-full flex-[0_0_auto] items-center justify-between self-stretch px-5 py-4 ${variantConfig[variant].bg} overflow-hidden rounded-[15px_15px_0px_0px]`}
@@ -66,7 +67,7 @@ export const Card = ({
       </div>
 
       {/* Rest of the card content (same as original) */}
-      <div className="relative flex w-full flex-[0_0_auto] flex-col items-end justify-center gap-5 self-stretch px-[22px] py-0">
+      <div className="relative flex w-full p-4 pb-5 flex-col items-center justify-center gap-5 self-stretch py-0">
         {children}
       </div>
     </div>
