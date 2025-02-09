@@ -30,8 +30,8 @@ export const Notice = ({
         className={`relative flex items-center justify-end gap-2.5 rounded-[5px] border-[1.5px] border-solid px-[9px] py-[7px] ${className}`}
         style={{ borderColor: variantStyles[variant].color }}
       >
-        <p className={`relative w-fit mt-[-1.00px] font-normal text-lg text-right whitespace-nowrap `}
-        style={{color: variantStyles[variant].color, textWrap:'auto'}}>
+        <p className={`relative w-fit mt-[-1.00px] font-normal text-lg text-right text-wrap `}
+        style={{color: variantStyles[variant].color}}>
           {value}
         </p>
       </div>
