@@ -6,25 +6,26 @@ interface Prop {
   children: ReactNode
 }
 
-const Layout = ({children}:Prop) => {
+const Layout = ({ children }: Prop) => {
   return (
-    <>
-      <div className="flex justify-between">
-        <div className="flex w-full flex-col items-center gap-6">
+    <div className="flex flex-col md:flex-row">
+      <NavBar className="shadow-left fixed top-0 right-0 z-50 bg-white pt-3" />
+      
+      <main className="flex-1 md:mr-[180px] mt-[80px] md:mt-0">
+        <div className="flex w-full flex-col items-center gap-4 md:gap-6">
           <Header
             userName={"joe rp"}
             userId={20938457}
-            className="px-10 py-5"
+            className="px-2 md:px-6 lg:px-10 py-3 md:py-5"
           />
-          
-          <div className="flex md:w-[95%] lg:mr-56 flex-col justify-center w-[95%] mx-8 rounded-[2.1875rem] p-8 border border-[#00000010] bg-white shadow-[8px_-23px_81.4px_#FFF,_-8px_23px_81.4px_rgba(26,_96,_78,_0.10)]">
-            {children}
+          <div className="w-full px-2 md:px-4 lg:px-8">
+            <div className="rounded-[1.5rem] md:rounded-[2.1875rem] p-3 md:p-6 lg:p-8 border border-[#00000010] bg-white shadow-custom">
+              {children}
+            </div>
           </div>
         </div>
-
-        <NavBar className="shadow-left fixed top-0 right-0 z-50 bg-white pt-3" />
-      </div>
-    </>
+      </main>
+    </div>
   );
 };
 

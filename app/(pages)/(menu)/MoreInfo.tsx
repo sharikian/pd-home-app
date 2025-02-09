@@ -2,51 +2,43 @@ import { Button } from "@/app/components";
 
 export const MoreInfo = () => {
   return (
-    <div className="flex flex-col items-center w-full">
-      <div className="w-full flex justify-between gap-8">
-        {/* Card 1 */}
-        <div className="relative w-full max-w-[calc(50%-16px)] h-[40vh] rounded-[2%]">
-          <div
-            className={`absolute inset-0 rounded-[2%] bg-[url(/imgs/menu/events.png)] bg-cover bg-[50%_50%]`}
+    <div className="w-full flex flex-col lg:flex-row gap-4 md:gap-8">
+      {/* Card 1 */}
+      <div className="relative w-full lg:w-1/2 h-[300px] md:h-[40vh] rounded-xl md:rounded-2xl overflow-hidden">
+        <div className="absolute inset-0 bg-[url(/imgs/menu/events.png)] bg-cover bg-center" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#B9D0AA] via-[#B9D0AA]/90 to-transparent" />
+        
+        <div className="relative h-full flex flex-col justify-center items-start p-4 md:p-6 lg:p-8">
+          <p className="text-[#1a604e] text-2xl md:text-3xl lg:text-4xl leading-tight">
+            <span className="font-semibold block mb-2">
+              رویداد ها و همایش های
+            </span>
+            <span className="font-black block">خانواده پارکینسون</span>
+          </p>
+          <Button
+            className="mt-4 md:mt-6 shadow-lg bg-dark-green"
+            text="اطلاعات بیشتر"
           />
-          <div className="absolute inset-0 rounded-[2%] [background:linear-gradient(90deg,rgb(185,208,170)_0%,rgb(185,208,170)_45.16%,rgba(185,208,170,0)_100%)]" />
-          <div className="flex flex-col items-start gap-[2rem] absolute top-[10%] left-[10%]">
-            <p className="text-[#1a604e] text-[2rem] leading-normal [direction:rtl]">
-              <span className="font-semibold">
-                رویداد ها <br />و همایش های <br />
-              </span>
-              <span className="font-black">
-                خانواده پارکینسون
-              </span>
-            </p>
-            <Button
-              className="shadow-[-6px_7px_21px_-6px_#1a604e] bg-dark-green"
-              text="اطلاعات بیشتر"
-            />
-          </div>
         </div>
+      </div>
 
-        {/* Card 2 */}
-        <div className="relative w-full max-w-[calc(50%-16px)] h-[40vh] rounded-[2%]">
-          <div
-            className={`absolute inset-0 rounded-[2%] bg-[url(/imgs/menu/kargah.png)] bg-cover bg-[50%_50%]`}
+      {/* Card 2 */}
+      <div className="relative w-full lg:w-1/2 h-[300px] md:h-[40vh] rounded-xl md:rounded-2xl overflow-hidden">
+        <div className="absolute inset-0 bg-[url(/imgs/menu/kargah.png)] bg-cover bg-center" />
+        <div className="absolute inset-0 bg-gradient-to-l from-[#1A604E] via-[#1A604E]/90 to-transparent" />
+        
+        <div className="relative h-full flex flex-col justify-center items-end p-4 md:p-6 lg:p-8">
+          <p className="text-white text-2xl md:text-3xl lg:text-4xl leading-tight">
+            <span className="font-semibold block mb-2">
+              کارگاه های حضوری و آنلاین
+            </span>
+            <span className="font-black block">زندگی با پارکینسون</span>
+          </p>
+          <Button
+            className="mt-4 md:mt-6 shadow-lg"
+            text="اطلاعات بیشتر"
+            variant="secondary"
           />
-          <div className="absolute inset-0 rounded-[2%] [background:linear-gradient(-90deg,rgb(26,96,78)_0%,rgb(26,96,78)_44.27%,rgba(26,96,78,0.67)_62.02%,rgba(26,96,78,0)_100%)]" />
-          <div className="flex flex-col items-end gap-[2rem] absolute top-[10%] right-[10%]">
-            <p className="text-white text-[2rem] leading-normal [direction:rtl]">
-              <span className="font-semibold">
-                کارگاه های <br />حضوری و آنلاین <br />
-              </span>
-              <span className="font-black">
-                زندگی با پارکینسون
-              </span>
-            </p>
-            <Button
-              className="shadow-[-6px_7px_21px_-6px_#1a604e]"
-              text="اطلاعات بیشتر"
-              variant="secondary"
-            />
-          </div>
         </div>
       </div>
     </div>

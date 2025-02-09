@@ -52,7 +52,7 @@ export const NavBar = ({ className }: Props): JSX.Element => {
       </button>
 
       {/* Desktop NavBar */}
-      <div className="hidden md:block fixed right-0 top-0 h-full z-40">
+      <div className="hidden md:block fixed right-0 top-0 h-full z-40 w-[180px]">
         <div className={`bg-gray relative flex h-full w-[180px] flex-col items-center gap-14 px-0 py-3 shadow-[-4px_0px_46.7px_#0000001c] ${className}`}>
           <Link href="/" className="mt-4">
             <Image className="h-[122px] w-[122px]" src={Logo} alt="Logo" />

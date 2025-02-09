@@ -6,52 +6,54 @@ import Main2 from '@/public/imgs/menu/main2.png';
 import Image from "next/image";
 
 export const MainCarousel = () => {
-    return (
-        <div className="w-full max-w-[1220px] px-4 md:px-0 mx-auto">
-            <Carousel 
-                autoPlay 
-                infiniteLoop 
-                showArrows={true}
-                showThumbs={false}
-                showStatus={false}
-                renderArrowPrev={(onClickHandler, hasPrev, label) =>
-                    hasPrev && (
-                        <button
-                            type="button"
-                            onClick={onClickHandler}
-                            title={label}
-                            className="absolute right-0 md:right-4 z-10 btn-arrow"
-                        />
-                    )
-                }
-                renderArrowNext={(onClickHandler, hasNext, label) =>
-                    hasNext && (
-                        <button
-                            type="button"
-                            onClick={onClickHandler}
-                            title={label}
-                            className="absolute left-0 md:left-4 z-10 btn-arrow rotate-180"
-                        />
-                    )
-                }
-            >
-                <div className="h-[200px] md:h-[400px] lg:h-[500px] relative">
-                    <Image
-                        src={Main1}
-                        alt="carousel"
-                        fill
-                        className="object-cover rounded-2xl md:rounded-[2rem]"
-                    />
-                </div>
-                <div className="h-[200px] md:h-[400px] lg:h-[500px] relative">
-                    <Image
-                        src={Main2}
-                        alt="carousel"
-                        fill
-                        className="object-cover rounded-2xl md:rounded-[2rem]"
-                    />
-                </div>
-            </Carousel>
+  return (
+    <div className="w-full">
+      <Carousel 
+        autoPlay 
+        infiniteLoop 
+        showArrows={true}
+        showThumbs={false}
+        showStatus={false}
+        renderArrowPrev={(onClickHandler, hasPrev, label) =>
+          hasPrev && (
+            <button
+              type="button"
+              onClick={onClickHandler}
+              title={label}
+              className="absolute right-4 md:right-8 z-10 btn-arrow w-12 h-12 bg-white/30 rounded-full backdrop-blur-sm hover:bg-white/50 transition-all"
+            />
+          )
+        }
+        renderArrowNext={(onClickHandler, hasNext, label) =>
+          hasNext && (
+            <button
+              type="button"
+              onClick={onClickHandler}
+              title={label}
+              className="absolute left-4 md:left-8 z-10 btn-arrow rotate-180 w-12 h-12 bg-white/30 rounded-full backdrop-blur-sm hover:bg-white/50 transition-all"
+            />
+          )
+        }
+      >
+        <div className="relative aspect-[2.4/1]">
+          <Image
+            src={Main1}
+            alt="carousel"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 80vw"
+          />
         </div>
-    );
+        <div className="relative aspect-[2.4/1]">
+          <Image
+            src={Main2}
+            alt="carousel"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 80vw"
+          />
+        </div>
+      </Carousel>
+    </div>
+  );
 }

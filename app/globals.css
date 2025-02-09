@@ -61,3 +61,23 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 50;
 }
+
+/* Webkit scrollbar setup */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+@layer utilities {
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .overflow-x-auto {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

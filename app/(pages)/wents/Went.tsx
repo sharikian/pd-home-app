@@ -13,13 +13,13 @@ export const Went = (): JSX.Element => {
         <span>توان بخشی</span>
       </div>
       
-      <div className="flex gap-3 flex-col md:flex-row items-end">
-        <Image src={GreenDanger} alt="!" className="w-6 h-6 md:w-8 md:h-8"/>
+      <div className="flex gap-3 flex-col md:flex-row items-center">
         <Notice 
           className="w-full" 
           variant="secondary" 
           value="شما در حال حاضر نیاز به ویزیت توسط متخصص توانبخشی دارید، لطفا زمان ویزیت توانبخشی خود را انتخاب و ثبت کنید." 
         />
+        <Image src={GreenDanger} alt="!" className="w-6 h-6 md:w-8 md:h-8"/>
       </div>
 
       <div className="flex flex-col md:flex-row gap-4 justify-end">
