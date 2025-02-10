@@ -11,9 +11,11 @@ import { useState } from "react";
 import Modal from "./Modal"; // Ensure you have a Modal component
 import { Helpers } from "./Helpers";
 import { Experimental } from "./Experimental";
+import useScreenSize from "@/app/hooks/useScreenSize";
 
 const MyPlan = () => {
   const [showModal, setShowModal] = useState(false);
+  const screenSize = useScreenSize();
 
   return (
     <>
@@ -43,6 +45,8 @@ const MyPlan = () => {
                 height="auto"
                 contentHeight="auto"
                 aspectRatio={1.5}
+                titleFormat={{ year: 'numeric', month: 'long' } }
+                dayHeaderFormat={{'weekday': screenSize.width > 992 ? 'long' : 'narrow' }}
               />
             </div>
 
@@ -82,7 +86,7 @@ const MyPlan = () => {
                 </div>
 
                 {/* Calendar Section */}
-                <div className="p-2 md:p-4">
+                <div className="p-2 md:p-4 hidden md:block">
                   <Calendar
                     locale={gregorian_fa}
                     calendar={persian}
@@ -93,7 +97,7 @@ const MyPlan = () => {
                 </div>
 
                 {/* Filter Section */}
-                <div className="p-2 md:p-4 flex align-start flex-col gap-3 md:gap-6">
+                <div className="p-2 pt-10 md:pt-2 md:p-4 flex align-start flex-col gap-3 md:gap-6">
                   <span style={{ color: "gray", alignSelf: "end" }}>فیلتر</span>
                   <div className="flex flex-col gap-3">
                     <div className="flex gap-2" style={{ alignSelf: "end" }}>

@@ -44,17 +44,17 @@ const DashBoardPage = () => {
         {/* Calendar Section */}
         <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6">
           <div className="flex flex-col gap-4">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl md:text-2xl font-medium text-black">
+            <div className="flex flex-row-reverse  items-center justify-between mb-4">
+              <h2 className="text-md md:text-2xl font-medium text-black">
                 فعالیت های پیش رو
               </h2>
               <div className="flex items-center gap-2 text-[#1a604e]">
-                <span className="text-sm md:text-base">شرح فعالیت ها</span>
                 <Image 
                   src={ArrowDown} 
                   alt="arrow" 
                   className="w-5 h-5 transform rotate-90"
                 />
+                <span className="text-sm md:text-base">شرح فعالیت ها</span>
               </div>
             </div>
             <DatePicker />

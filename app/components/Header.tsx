@@ -28,7 +28,7 @@ export const Header = ({ userName, userId, className }: Props): JSX.Element => {
             <Link href='/wents' className="p-2 rounded-lg transition-all hover:bg-emerald-100/50 hover:scale-105">
               <Image src={MessageEmoji} alt="icon" className="h-7 w-7 text-emerald-600 transition-colors hover:text-emerald-700" />
             </Link>
-            <DarkLightToggle activate className="hover:scale-105 transition-transform" />
+            <DarkLightToggle activate className="hover:scale-105 transition-transform hidden md:block" />
           </div>
 
           {/* Right Side Profile */}

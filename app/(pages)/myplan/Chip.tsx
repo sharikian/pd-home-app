@@ -31,7 +31,7 @@ export const Chip = ({
 
   return (
     <div
-      className={`flex w-[138px] items-center justify-end pl-1 pr-[5px] py-0 rounded-[5px] whitespace-nowrap ${variantStyles[varient].bg}`}
+      className={`flex w-full md:w-[138px] items-center justify-end pl-1 pr-[5px] py-0 rounded-[5px] whitespace-nowrap ${variantStyles[varient].bg}`}
     >
       <div className="inline-flex items-center justify-center gap-2.5 pl-2.5 pr-0.5 py-2">
         <div

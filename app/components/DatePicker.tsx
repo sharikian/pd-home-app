@@ -101,7 +101,7 @@ export const DatePicker = () => {
           <select
             value={currentDate.getFullYear()}
             onChange={(e) => handleDateChange('year', parseInt(e.target.value))}
-            className="bg-transparent py-2 px-4 rounded-lg border border-gray-200"
+            className="bg-transparent py-2 md:px-4 rounded-lg border border-gray-200"
           >
             {Array.from({ length: 401 }, (_, i) => i + 1200).map(year => (
               <option key={year} value={year}>{year}</option>
@@ -126,7 +126,7 @@ export const DatePicker = () => {
           <select
             value={currentDate.getMonth() + 1}
             onChange={(e) => handleDateChange('month', parseInt(e.target.value))}
-            className="bg-transparent py-2 px-4 rounded-lg border border-gray-200"
+            className="bg-transparent py-2 md:px-4 rounded-lg border border-gray-200 w-10 md:w-fit"
           >
             {persianMonths.map((month, index) => (
               <option key={index + 1} value={index + 1}>{month.name}</option>

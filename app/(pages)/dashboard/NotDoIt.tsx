@@ -3,7 +3,7 @@ import { Danger, ArrowDown } from "@/public/icons";
 import Image from 'next/image';
 
 export const NotDoIt = () => (
-  <div className="flex flex-col xl:flex-row md:flex-col-reverse sm:flex-col-reverse gap-6 md:gap-8 p-4 md:p-6 border-b border-[#00000030]">
+  <div className="flex flex-col-reverse xl:flex-row md:flex-col-reverse sm:flex-col-reverse gap-6 md:gap-8 p-4 md:p-6 border-b border-[#00000030]">
     {/* Activities Panel */}
     <div className="w-full xl:w-1/2">
       <div className="flex flex-col gap-4 md:gap-6">
@@ -16,7 +16,7 @@ export const NotDoIt = () => (
             />
             <span className="text-sm md:text-base">شرح فعالیت ها</span>
           </div>
-          <h2 className="text-xl md:text-2xl font-medium text-black">
+          <h2 className="text-md md:text-2xl font-medium text-black">
             فعالیت های انجام نشده
           </h2>
         </div>

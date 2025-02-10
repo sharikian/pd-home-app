@@ -5,7 +5,7 @@ import Image from "next/image";
 export const GroupShow = () => {
   return (
     <div className="w-full flex flex-col gap-4 md:gap-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between">
+      <div className="flex flex-row md:items-center justify-between">
         <div className="flex items-center gap-2 mb-4 md:mb-0">
           <Image 
             src={ArrowDown} 
