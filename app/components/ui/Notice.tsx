@@ -24,13 +24,13 @@ export const Notice = ({
   };
 
   return (
-    <div className={`flex flex-col items-start gap-2.5 p-2.5 relative rounded-[15px] shadow-shadows w-full whitespace-nowrap`}
+    <div className={`flex flex-col items-start gap-2.5 p-2.5 relative rounded-[15px] shadow-shadows w-full`}
       style={{backgroundColor: variant == 'secondary' ? "rgba(185, 208, 170, 0.51)" : 'rgba(234, 238, 241, 1)'}}>
       <div
         className={`relative flex items-center justify-end gap-2.5 rounded-[5px] border-[1.5px] border-solid px-[9px] py-[7px] ${className}`}
         style={{ borderColor: variantStyles[variant].color }}
       >
-        <p className={`relative w-fit mt-[-1.00px] font-normal text-lg text-right text-wrap `}
+        <p className={`relative w-fit mt-[-1.00px] font-normal text-lg text-right `}
         style={{color: variantStyles[variant].color}}>
           {value}
         </p>

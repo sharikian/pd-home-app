@@ -8,17 +8,17 @@ export const NotDoIt = () => (
     <div className="w-full xl:w-1/2">
       <div className="flex flex-col gap-4 md:gap-6">
         <div className="flex justify-between items-center">
-          <h2 className="text-xl md:text-2xl font-medium text-black">
-            فعالیت های انجام نشده
-          </h2>
           <div className="flex items-center gap-2 text-[#1a604e]">
-            <span className="text-sm md:text-base">شرح فعالیت ها</span>
             <Image 
               src={ArrowDown} 
               alt="arrow" 
               className="w-5 h-5 transform rotate-90"
             />
+            <span className="text-sm md:text-base">شرح فعالیت ها</span>
           </div>
+          <h2 className="text-xl md:text-2xl font-medium text-black">
+            فعالیت های انجام نشده
+          </h2>
         </div>
 
         <div className="space-y-3 md:space-y-4">
@@ -48,7 +48,7 @@ export const NotDoIt = () => (
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#b9d0aa] to-[#b9d0aa] via-60%">
           <div className="absolute bottom-4 md:bottom-8 left-4 md:left-8 right-4 md:right-8">
             <div className="flex flex-col md:flex-row items-end justify-between gap-4">
-              <p className="text-white text-xl md:text-3xl xl:text-[50px] leading-tight">
+              <p className="text-white text-xl md:text-3xl xl:text-[40px]" style={{lineHeight: '3rem'}}>
                 رویداد ها و همایش های<br />
                 <span className="font-black">خانواده پارکینسون</span>
               </p>

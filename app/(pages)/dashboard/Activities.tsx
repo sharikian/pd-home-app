@@ -11,7 +11,7 @@ export const Activities = (): JSX.Element => {
           <div className={`absolute inset-0 bg-[url(/imgs/dashboard/parkinsons.png)] bg-cover bg-center rounded-[35px]`} />
           <div className="absolute inset-0 rounded-[35px] bg-gradient-to-b from-[#1a604e] via-[#1a604ee6] to-transparent" />
           <div className="flex flex-col items-start gap-3 absolute top-[23px] left-[26px] right-[26px]">
-            <p className="w-full font-semibold text-white text-[50px] text-right leading-normal">
+            <p className="w-full font-semibold text-white text-[30px] text-right leading-normal">
               کارگاه های <br /> حضوری و آنلاین <br /> 
               <span className="font-black font-pelak">زندگی با پارکینسون</span>
             </p>

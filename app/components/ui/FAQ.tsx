@@ -33,10 +33,10 @@ export const FAQ = ({
 
   return (
     <div
-      className={`max-w-[1414px] items-center w-full flex gap-2.5 shadow-[-8px_23px_81.4px_#1a604e1a,8px_-23px_81.4px_#ffffff] p-2.5 overflow-hidden rounded-[6px] bg-[#eaeef1] relative transition-all duration-300 ${className}`}
+      className={`max-w-[1414px] items-center w-full flex gap-2.5 shadow-[-8px_23px_81.4px_#1a604e1a,8px_-23px_81.4px_#ffffff]  overflow-hidden rounded-[6px] bg-[#eaeef1] relative transition-all duration-300 ${className}`}
       style={{
         border: `1.5px solid ${variantStyles[variant].border}`,
-        height: isOpen ? 'auto' : '51px'
+        height: isOpen ? 'auto' : 'fit-content'
       }}
     >
       <div className="flex flex-col w-full">
@@ -51,7 +51,7 @@ export const FAQ = ({
             alt="Toggle icon"
           />
           <h3 
-            className="flex-1 font-bold whitespace-nowrap [direction:rtl] transition-colors duration-300"
+            className="flex-1 font-bold text-right transition-colors duration-300"
             style={{ color: variantStyles[variant].title }}
           >
             {title}

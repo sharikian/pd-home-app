@@ -38,7 +38,7 @@ export const Card = ({
   };
 
   return (
-    <div className="shadow-shadows relative flex w-fit flex-col items-start gap-[18px] overflow-hidden rounded-[25px] bg-[#eaeef1]">
+    <div className="shadow-shadows relative flex w-fit flex-col items-start gap-[18px] overflow-hidden rounded-[25px] bg-[#eaeef1] scale-75">
       {/* Header Section */}
       <div
         className={`relative flex w-full flex-[0_0_auto] items-center justify-between self-stretch px-5 py-4 ${variantConfig[variant].bg} overflow-hidden rounded-[15px_15px_0px_0px]`}
@@ -53,14 +53,14 @@ export const Card = ({
             <div
               className={`relative mt-[-1.00px] w-fit text-left  text-xl leading-[normal] font-medium tracking-[0] [direction:rtl] ${variantConfig[variant].text}`}
             >
-              {title}
+              <span>{title}</span>
             </div>
           </div>
           <div className="relative mt-[-9px] inline-flex flex-[0_0_auto] items-center justify-center gap-2.5 px-2.5 py-0">
             <div
               className={`relative mt-[-1.00px] w-fit text-left [font-family:'Pelak-Regular',Helvetica] text-sm leading-[normal] font-normal tracking-[0] [direction:rtl] ${variantConfig[variant].text}`}
             >
-              {description}
+              <span>{description}</span>
             </div>
           </div>
         </div>

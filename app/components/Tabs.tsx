@@ -62,7 +62,7 @@ export const Tabs = ({ varient, className }: Props): JSX.Element => {
   return (
     <div
       ref={tabContainerRef}
-      className={`flex h-[70px] md:h-[95px] items-center relative w-[80%] rounded-[35px] overflow-hidden shadow-shadows ${
+      className={`flex h-[70px] md:h-[95px] items-center relative w-[78%] rounded-[35px] overflow-hidden shadow-shadows ${
         "bg-[#1a604e]"
       } ${className}`}
     >

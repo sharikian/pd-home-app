@@ -13,7 +13,7 @@ export const Together = ({className}:Prop) => {
               امروز
             </div>
 
-              <div className="absolute right-[37%] top-[73%]">
+              <div className="absolute right-[40%] top-[75%]">
                 امین
               </div>
 

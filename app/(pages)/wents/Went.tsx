@@ -13,7 +13,7 @@ export const Went = (): JSX.Element => {
         <span>توان بخشی</span>
       </div>
       
-      <div className="flex gap-3 flex-col md:flex-row items-center">
+      <div className="flex gap-3 flex-col-reverse md:flex-row items-center">
         <Notice 
           className="w-full" 
           variant="secondary" 

@@ -6,45 +6,54 @@ import listPlugin from "@fullcalendar/list";
 import multiMonthPlugin from "@fullcalendar/multimonth";
 import persian from "react-date-object/calendars/persian";
 import gregorian_fa from "react-date-object/locales/gregorian_fa";
-
-import Calender from "react-multi-date-picker";
-
+import Calendar from "react-multi-date-picker";
+import { useState } from "react";
+import Modal from "./Modal"; // Ensure you have a Modal component
 import { Helpers } from "./Helpers";
 import { Experimental } from "./Experimental";
-import Modal from "./Modal";
-import { useState } from "react";
 
 const MyPlan = () => {
   const [showModal, setShowModal] = useState(false);
+
   return (
     <>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>Hello from the modal!</Modal>
       )}
-      <div className="grid grid-cols-5 gap-4">
-        <div className="col-span-1 p-4 rounded-[0.8rem] text-[#1A604E]">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        {/* Experimental Section */}
+        <div className="md:col-span-1 p-4 rounded-[0.8rem] text-[#1A604E]">
           <Experimental />
         </div>
-        <div className="col-span-4 p-4 rounded-[0.8rem] text-black">
-          <div className="grid grid-cols-10 gap-1">
-            <div className="col-span-7" onClick={() => setShowModal(true)}>
+
+        {/* Main Calendar Section */}
+        <div className="md:col-span-4 p-4 rounded-[0.8rem] text-black">
+          <div className="grid grid-cols-1 md:grid-cols-10 gap-1">
+            {/* FullCalendar Container */}
+            <div className="md:col-span-7" onClick={() => setShowModal(true)}>
               <FullCalendar
                 plugins={[dayGridPlugin, listPlugin, multiMonthPlugin]}
                 initialView="dayGridMonth"
                 locale={faLocale}
                 headerToolbar={{
-                  end: "dayGridMonth,dayGridWeek,dayGridDay,list,multiMonthYear",
+                  end: "dayGridMonth,dayGridWeek,multiMonthYear",
                   start: "prev,next",
                   center: "title",
                 }}
+                height="auto"
+                contentHeight="auto"
+                aspectRatio={1.5}
               />
             </div>
-            <div className="col-span-3 h-full">
+
+            {/* Sidebar Section */}
+            <div className="md:col-span-3 h-full mt-4 md:mt-0">
               <div className="grid grid-rows-[10%_40%_50%] gap-0 h-full relative">
-                <div className="p-4">
+                {/* Add Event Button */}
+                <div className="p-2 md:p-4">
                   <button
                     style={{ backgroundColor: "#1A604E", color: "white" }}
-                    className="w-full p-1 rounded flex items-center justify-center gap-1"
+                    className="w-full p-1 rounded flex items-center justify-center gap-1 text-sm md:text-base"
                   >
                     <span className="text-bold">افزودن رویداد</span>
                     <svg
@@ -71,16 +80,20 @@ const MyPlan = () => {
                     </svg>
                   </button>
                 </div>
-                <div className="border-t-2 border-gray-300 w-full absolute top-[10%]"></div>
-                <div className="p-4">
-                  <Calender
+
+                {/* Calendar Section */}
+                <div className="p-2 md:p-4">
+                  <Calendar
                     locale={gregorian_fa}
                     calendar={persian}
                     type="Calender"
+                    className="rmdp-rtl"
+                    style={{ width: '100%' }}
                   />
                 </div>
-                <div className="border-t-2 border-gray-300 w-full absolute top-[50%]"></div>
-                <div className="p-4 flex align-start flex-col gap-6">
+
+                {/* Filter Section */}
+                <div className="p-2 md:p-4 flex align-start flex-col gap-3 md:gap-6">
                   <span style={{ color: "gray", alignSelf: "end" }}>فیلتر</span>
                   <div className="flex flex-col gap-3">
                     <div className="flex gap-2" style={{ alignSelf: "end" }}>

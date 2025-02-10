@@ -15,6 +15,7 @@ const DashBoardPage = () => {
             src='/imgs/dashboard/omid.png'
             alt='omid dashte bash'
             fill
+            className='rounded-3xl'
           />
         </div>
         <Together className="w-full lg:w-2/5 h-full min-h-[200px]" />
