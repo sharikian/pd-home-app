@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import useScreenSize from "@/app/hooks/useScreenSize";
+import TegetherPic from '@/public/imgs/dashboard/together.svg'
 
 interface Prop {
   className?: string;
@@ -14,7 +15,7 @@ export const Together = ({ className }: Prop) => {
     >
       <Image
         alt="together"
-        src="/imgs/dashboard/together.svg"
+        src={TegetherPic}
         width={screenSize.width > 992 ? 250 : 140}
         height={250}
         className="mb-16"
