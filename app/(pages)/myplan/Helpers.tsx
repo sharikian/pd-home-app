@@ -7,7 +7,7 @@ export const Helpers = () => {
         { text: "مراجعه شده", color: "bg-[#b9d0aa]" },
       ].map((item, index) => (
         <div key={index} className="flex items-center gap-2">
-          <span className="text-sm md:text-base text-black">{item.text}</span>
+          <span className="text-sm md:text-base text-black dark:text-slate-200">{item.text}</span>
           <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full ${item.color}`} />
         </div>
       ))}

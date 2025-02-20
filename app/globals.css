@@ -73,3 +73,38 @@ body {
     scrollbar-width: none;
   }
 }
+
+
+/* FullCalendar Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .fullcalendar-dark {
+    --fc-border-color: #334155;
+    --fc-page-bg-color: #1e293b;
+    --fc-neutral-bg-color: #1e293b;
+    --fc-list-event-hover-bg-color: #1e293b;
+  }
+
+  .fullcalendar-dark .fc-toolbar-title,
+  .fullcalendar-dark .fc-col-header-cell-cushion,
+  .fullcalendar-dark .fc-daygrid-day-number {
+    color: #e2e8f0;
+  }
+
+  .fullcalendar-dark .fc-button-primary {
+    background-color: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+  }
+
+  .fullcalendar-dark .fc-daygrid-day {
+    background-color: #1e293b;
+  }
+
+  .fullcalendar-dark .fc-day-today {
+    background-color: #0f172a !important;
+  }
+
+  .fullcalendar-dark .fc-event {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+  }
+}

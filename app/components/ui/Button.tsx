@@ -17,15 +17,18 @@ export const Button = ({ text, className, icon, variant = "primary", ...rest }: 
         px-4 py-2 md:px-6 md:py-3 
         text-sm md:text-base 
         rounded-lg transition-all
-        ${variant === 'primary' ? 'bg-[#1A604E] text-white' : ''}
-        ${variant === 'secondary' ? 'bg-[#B9D0AA] text-[#1A604E]' : ''}
-        ${variant === 'warning' ? 'bg-[#D85562] text-white' : ''}
+        ${variant === 'primary' ? 
+          'bg-[#1A604E] dark:bg-emerald-600 text-white hover:bg-[#14483a] dark:hover:bg-emerald-500' : ''}
+        ${variant === 'secondary' ? 
+          'bg-[#B9D0AA] dark:bg-emerald-800 text-[#1A604E] dark:text-emerald-100 hover:bg-[#a3ba95] dark:hover:bg-emerald-700' : ''}
+        ${variant === 'warning' ? 
+          'bg-[#D85562] dark:bg-rose-600 text-white hover:bg-[#c44c57] dark:hover:bg-rose-500' : ''}
         hover:scale-105 active:scale-95
         ${className}
       `}
       {...rest}
     >
-      {icon && <Image src={icon} className="w-4 h-4 md:w-5 md:h-5 mr-2" alt="icon" />}
+      {icon && <Image src={icon} className="w-4 h-4 md:w-5 md:h-5 mr-2 dark:invert" alt="icon" />}
       <span className="whitespace-nowrap">{text}</span>
     </div>
   );

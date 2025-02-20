@@ -16,7 +16,7 @@ interface Prop {
 
 const Modal = ({ onClose }: Prop) => {
   const modalContent = (
-    <div className="modal-overlay fixed inset-0 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn">
+    <div className="modal-overlay fixed inset-0 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn dark:bg-slate-900/80">
       <Card
         title={"کاردرمانی"}
         description={"ویزیت انجام شده"}
@@ -26,20 +26,24 @@ const Modal = ({ onClose }: Prop) => {
         <div className="flex gap-3 flex-row-reverse w-[90%] justify-evenly mb-6">
           {['متخصص', 'تاریخ', 'ساعت'].map((title, idx) => (
             <div key={title} className="flex flex-col gap-2">
-              <span className="text-[#1A604E] text-end text-lg font-medium">{title}</span>
+              <span className="text-[#1A604E] dark:text-emerald-400 text-end text-lg font-medium">
+                {title}
+              </span>
               <Notice 
                 value={idx === 0 ? "دکتر اسدالله نوری" : idx === 1 ? "1403/11/05" : "19:05"}
-                className="hover:bg-[#d4ede5] hover:translate-y-[-2px] transition-all duration-200"
+                className="hover:bg-[#d4ede5] dark:hover:bg-emerald-900/30 hover:translate-y-[-2px] transition-all duration-200 dark:text-slate-200"
               />
             </div>
           ))}
         </div>
 
         <div className="flex flex-col gap-2 w-[95%] mb-6">
-          <span className="text-[#1A604E] text-end text-lg font-medium">آدرس</span>
+          <span className="text-[#1A604E] dark:text-emerald-400 text-end text-lg font-medium">
+            آدرس
+          </span>
           <Notice 
             value="وکیل آباد 53، کوچه دوم، پلاک 14" 
-            className="w-full hover:bg-[#d4ede5] hover:translate-y-[-2px] transition-all duration-200"
+            className="w-full hover:bg-[#d4ede5] dark:hover:bg-emerald-900/30 hover:translate-y-[-2px] transition-all duration-200 dark:text-slate-200"
           />
         </div>
 
@@ -47,12 +51,12 @@ const Modal = ({ onClose }: Prop) => {
           <Notice 
             value={<StarRating value={0} />} 
             variant="secondary" 
-            className="hover:bg-[#d4ede5] hover:translate-y-[-2px] transition-all duration-200"
+            className="hover:bg-[#d4ede5] dark:hover:bg-emerald-900/30 hover:translate-y-[-2px] transition-all duration-200"
           />
           <Notice 
             value="میزان رضایت از ویزیت" 
             variant="secondary" 
-            className="hover:bg-[#d4ede5] hover:translate-y-[-2px] transition-all duration-200"
+            className="hover:bg-[#d4ede5] dark:hover:bg-emerald-900/30 hover:translate-y-[-2px] transition-all duration-200 dark:text-slate-200"
           />
         </div>
 
@@ -78,7 +82,7 @@ const Modal = ({ onClose }: Prop) => {
           />
           
           <div className="flex flex-col gap-4 flex-1">
-            <span className="text-[#1A604E] text-end font-medium text-lg">
+            <span className="text-[#1A604E] dark:text-emerald-400 text-end font-medium text-lg">
               نظر شما در مورد این ویزیت
             </span>
             <textarea
@@ -90,11 +94,16 @@ const Modal = ({ onClose }: Prop) => {
                 transition-all duration-200
                 hover:border-[#1A604E]/50 hover:shadow-md
                 resize-none p-3
+                dark:border-emerald-400/30 dark:focus:border-emerald-400 
+                dark:focus:ring-emerald-400/30 dark:text-emerald-100
+                dark:placeholder-emerald-200/60 dark:bg-slate-700/90
+                dark:hover:border-emerald-400/50 dark:hover:shadow-slate-700/50
               `}
             />
             <Button 
               text={"ثبت"} 
-              className="w-min self-end hover:scale-105 hover:shadow-lg transition-transform duration-200"
+              className="w-min self-end hover:scale-105 hover:shadow-lg transition-transform duration-200
+                       dark:bg-emerald-700 dark:hover:bg-emerald-600 dark:text-white"
             />
           </div>
         </div>
@@ -129,5 +138,11 @@ export default Modal;
 
   .modal-overlay {
     z-index: 9999;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .timeline-hover :global(.timeline-item:hover) {
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+    }
   }
 `}</style>

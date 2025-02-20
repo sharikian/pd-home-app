@@ -1,26 +1,52 @@
 "use client"
-import { useState, JSX } from "react";
+import { useState, useEffect, JSX } from "react";
 import cloudsBack from "./svgs/clouds-back.svg";
 import cloudsFront from "./svgs/clouds-front.svg";
 import stars from "./svgs/stars.svg";
 import Image from "next/image";
 
 interface Props {
-    activate: boolean; // New boolean prop to control the toggle state
+    activate: boolean;
     className: string;
 }
 
 export const DarkLightToggle = ({ activate, className }: Props): JSX.Element => {
-    const [isDark, setIsDark] = useState<boolean>(activate); // Use the `activate` prop directly
+    const [isDark, setIsDark] = useState<boolean>(activate);
+
+    useEffect(() => {
+        // Sync with HTML class on initial load
+        const html = document.documentElement;
+        if (isDark) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+    }, [isDark]);
 
     const toggleMode = () => {
-        setIsDark((prevIsDark) => !prevIsDark);
+        setIsDark((prevIsDark) => {
+            const newIsDark = !prevIsDark;
+            const html = document.documentElement;
+            
+            if (newIsDark) {
+                html.classList.add('dark');
+            } else {
+                html.classList.remove('dark');
+            }
+            
+            // Optional: Save to localStorage for persistence
+            localStorage.setItem('theme', newIsDark ? 'dark' : 'light');
+            
+            return newIsDark;
+        });
     };
 
     return (
         <div
-            className={`relative w-[4.25rem] h-[1.75rem] ${isDark ? "bg-[#242d36]" : "bg-[#1179f4]"} rounded-full overflow-hidden shadow-[inset_0_0.07rem_0.09rem_#00000040,inset_0_-0.05rem_0.14rem_#00000040,0_0.02rem_0.02rem_#fffffff0,0_-0.02rem_0.02rem_#00000040] ${className} transition-colors duration-500`}
+            className={`relative w-[4.25rem] h-[1.75rem] ${isDark ? "bg-[#242d36]" : "bg-[#1179f4]"} rounded-full overflow-hidden shadow-[inset_0_0.07rem_0.09rem_#00000040,inset_0_-0.05rem_0.14rem_#00000040,0_0.02rem_0.02rem_#fffffff0,0_-0.02rem_0.02rem_#00000040] ${className} transition-colors duration-500 cursor-pointer`}
             onClick={toggleMode}
+            role="button"
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
         >
             <div
                 className={`absolute ${isDark ? "w-[4.88rem]" : "w-[5.88rem]"} ${isDark ? "left-[0.42rem]" : "left-[-1.29rem]"} ${isDark ? "top-[-1.22rem]" : "top-[-1.22rem]"} transition-all duration-500`}

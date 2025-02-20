@@ -27,23 +27,23 @@ export const DropDown: React.FC<DropdownProps> = ({
   return (
     <div className={`relative w-full ${className}`}>
       <div
-        className={`flex flex-col items-start gap-2.5 p-2.5 relative bg-[#eaeef1] rounded-[15px] overflow-hidden shadow-shadows ${
+        className={`flex flex-col items-start gap-2.5 p-2.5 relative bg-[#eaeef1] dark:bg-slate-700 rounded-[15px] overflow-hidden shadow-shadows ${
           isOpen ? "rounded-b-none" : ""
         }`}
       >
         {/* Main dropdown trigger */}
         <div
-          className="flex items-center justify-between px-[5px] py-0.5 relative self-stretch w-full flex-[0_0_auto] rounded-[5px] overflow-hidden border-[1.5px] border-solid border-[#1a604e] cursor-pointer"
+          className="flex items-center justify-between px-[5px] py-0.5 relative self-stretch w-full flex-[0_0_auto] rounded-[5px] overflow-hidden border-[1.5px] border-solid border-[#1a604e] dark:border-emerald-400 cursor-pointer"
           onClick={toggleDropdown}
         >
           <Image
-            className="relative w-[34px] transform transition-transform"
+            className="relative w-[34px] transform transition-transform dark:invert"
             alt="Icon park arrow down"
             src={ArrowDown}
             style={{ transform: isOpen ? "rotate(180deg)" : "none" }}
           />
           <div className="inline-flex items-center justify-center gap-2.5 p-2.5 relative flex-[0_0_auto]">
-            <p className="relative w-fit mt-[-1.00px] [font-family:'Pelak-Regular',Helvetica] font-normal text-[#1A604E] text-lg text-left tracking-[0] leading-[normal] [direction:rtl]">
+            <p className="relative w-fit mt-[-1.00px] [font-family:'Pelak-Regular',Helvetica] font-normal text-[#1A604E] dark:text-emerald-100 text-lg text-left tracking-[0] leading-[normal] [direction:rtl]">
               {selectedOption || placeholder}
             </p>
           </div>
@@ -55,11 +55,11 @@ export const DropDown: React.FC<DropdownProps> = ({
             {options.map((option, index) => (
               <div
                 key={index}
-                className="flex flex-col items-end gap-2.5 px-[5px] py-0.5 relative self-stretch w-full flex-[0_0_auto] rounded-[5px] overflow-hidden border-[1.5px] border-solid border-[#1a604e] mt-2 cursor-pointer hover:bg-[#d5e0e6] transition-colors"
+                className="flex flex-col items-end gap-2.5 px-[5px] py-0.5 relative self-stretch w-full flex-[0_0_auto] rounded-[5px] overflow-hidden border-[1.5px] border-solid border-[#1a604e] dark:border-emerald-400 mt-2 cursor-pointer hover:bg-[#d5e0e6] dark:hover:bg-slate-600 transition-colors"
                 onClick={() => handleOptionClick(option)}
               >
                 <div className="inline-flex items-center justify-center gap-2.5 p-2.5 relative flex-[0_0_auto]">
-                  <div className="relative w-fit mt-[-1.00px] [font-family:'Pelak-Regular',Helvetica] font-normal text-[#1A604E] text-lg tracking-[0] leading-[normal] [direction:rtl]">
+                  <div className="relative w-fit mt-[-1.00px] [font-family:'Pelak-Regular',Helvetica] font-normal text-[#1A604E] dark:text-emerald-100 text-lg tracking-[0] leading-[normal] [direction:rtl]">
                     {option}
                   </div>
                 </div>

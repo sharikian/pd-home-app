@@ -10,19 +10,19 @@ export const GroupShow = () => {
           <Image 
             src={ArrowDown} 
             alt="arrow icon" 
-            className="w-6 h-6 transform rotate-90"
+            className="w-6 h-6 transform rotate-90 dark:invert"
           />
-          <span className="text-[#1a604e] text-base md:text-lg">
+          <span className="text-[#1a604e] dark:text-emerald-400 text-base md:text-lg">
             ویدیو های بیشتر
           </span>
         </div>
         
-        <h2 className="text-2xl md:text-3xl font-medium text-black">
+        <h2 className="text-2xl md:text-3xl font-medium text-black dark:text-white">
           تغذیه
         </h2>
       </div>
 
-      <div className="overflow-x-auto scroll-smooth flex justify-evenly">
+      <div className="overflow-x-auto scroll-smooth flex justify-evenly dark:bg-slate-800/50 rounded-xl">
         <div className="flex gap-4 md:gap-6 flex-nowrap w-max">
           {Array.from({ length: 3 }, (_, i) => (
             <div key={i} className="flex-shrink-0 w-[280px] md:w-[320px]">

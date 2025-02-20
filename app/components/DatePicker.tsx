@@ -87,21 +87,24 @@ export const DatePicker = () => {
   };
 
   return (
-    <div dir="rtl" className="w-full h-full flex flex-col bg-white rounded-lg shadow-lg p-4">
+    <div dir="rtl" className="w-full h-full flex flex-col bg-white dark:bg-slate-700 rounded-lg shadow-lg p-4
+                            dark:shadow-slate-900/50">
       {/* Year/Month Selector */}
       <div className="flex justify-between items-center mb-4">
         {/* Year Selector */}
-        <div className="flex items-center gap-2 text-black">
+        <div className="flex items-center gap-2 text-black dark:text-slate-200">
           <button 
             onClick={() => handleDateChange('year', currentDate.getFullYear() - 1)}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-all border border-gray-300 shadow-sm hover:shadow-md px-3"
+            className="p-2 hover:bg-gray-100 dark:hover:bg-slate-600 rounded-lg transition-all border border-gray-300
+                     dark:border-slate-500 shadow-sm hover:shadow-md px-3"
           >
             -
           </button>
           <select
             value={currentDate.getFullYear()}
             onChange={(e) => handleDateChange('year', parseInt(e.target.value))}
-            className="bg-transparent py-2 md:px-4 rounded-lg border border-gray-200"
+            className="bg-transparent py-2 md:px-4 rounded-lg border border-gray-200 dark:border-slate-500
+                     dark:text-slate-200 dark:bg-slate-700"
           >
             {Array.from({ length: 401 }, (_, i) => i + 1200).map(year => (
               <option key={year} value={year}>{year}</option>
@@ -109,24 +112,27 @@ export const DatePicker = () => {
           </select>
           <button 
             onClick={() => handleDateChange('year', currentDate.getFullYear() + 1)}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-all border border-gray-300 shadow-sm hover:shadow-md px-3"
+            className="p-2 hover:bg-gray-100 dark:hover:bg-slate-600 rounded-lg transition-all border border-gray-300
+                     dark:border-slate-500 shadow-sm hover:shadow-md px-3"
           >
             +
           </button>
         </div>
 
         {/* Month Selector */}
-        <div className="flex items-center gap-2 text-black">
+        <div className="flex items-center gap-2 text-black dark:text-slate-200">
           <button 
             onClick={() => handleDateChange('month', currentDate.getMonth())}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-all border border-gray-300 shadow-sm hover:shadow-md px-3"
+            className="p-2 hover:bg-gray-100 dark:hover:bg-slate-600 rounded-lg transition-all border border-gray-300
+                     dark:border-slate-500 shadow-sm hover:shadow-md px-3"
           >
             -
           </button>
           <select
             value={currentDate.getMonth() + 1}
             onChange={(e) => handleDateChange('month', parseInt(e.target.value))}
-            className="bg-transparent py-2 md:px-4 rounded-lg border border-gray-200 w-10 md:w-fit"
+            className="bg-transparent py-2 md:px-4 rounded-lg border border-gray-200 dark:border-slate-500
+                     dark:text-slate-200 dark:bg-slate-700 w-10 md:w-fit"
           >
             {persianMonths.map((month, index) => (
               <option key={index + 1} value={index + 1}>{month.name}</option>
@@ -134,7 +140,8 @@ export const DatePicker = () => {
           </select>
           <button 
             onClick={() => handleDateChange('month', currentDate.getMonth() + 2)}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-all border border-gray-300 shadow-sm hover:shadow-md px-3"
+            className="p-2 hover:bg-gray-100 dark:hover:bg-slate-600 rounded-lg transition-all border border-gray-300
+                     dark:border-slate-500 shadow-sm hover:shadow-md px-3"
           >
             +
           </button>
@@ -146,44 +153,47 @@ export const DatePicker = () => {
         {/* Week Days Header */}
         {['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'].map((day, index) => (
           <div 
-            key={day} 
-            className={`text-center font-bold py-2 ${
-              index === 6 ? 'text-red-500' : 'text-gray-700'
-            } bg-gray-100 rounded-lg`}
-          >
-            {day}
-          </div>
+          key={day} 
+          className={`text-center font-bold py-2 ${
+            index === 6 ? 'text-red-500 dark:text-red-400' : 'text-gray-700 dark:text-slate-300'
+          } bg-gray-100 dark:bg-slate-600 rounded-lg`}
+        >
+          {day}
+        </div>
         ))}
 
         {/* Calendar Days */}
         {generateCalendar().map((day, index) => (
           <div
-            key={index}
-            onClick={() => day.isCurrentMonth && setSelectedDay(day.number)}
-            className={`
-              flex items-center justify-center h-12 cursor-pointer
-              transition-all rounded-lg border border-transparent
-              hover:bg-gray-100 hover:scale-110
-              ${selectedDay === day.number && day.isCurrentMonth ? 'bg-green-700 text-white' : ''}
-              ${day.isCurrentMonth ? 
-                (day.isWeekend ? 'text-red-500' : 'text-gray-800') : 
-                'text-gray-400 opacity-50'}
-            `}
-          >
-            {day.number}
-          </div>
+          key={index}
+          className={`
+            flex items-center justify-center h-12 cursor-pointer
+            transition-all rounded-lg border border-transparent
+            hover:bg-gray-100 dark:hover:bg-slate-600 hover:scale-110
+            ${selectedDay === day.number && day.isCurrentMonth ? 
+              'bg-green-700 dark:bg-emerald-600 text-white' : ''}
+            ${day.isCurrentMonth ? 
+              (day.isWeekend ? 'text-red-500 dark:text-red-400' : 
+              'text-gray-800 dark:text-slate-200') : 
+              'text-gray-400 dark:text-slate-400 opacity-50'}
+          `}
+        >
+          {day.number}
+        </div>
         ))}
       </div>
 
       {/* Footer Buttons */}
       <div className="flex justify-between mt-4">
         <button
-          onClick={handleToday}
-          className="px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-blue-600 transition-all shadow-md"
+          className="px-4 py-2 bg-green-700 dark:bg-emerald-600 text-white rounded-lg hover:bg-blue-600 
+                   dark:hover:bg-emerald-500 transition-all shadow-md"
+                   onClick={handleToday}
         >
           امروز
         </button>
-        <button className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-all border border-gray-200">
+        <button className="px-4 py-2 text-gray-700 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-600 
+                          rounded-lg transition-all border border-gray-200 dark:border-slate-500">
           خالی
         </button>
       </div>

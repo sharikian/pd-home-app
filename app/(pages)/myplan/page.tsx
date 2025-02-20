@@ -8,7 +8,7 @@ import persian from "react-date-object/calendars/persian";
 import gregorian_fa from "react-date-object/locales/gregorian_fa";
 import Calendar from "react-multi-date-picker";
 import { useState } from "react";
-import Modal from "./Modal"; // Ensure you have a Modal component
+import Modal from "./Modal";
 import { Helpers } from "./Helpers";
 import { Experimental } from "./Experimental";
 import useScreenSize from "@/app/hooks/useScreenSize";
@@ -22,17 +22,17 @@ const MyPlan = () => {
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>Hello from the modal!</Modal>
       )}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 dark:bg-slate-900">
         {/* Experimental Section */}
-        <div className="md:col-span-1 p-4 rounded-[0.8rem] text-[#1A604E]">
+        <div className="md:col-span-1 p-4 rounded-[0.8rem] text-[#1A604E] dark:text-emerald-400">
           <Experimental />
         </div>
 
         {/* Main Calendar Section */}
-        <div className="md:col-span-4 p-4 rounded-[0.8rem] text-black">
+        <div className="md:col-span-4 p-4 rounded-[0.8rem] text-black dark:text-slate-200">
           <div className="grid grid-cols-1 md:grid-cols-10 gap-1">
             {/* FullCalendar Container */}
-            <div className="md:col-span-7" onClick={() => setShowModal(true)}>
+            <div className="md:col-span-7 fullcalendar-dark" onClick={() => setShowModal(true)}>
               <FullCalendar
                 plugins={[dayGridPlugin, listPlugin, multiMonthPlugin]}
                 initialView="dayGridMonth"
@@ -45,7 +45,7 @@ const MyPlan = () => {
                 height="auto"
                 contentHeight="auto"
                 aspectRatio={1.5}
-                titleFormat={{ year: 'numeric', month: 'long' } }
+                titleFormat={{ year: 'numeric', month: 'long' }}
                 dayHeaderFormat={{'weekday': screenSize.width > 992 ? 'long' : 'narrow' }}
               />
             </div>
@@ -57,7 +57,7 @@ const MyPlan = () => {
                 <div className="p-2 md:p-4">
                   <button
                     style={{ backgroundColor: "#1A604E", color: "white" }}
-                    className="w-full p-1 rounded flex items-center justify-center gap-1 text-sm md:text-base"
+                    className="w-full p-1 rounded flex items-center justify-center gap-1 text-sm md:text-base dark:bg-emerald-700 dark:hover:bg-emerald-600"
                   >
                     <span className="text-bold">افزودن رویداد</span>
                     <svg
@@ -66,6 +66,7 @@ const MyPlan = () => {
                       viewBox="0 0 24 25"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
+                      className="dark:stroke-white"
                     >
                       <path
                         d="M12.03 5.5L12.0117 19.5"
@@ -91,16 +92,16 @@ const MyPlan = () => {
                     locale={gregorian_fa}
                     calendar={persian}
                     type="Calender"
-                    className="rmdp-rtl"
-                    style={{ width: '100%' }}
+                    className="rmdp-rtl dark:[&_.rmdp-day]:text-slate-800 dark:[&_.rmdp-header]:text-gray-500 dark:[&_.rmdp-week-day]:text-slate-800"
+                    style={{ width: '100%', backgroundColor: 'transparent' }}
                   />
                 </div>
 
                 {/* Filter Section */}
                 <div className="p-2 pt-10 md:pt-2 md:p-4 flex align-start flex-col gap-3 md:gap-6">
-                  <span style={{ color: "gray", alignSelf: "end" }}>فیلتر</span>
+                  <span style={{alignSelf: "end" }} className="text-gray-500 dark:text-slate-300">فیلتر</span>
                   <div className="flex flex-col gap-3">
-                    <div className="flex gap-2" style={{ alignSelf: "end" }}>
+                    <div className="flex gap-2 dark:text-slate-300" style={{ alignSelf: "end" }}>
                       <p>تخصص</p>
                       <svg
                         width="24"
@@ -108,6 +109,7 @@ const MyPlan = () => {
                         viewBox="0 0 24 25"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
+                        className="dark:stroke-white"
                       >
                         <path
                           d="M12.03 5.5L12.0117 19.5"
@@ -125,7 +127,7 @@ const MyPlan = () => {
                         />
                       </svg>
                     </div>
-                    <div className="flex gap-2" style={{ alignSelf: "end" }}>
+                    <div className="flex gap-2 dark:text-slate-300" style={{ alignSelf: "end" }}>
                       <p>وضعیت مراجعه</p>
                       <svg
                         width="24"
@@ -133,6 +135,7 @@ const MyPlan = () => {
                         viewBox="0 0 24 25"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
+                        className="dark:stroke-white"
                       >
                         <path
                           d="M12.03 5.5L12.0117 19.5"
