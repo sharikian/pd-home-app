@@ -4,6 +4,8 @@ import { NotDoIt } from './NotDoIt';
 import { DatePicker } from '../../components';
 import { ArrowDown } from '@/public/icons';
 import Image from 'next/image';
+import DoctorPic from '@/public/imgs/dashboard/doctor.png'
+import OmidPic from '@/public/imgs/dashboard/omid.png'
 
 const DashBoardPage = () => {
   return (
@@ -12,7 +14,7 @@ const DashBoardPage = () => {
       <div className="flex flex-col lg:flex-row gap-4 md:gap-6 items-center border-b border-[#00000030] dark:border-slate-700 pb-6">
         <div className="w-full lg:w-3/5 relative aspect-[1.5] md:aspect-[2]">
           <Image
-            src='/imgs/dashboard/omid.png'
+            src={OmidPic}
             alt='omid dashte bash'
             fill
             className='rounded-3xl dark:brightness-90'
@@ -31,7 +33,7 @@ const DashBoardPage = () => {
           <div className="flex flex-col items-center gap-8 rounded-[14px] border border-solid border-[#1a604e] dark:border-emerald-400 bg-[#eaeef1] dark:bg-slate-600 p-6 sm:p-4">
             <div className="mt-7 flex w-[44%] flex-col items-center justify-center gap-3.5 lg:w-full md:w-full">
               <Image 
-                src='/imgs/dashboard/doctor.png' 
+                src={DoctorPic}
                 width={240} 
                 height={240} 
                 alt="doctor"
