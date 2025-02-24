@@ -5,15 +5,15 @@ import Image from "next/image";
 
 const LoginAuthPage = () => {
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100 dark:bg-slate-800">
+    <div className="flex flex-col lg:flex-row min-h-screen bg-[#EAEEF1] dark:bg-slate-800">
       {/* Form Section */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-4 md:p-8 lg:p-20 bg-white dark:bg-slate-900">
         <div className="w-full max-w-md">
-          <h1 className="mb-8 md:mb-12 text-3xl md:text-4xl text-[#1a604e] dark:text-emerald-400 text-center font-bold">
+          <h1 className="mb-8 md:mb-12 text-3xl md:text-5xl text-[#1a604e] dark:text-emerald-400 text-center font-bold">
             ورود به حساب کاربری
           </h1>
 
-          <div className="space-y-6">
+          <div className="space-y-6 flex flex-col items-center">
             <Input 
               title="نام کاربری" 
               placeholder="نام کاربری خود را وارد کنید" 
@@ -27,7 +27,7 @@ const LoginAuthPage = () => {
             <Button
               text="ورود"
               variant="secondary"
-              className="w-full text-lg dark:hover:bg-emerald-700"
+              className="w-[10rem] text-lg dark:hover:bg-emerald-700 shadow-slate-500"
             />
           </div>
         </div>
@@ -55,7 +55,7 @@ const LoginAuthPage = () => {
             <Button
               text="ثبت نام"
               variant="primary"
-              className="w-full md:w-auto text-lg dark:bg-emerald-700 dark:hover:bg-emerald-600"
+              className="!w-[10rem] md:w-auto text-lg dark:bg-emerald-700 dark:hover:bg-emerald-600"
             />
           </Link>
         </div>

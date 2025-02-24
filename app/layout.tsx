@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
 import "./globals.css";
+import { ToastContainer } from "react-toastify";
 
 const pelak = localFont({
   src: '../public/fonts/Pelak.woff2',
@@ -22,6 +23,18 @@ export default function RootLayout({
       <body
         className={`${pelak.className} antialiased bg-slate-50 dark:bg-slate-800 `}
       >
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={true}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         {children}
       </body>
     </html>

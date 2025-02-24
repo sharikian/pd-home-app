@@ -13,7 +13,7 @@ export const Input = ({
   title,
   placeholder, 
   className,
-  maxWidth = "max-w-[429px]",
+  maxWidth = "w-[429px]",
   centerize = false,
   variant = 'primary',
   type = 'text',
@@ -23,38 +23,38 @@ export const Input = ({
     primary: {
       border: '#1A604E',
       placeholder: '#1A604EBA',
-      focusRing: '#1A604E'
     },
     warning: {
       border: '#D85562',
       placeholder: '#D85562BA',
-      focusRing: '#D85562'
     }
   };
 
   return (
-    <div className={`flex flex-col items-end gap-1 relative w-72 ${maxWidth} mx-auto`}>
-      <div className="inline-flex items-center justify-end gap-2.5 p-2.5 relative flex-[0_0_auto] z-[1] w-full">
-        <div className={`relative w-fit font-medium text-[${variantStyles[variant].border}] text-lg tracking-[0] leading-[normal]`}>
+    <div className={`flex flex-col gap-1 relative ${maxWidth} mx-auto`}>
+      <div className="w-full flex items-center justify-end p-2.5">
+        <div className={`font-bold text-[${variantStyles[variant].border}] text-lg`}>
           {title}
         </div>
       </div>
       
-      <input
-        {...rest}
-        type={type}
-        placeholder={placeholder || "متن مورد نظر را وارد کنید"}
-        className={`
-          w-full h-[50px] px-4 py-0.5 rounded-[5px] border-[2px] border-solid text-lg 
-          focus:outline-none focus:ring-2 focus:border-transparent max-w-72 ${className}
-          border-[${variantStyles[variant].border}]
-          text-[${variantStyles[variant].border}]
-          shadow-[inset_-1px_1px_4px_#00000040,_-1px_1px_4px_#ffffff]
-          placeholder:text-[${variantStyles[variant].placeholder}]
-          ${centerize ? 'text-center placeholder:text-center' : 'text-right placeholder:text-right'}
-          focus:ring-[${variantStyles[variant].focusRing}]
-        `}
-      />
+      <div className="w-full rounded-[15px] bg-[#eaeef165] p-2.5 py-0">
+        <input
+          {...rest}
+          type={type}
+          placeholder={placeholder || "متن مورد نظر را وارد کنید"}
+          className={`
+            w-full h-[50px] px-[5px] rounded-[5px] border-[1.5px] border-solid
+            bg-white text-lg ${className}
+            border-[${variantStyles[variant].border}]
+            border-[2px]
+            outline-none
+            text-[${variantStyles[variant].border}]
+            placeholder:text-[${variantStyles[variant].placeholder}]
+            ${centerize ? 'text-center placeholder:text-center' : 'text-right placeholder:text-right'}
+          `}
+        />
+      </div>
     </div>
   );
 };
