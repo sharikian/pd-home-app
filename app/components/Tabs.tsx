@@ -16,13 +16,13 @@ interface ClimbProps {
 }
 
 const initialTabItems = [
-  { value: "پیگیری", activate: false, link: '/tracking' },
+  { value: "پیگیری", activate: true, link: '/tracking' }, // First item activated
   { value: "فعالیت های پرونده", activate: false, link: '/activities' },
   { value: "ارجاعات", activate: false, link: '/references' },
   { value: "تست ها", activate: false, link: '/tests' },
   { value: "آزمایش ها", activate: false, link: '/labs' },
   { value: "شرح حال اولیه", activate: false, link: '/history' },
-  { value: "مشخصات عمومی", activate: true, link: '/general' },
+  { value: "مشخصات عمومی", activate: false, link: '/general' },
 ];
 
 export const Tabs = ({ varient, className, items = initialTabItems }: Props): JSX.Element => {
@@ -31,6 +31,21 @@ export const Tabs = ({ varient, className, items = initialTabItems }: Props): JS
   const [activeTabWidth, setActiveTabWidth] = useState(0);
   const climbRef = useRef<HTMLDivElement>(null);
   const tabContainerRef = useRef<HTMLDivElement>(null);
+
+  // Initialize climb position on mount
+  useEffect(() => {
+    const activeIndex = items.findIndex(item => item.activate);
+    if (activeIndex === -1) return;
+
+    const activeTabElement = document.querySelectorAll('.tab-item')[activeIndex];
+    const textElement = activeTabElement?.querySelector('.tab-text');
+    
+    if (textElement) {
+      const textWidth = textElement.getBoundingClientRect().width;
+      setActiveTabWidth(textWidth);
+      updateClimbPosition(activeIndex, textWidth + 100);
+    }
+  }, []);
 
   const updateClimbPosition = (activeIndex: number, climbWidth: number) => {
     const tabElements = document.querySelectorAll('.tab-item');
@@ -117,6 +132,7 @@ export const Tabs = ({ varient, className, items = initialTabItems }: Props): JS
   );
 };
 
+// Rest of the code remains exactly the same
 const Climb = React.forwardRef<HTMLDivElement, ClimbProps>(({ width }, ref) => {
   const climbWidth = width + 100;
   const trapezoidPadding = 50;

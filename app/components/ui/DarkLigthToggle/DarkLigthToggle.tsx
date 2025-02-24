@@ -11,33 +11,33 @@ interface Props {
 }
 
 export const DarkLightToggle = ({ activate, className }: Props): JSX.Element => {
-    const [isDark, setIsDark] = useState<boolean>(activate);
+    const [isDark, setIsDark] = useState<boolean>(() => {
+        // First load: Check localStorage -> then use prop
+        if (typeof window !== 'undefined') {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) return savedTheme === 'dark';
+        }
+        return activate;
+    });
 
     useEffect(() => {
-        // Sync with HTML class on initial load
+        // Sync with HTML class and localStorage
         const html = document.documentElement;
         if (isDark) {
             html.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
         } else {
             html.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
         }
     }, [isDark]);
 
     const toggleMode = () => {
-        setIsDark((prevIsDark) => {
-            const newIsDark = !prevIsDark;
-            const html = document.documentElement;
-            
-            if (newIsDark) {
-                html.classList.add('dark');
-            } else {
-                html.classList.remove('dark');
-            }
-            
-            // Optional: Save to localStorage for persistence
-            localStorage.setItem('theme', newIsDark ? 'dark' : 'light');
-            
-            return newIsDark;
+        setIsDark(prev => {
+            const newMode = !prev;
+            // Update localStorage immediately
+            localStorage.setItem('theme', newMode ? 'dark' : 'light');
+            return newMode;
         });
     };
 
