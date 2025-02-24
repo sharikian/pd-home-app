@@ -25,7 +25,7 @@ export const NavBar = ({ className }: Props): JSX.Element => {
     { value: "خانه", icon: HomeTwo, link: "" },
     { value: "پرونده", icon: FileCollection, link: "" },
     { value: "مسیر توانبخشی", icon: ConnectionPointTwo, link: "wents" },
-    { value: "توصیه و آموزش ها", icon: BookOpen, link: "" },
+    { value: "توصیه و آموزش ها", icon: BookOpen, link: "myplan" },
     { value: "مشاوره", icon: PeopleSpeak, link: "" },
   ];
 

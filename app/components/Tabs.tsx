@@ -1,64 +1,82 @@
 "use client"
-import PropTypes from "prop-types";
-import { Line1, Subtract } from "@/public/icons";
-import { useRef, useState, useEffect } from "react";
-import React, { JSX } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from 'next/navigation';
+import { flushSync } from 'react-dom';
+import PropTypes from 'prop-types';
+import { useRef, useState, useEffect } from 'react';
+import React, { JSX } from 'react';
 
 interface Props {
   varient: string;
   className?: string;
-  items?: Array<{ value: string; activate: boolean; link: string; }>;
+  items?: Array<{ value: string; activate: boolean; link: string }>;
+}
+
+interface ClimbProps {
+  width: number;
 }
 
 const initialTabItems = [
-  { value: "پیگیری", activate: false, link: '' },
-  { value: "فعالیت های پرونده", activate: false, link: '' },
-  { value: "ارجاعات", activate: false, link: '' },
-  { value: "تست ها", activate: false, link: '' },
-  { value: "آزمایش ها", activate: false, link: '' },
-  { value: "شرح حال اولیه", activate: false },
-  { value: "مشخصات عمومی", activate: true, link: '' },
+  { value: "پیگیری", activate: false, link: '/tracking' },
+  { value: "فعالیت های پرونده", activate: false, link: '/activities' },
+  { value: "ارجاعات", activate: false, link: '/references' },
+  { value: "تست ها", activate: false, link: '/tests' },
+  { value: "آزمایش ها", activate: false, link: '/labs' },
+  { value: "شرح حال اولیه", activate: false, link: '/history' },
+  { value: "مشخصات عمومی", activate: true, link: '/general' },
 ];
 
 export const Tabs = ({ varient, className, items = initialTabItems }: Props): JSX.Element => {
+  const router = useRouter();
   const [tabItems, setTabItems] = useState(items);
+  const [activeTabWidth, setActiveTabWidth] = useState(0);
   const climbRef = useRef<HTMLDivElement>(null);
   const tabContainerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const updateClimbPosition = () => {
-      const tabElements = document.querySelectorAll('.tab-item');
-      const widths = Array.from(tabElements).map(el => el.getBoundingClientRect().width);
-      const activeIndex = tabItems.findIndex(item => item.activate);
+  const updateClimbPosition = (activeIndex: number, climbWidth: number) => {
+    const tabElements = document.querySelectorAll('.tab-item');
+    if (activeIndex === -1 || !climbRef.current) return;
 
-      if (climbRef.current && activeIndex !== -1) {
-        let leftPosition = 0;
-        for (let i = 0; i < activeIndex; i++) {
-          leftPosition += widths[i];
-        }
-        const climbWidth = climbRef.current.clientWidth;
-        const newLeft = leftPosition + widths[activeIndex] / 2 - climbWidth / 2;
-        climbRef.current.style.left = `${newLeft}px`;
-        climbRef.current.style.transition = 'left 0.3s ease';
+    const widths = Array.from(tabElements).map(el => el.getBoundingClientRect().width);
+    let leftPosition = 0;
+    for (let i = 0; i < activeIndex; i++) {
+      leftPosition += widths[i];
+    }
+    
+    const newLeft = leftPosition + widths[activeIndex] / 2 - climbWidth / 2;
+    climbRef.current.style.left = `${newLeft}px`;
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      const activeIndex = tabItems.findIndex(item => item.activate);
+      if (activeIndex !== -1) {
+        updateClimbPosition(activeIndex, activeTabWidth + 100);
       }
     };
 
-    updateClimbPosition();
-    window.addEventListener('resize', updateClimbPosition);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [tabItems, activeTabWidth]);
 
-    return () => {
-      window.removeEventListener('resize', updateClimbPosition);
-    };
-  }, [tabItems]);
+  const handleTabClick = (index: number, link: string) => {
+    flushSync(() => {
+      const updatedItems = tabItems.map((item, i) => ({
+        ...item,
+        activate: i === index,
+      }));
+      setTabItems(updatedItems);
+    });
 
-  const handleTabClick = (index: number) => {
-    const updatedTabItems = tabItems.map((item, i) => ({
-      ...item,
-      activate: i === index,
-    }));
-    setTabItems(updatedTabItems);
+    const activeTabElement = document.querySelectorAll('.tab-item')[index];
+    const textElement = activeTabElement?.querySelector('.tab-text');
+    
+    if (textElement) {
+      const textWidth = textElement.getBoundingClientRect().width;
+      setActiveTabWidth(textWidth);
+      updateClimbPosition(index, textWidth + 100);
+    }
+
+    router.push(link);
   };
 
   return (
@@ -70,24 +88,18 @@ export const Tabs = ({ varient, className, items = initialTabItems }: Props): JS
     >
       <div className="flex flex-nowrap h-full w-full justify-between">
         {tabItems.map(({ value, activate, link }, index) => (
-          <Link key={index} href={link ? link : '/'}>
           <div
-            
+            key={index}
             className={`tab-item flex-1 flex items-center justify-center gap-2.5 px-[10px] md:px-[20px] py-2.5 relative cursor-pointer ${
-              activate && varient == "pre"
-                ? "bg-[#1a604e] rounded-[35px] shadow-[inset_2px_4px_4px_#00000040] transition-all duration-300 ease-out"
-                : "transition-all duration-300 ease-out"
+              activate && varient === "pre"
+                ? "bg-[#1a604e] rounded-[35px] shadow-[inset_2px_4px_4px_#00000040]"
+                : ""
             }`}
-            onClick={() => {
-              handleTabClick(index)
-              
-            }}
+            onClick={() => handleTabClick(index, link)}
           >
             <div
-              className={`relative w-fit font-normal text-white tracking-[0] leading-[normal] text-right whitespace-nowrap ${
-                activate
-                  ? "[text-shadow:0px_0px_25px_#b9d0aa]"
-                  : ""
+              className={`tab-text relative w-fit font-normal text-white tracking-[0] leading-[normal] text-right whitespace-nowrap ${
+                activate ? "[text-shadow:0px_0px_25px_#b9d0aa]" : ""
               }`}
               style={{
                 fontSize: "clamp(12px, 2vw, 18px)",
@@ -97,13 +109,51 @@ export const Tabs = ({ varient, className, items = initialTabItems }: Props): JS
             >
               {value}
             </div>
-          </div></Link>
+          </div>
         ))}
       </div>
-      {varient == "ligth" && <Climb ref={climbRef} />}
+      {varient === "ligth" && <Climb ref={climbRef} width={activeTabWidth} />}
     </div>
   );
 };
+
+const Climb = React.forwardRef<HTMLDivElement, ClimbProps>(({ width }, ref) => {
+  const climbWidth = width + 100;
+  const trapezoidPadding = 50;
+  const leftStart = (trapezoidPadding / climbWidth) * 100;
+  const rightEnd = ((climbWidth - trapezoidPadding) / climbWidth) * 100;
+
+  return (
+    <div 
+      ref={ref}
+      className="absolute h-[65px] md:h-[85px] transition-all duration-300 ease-out pointer-events-none"
+      style={{ 
+        width: `${climbWidth}px`,
+      }}
+    >
+      <div 
+        className="absolute top-0 left-1/2 -translate-x-1/2 h-[4px] md:h-[5px] bg-[#B9D0AA] rounded-full"
+        style={{ 
+          width: `${width}px`,
+        }}
+      />
+      <div 
+        className="absolute top-[5px] left-0 w-full h-[60px] md:h-[80px]"
+        style={{
+          background: 'linear-gradient(180deg, rgba(185, 208, 170, 0.31) 0%, rgba(185, 208, 170, 0) 100%)',
+          clipPath: `polygon(
+            ${leftStart}% 0,
+            0% 100%,
+            100% 100%,
+            ${rightEnd}% 0
+          )`,
+        }}
+      />
+    </div>
+  );
+});
+
+Climb.displayName = "Climb";
 
 Tabs.propTypes = {
   varient: PropTypes.oneOf(["pre", "default", "ligth"]),
@@ -115,24 +165,3 @@ Tabs.propTypes = {
     })
   ),
 };
-
-const Climb = React.forwardRef<HTMLDivElement>((_props, ref) => {
-  return (
-    <div ref={ref} className="absolute w-[180px] md:w-[228px] h-[65px] md:h-[85px]">
-      <div className="relative h-[68px] md:h-[88px] -top-0.5">
-        <Image
-          className="absolute w-[80px] md:w-[109px] h-[4px] md:h-[5px] top-0 left-[40px] md:left-[59px] object-cover"
-          alt="Line"
-          src={Line1}
-        />
-        <Image
-          className="absolute w-[180px] md:w-[228px] h-[65px] md:h-[85px] top-0.5 left-0"
-          alt="Subtract"
-          src={Subtract}
-        />
-      </div>
-    </div>
-  );
-});
-
-Climb.displayName = "Climb";
