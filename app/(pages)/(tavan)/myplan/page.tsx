@@ -6,12 +6,13 @@ import listPlugin from "@fullcalendar/list";
 import multiMonthPlugin from "@fullcalendar/multimonth";
 import persian from "react-date-object/calendars/persian";
 import gregorian_fa from "react-date-object/locales/gregorian_fa";
-import Calendar from "react-multi-date-picker";
+import { Calendar } from "react-multi-date-picker";
 import { useState } from "react";
 import Modal from "./Modal";
 import { Helpers } from "./Helpers";
 import { Experimental } from "./Experimental";
 import useScreenSize from "@/app/hooks/useScreenSize";
+import { CheckBox } from "@/app/components/ui/CheckBox";
 
 const MyPlan = () => {
   const [showModal, setShowModal] = useState(false);
@@ -91,14 +92,27 @@ const MyPlan = () => {
                   <Calendar
                     locale={gregorian_fa}
                     calendar={persian}
-                    type="Calender"
+                    months={[
+                      "فروردین",
+                      "اردیبهشت",
+                      "خرداد",
+                      "تیر",
+                      "مرداد",
+                      "شهریور",
+                      "مهر",
+                      "آبان",
+                      "آذر",
+                      "دی",
+                      "بهمن",
+                      "اسفند"
+                    ]}
+                    
                     className="rmdp-rtl dark:[&_.rmdp-day]:text-slate-800 dark:[&_.rmdp-header]:text-gray-500 dark:[&_.rmdp-week-day]:text-slate-800"
-                    style={{ width: '100%', backgroundColor: 'transparent' }}
                   />
                 </div>
 
                 {/* Filter Section */}
-                <div className="p-2 pt-10 md:pt-2 md:p-4 flex align-start flex-col gap-3 md:gap-6">
+                <div className="p-2 pt-10 md:pt-2 md:p-4 flex align-start flex-col gap-3 md:gap-6 mt-18">
                   <span style={{alignSelf: "end" }} className="text-gray-500 dark:text-slate-300">فیلتر</span>
                   <div className="flex flex-col gap-3">
                     <div className="flex gap-2 dark:text-slate-300" style={{ alignSelf: "end" }}>
@@ -129,6 +143,7 @@ const MyPlan = () => {
                     </div>
                     <div className="flex gap-2 dark:text-slate-300" style={{ alignSelf: "end" }}>
                       <p>وضعیت مراجعه</p>
+                      <CheckBox/>
                       <svg
                         width="24"
                         height="25"

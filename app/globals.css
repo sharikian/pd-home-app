@@ -107,3 +107,7 @@ body {
     border-color: #3b82f6;
   }
 }
+
+.rmdp-shadow {
+  box-shadow: 0 0 0px !important;
+}

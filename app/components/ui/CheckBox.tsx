@@ -15,9 +15,13 @@ export const CheckBox = ({ active = false, className }: Props): JSX.Element => {
       className={`flex items-center p-[5px] relative ${
         state.variant === "not-select" ? "w-10 h-10 rotate-90" : "h-10 w-10"
       } flex-col rounded-[7px] gap-2.5 bg-[#eaeef1] overflow-hidden justify-center ${
-        state.variant === "hover-1" || state.variant === "not-select"
+        state.variant === "hover-1"
           ? "shadow-[inset_-7px_7px_4.7px_-5px_#00000059,inset_13px_-9px_4.3px_-12px_#ffffffa1]"
           : "shadow-[-6px_7px_21px_-6px_#1a604e,2px_-1px_66.3px_18px_#ffffff]"
+      } ${
+        state.variant === "not-select"
+        ? "shadow-[inset_6px_7px_21px_-6px_#6b7280,2px_-1px_66.3px_18px_#f8fafc]"
+        : ""
       } ${className}`}
       onMouseEnter={() => dispatch("mouse_enter")}
       onClick={() => dispatch("click")}
