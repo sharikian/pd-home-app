@@ -80,8 +80,8 @@ export const Tabs = ({ varient, className }: Props): JSX.Element => {
             <div
               className={`relative w-fit font-normal text-white tracking-[0] leading-[normal] text-right whitespace-nowrap ${
                 activate
-                  ? "[font-family:'Pelak',Helvetica] [text-shadow:0px_0px_25px_#b9d0aa]"
-                  : "[font-family:'Pelak-Regular',Helvetica]"
+                  ? "[text-shadow:0px_0px_25px_#b9d0aa]"
+                  : ""
               }`}
               style={{
                 fontSize: "clamp(12px, 2vw, 18px)", // Responsive font size

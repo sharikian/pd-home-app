@@ -38,7 +38,7 @@ export const Notice = ({
         dark:border-emerald-400 ${className}`}
         style={{ borderColor: variantStyles[variant].color }}
       >
-        <p className={`relative w-fit mt-[-1.00px] font-normal text-lg text-right
+        <p dir="rtl" className={`relative w-fit mt-[-1.00px] font-normal text-lg text-right
           ${variantStyles[variant].darkColor}
           ${variantStyles[variant].color}
           `}

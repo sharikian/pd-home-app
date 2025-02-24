@@ -13,7 +13,7 @@ interface Props {
 
 export const Header = ({ userName, userId, className }: Props): JSX.Element => {
   return (
-    <header className={`w-full bg-[#eaeef1] dark:bg-slate-700 shadow-lg ${className}`}>
+    <header className={`w-full dark:bg-slate-800 shadow-lg ${className}`}>
       <div className="mx-auto h-10 w-full max-w-screen-2xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-full items-center justify-between">
           {/* Left Side Icons */}
@@ -32,19 +32,21 @@ export const Header = ({ userName, userId, className }: Props): JSX.Element => {
                 src={Help}
               />
             </Link>
-            <Link href='/wents' className="shrink-0">
-              <Image
-                className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
-                alt="Messages"
-                src={MessageEmoji}
-              />
-            </Link>
+
+            <Image
+              className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
+              alt="Messages"
+              src={MessageEmoji}
+            />
             <DarkLightToggle activate className="shrink-0" />
           </div>
 
           {/* Right Side Profile */}
           <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
-            <Link href="/dashboard" className="flex items-center gap-2 md:gap-4">
+            <Link
+              href="/dashboard"
+              className="flex items-center gap-2 md:gap-4"
+            >
               <div className="flex flex-col items-end text-right">
                 <span className="font-pelak text-sm font-medium text-gray-800 dark:text-white md:text-base">
                   {userName}
