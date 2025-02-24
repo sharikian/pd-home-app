@@ -14,43 +14,47 @@ const LoginAuthPage = () => {
           </h1>
 
           <div className="space-y-6 flex flex-col items-center">
-            <Input 
-              title="نام کاربری" 
-              placeholder="نام کاربری خود را وارد کنید" 
+            <Input
+              title="نام کاربری"
+              placeholder="نام کاربری خود را وارد کنید"
             />
-            <Input 
-              title="رمز عبور" 
-              placeholder="رمز عبور خود را وارد کنید" 
-              type="password" 
+            <Input
+              title="رمز عبور"
+              placeholder="رمز عبور خود را وارد کنید"
+              type="password"
             />
-
-            <Button
-              text="ورود"
-              variant="secondary"
-              className="w-[10rem] text-lg dark:hover:bg-emerald-700 shadow-slate-500"
-            />
+            <Link href="/">
+              <Button
+                text="ورود"
+                variant="secondary"
+                className="w-[10rem] text-lg dark:hover:bg-emerald-700 shadow-slate-500"
+              />
+            </Link>
           </div>
         </div>
       </div>
 
       {/* Graphic Section */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-cover bg-center relative min-h-[400px]
+      <div
+        className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-cover bg-center relative min-h-[400px]
                      dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-900"
-        style={{ backgroundImage: `url(/imgs/fade-login.png)` }}>
+        style={{ backgroundImage: `url(/imgs/fade-login.png)` }}
+      >
         <Link href="/" className="absolute top-6 right-6">
-          <Image 
-            src={Logo} 
-            alt="Logo" 
-            className="w-24 md:w-32 dark:invert-[.85]" 
+          <Image
+            src={Logo}
+            alt="Logo"
+            className="w-24 md:w-32 dark:invert-[.85]"
           />
         </Link>
-        
+
         <div className="text-center text-white dark:text-slate-100 max-w-md">
           <h2 className="mb-4 text-3xl md:text-4xl font-bold">سلام دوست من!</h2>
           <p className="text-lg md:text-xl leading-relaxed mb-8">
-            اگر تو هم دوست داری به خانه پارکینسون ملحق شی میتونی حساب خودتو ایجاد کنی!
+            اگر تو هم دوست داری به خانه پارکینسون ملحق شی میتونی حساب خودتو
+            ایجاد کنی!
           </p>
-          
+
           <Link href="/auth/register">
             <Button
               text="ثبت نام"
