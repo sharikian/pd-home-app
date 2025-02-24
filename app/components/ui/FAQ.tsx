@@ -6,74 +6,43 @@ import Image from 'next/image';
 interface FAQProps {
   title: string;
   description: string;
-  variant?: 'primary' | 'warning';
   className?: string;
 }
 
 export const FAQ = ({ 
   title,
   description,
-  variant = 'primary',
   className = ''
 }: FAQProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const variantStyles = {
-    primary: {
-      border: '#1A604E',
-      darkBorder: '#3b82f6',
-      title: '#1A604E',
-      darkTitle: '#10b981',
-      iconFilter: 'brightness(0) saturate(100%) invert(13%) sepia(15%) saturate(1817%) hue-rotate(81deg) brightness(94%) contrast(86%)'
-    },
-    warning: {
-      border: '#D85562',
-      darkBorder: '#ef4444',
-      title: '#D85562',
-      darkTitle: '#f87171',
-      iconFilter: 'brightness(0) saturate(100%) invert(48%) sepia(53%) saturate(2013%) hue-rotate(327deg) brightness(93%) contrast(92%)'
-    }
-  };
 
   return (
     <div
-      className={`max-w-[1414px] items-center w-full flex gap-2.5 shadow-[-8px_23px_81.4px_#1a604e1a,8px_-23px_81.4px_#ffffff] dark:shadow-[-8px_23px_81.4px_#1a604e1a,8px_-23px_81.4px_#1e293b] overflow-hidden rounded-[6px] bg-[#eaeef1] dark:bg-slate-700 relative transition-all duration-300 ${className}`}
-      style={{
-        border: `1.5px solid ${variant === 'primary' ? 
-          'var(--dark-border, #3b82f6)' : 
-          'var(--dark-border, #ef4444)'}`,
-        height: isOpen ? 'auto' : 'fit-content'
-      }}
+      className={`w-full mx-auto flex items-start gap-2.5 shadow-shadows p-2.5 overflow-hidden rounded-[15px] bg-[#eaeef1] relative transition-all duration-300 ${
+        isOpen ? 'min-h-[81px]' : ''
+      } ${className}`}
+      onClick={() => setIsOpen(!isOpen)}
     >
-      <div className="flex flex-col w-full">
-        <div 
-          className="flex items-center justify-between w-full p-4 cursor-pointer"
-          onClick={() => setIsOpen(!isOpen)}
-        >
+      <div className={`border-[1.5px] border-solid border-[#1a604e] w-full flex gap-2.5 flex-1 overflow-hidden rounded-[5px] relative ${
+        isOpen ? 'flex-col items-end pt-3.5 pb-[11px] px-4 md:px-[19px]' : 'items-center px-4 md:px-[19px] py-[7px] justify-end'
+      }`}>
+        <div className="flex items-center justify-between w-full flex-[0_0_auto]">
           <Image
-            className={`w-8 h-8 transition-transform duration-300 dark:invert ${
-              isOpen ? 'rotate-180' : ''
-            }`}
+            className="relative w-6 md:w-[34px] transition-transform duration-300"
             src={ArrowDown}
             alt="Toggle icon"
+            style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}
           />
-          <h3 
-            className="flex-1 font-bold text-right transition-colors duration-300 text-[#1A604E] dark:text-emerald-400"
-          >
+          <h3 className="relative flex-1 text-right [font-family:'Pelak-Bold'] font-bold text-[#1a604e] dark:text-emerald-600 text-xl md:text-md leading-normal [direction:rtl] px-2 whitespace-nowrap">
             {title}
           </h3>
         </div>
 
-        <div
-          className={`overflow-hidden transition-all duration-300 ${
-            isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-          }`}
-        >
-          <p className="p-4 font-medium text-black dark:text-slate-200 text-xl tracking-[0] leading-[normal] [direction:rtl]">
+        {isOpen && (
+          <p className="relative w-full [font-family:'Pelak-Medium'] font-medium text-black dark:text-slate-300 text-lg md:text-xl leading-normal [direction:rtl] mt-2 break-words">
             {description}
           </p>
-        </div>
+        )}
       </div>
     </div>
   );

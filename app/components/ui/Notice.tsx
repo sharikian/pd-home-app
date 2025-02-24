@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import PropTypes from "prop-types";
 
 interface Props {
   variant?: "primary" | "warning" | "secondary";
@@ -14,38 +15,40 @@ export const Notice = ({
   const variantStyles = {
     primary: {
       color: 'text-[#1A604E]',
-      darkColor: 'dark:text-emerald-300'
+      border: 'border-[#1a604e]',
+      bg: 'bg-[#eaeef1]'
     },
     warning: {
       color: 'text-[#D85562]',
-      darkColor: 'dark:text-rose-400'
+      border: 'border-[#D85562]',
+      bg: 'bg-[#fbe9eb]'
     },
     secondary: {
       color: 'text-[#1A604E]',
-      darkColor: 'dark:text-emerald-300'
+      border: 'border-[#1a604e]',
+      bg: 'bg-[rgba(185,208,170,0.51)]'
     },
   };
 
   return (
-    <div className={`flex flex-col items-start gap-2.5 p-2.5 relative rounded-[15px] shadow-shadows w-full
-      ${variant === 'secondary' 
-        ? "bg-[rgba(185,208,170,0.51)] dark:bg-emerald-900/30" 
-        : "bg-[rgba(234,238,241,1)] dark:bg-slate-700"}
-      ${className}`}
-    >
+    <div className={`w-full flex items-start gap-2.5 shadow-shadows p-2.5 overflow-hidden rounded-[15px] ${variantStyles[variant].bg} ${className}`}>
       <div
-        className={`relative flex items-center justify-end gap-2.5 rounded-[5px] border-[1.5px] border-solid px-[9px] py-[7px]
-        dark:border-emerald-400 ${className}`}
-        style={{ borderColor: variantStyles[variant].color }}
+        className={`w-full border-[1.5px] border-solid ${variantStyles[variant].border} flex items-center justify-end gap-2.5 rounded-[5px] px-[9px] py-[7px]`}
       >
-        <p dir="rtl" className={`relative w-fit mt-[-1.00px] font-normal text-lg text-right
-          ${variantStyles[variant].darkColor}
-          ${variantStyles[variant].color}
-          `}
+        <p 
+          dir="rtl" 
+          className={`w-full font-pelak-regular text-lg text-right ${variantStyles[variant].color}`}
+          style={{ direction: 'rtl' }}
         >
           {value}
         </p>
       </div>
     </div>
   );
+};
+
+Notice.propTypes = {
+  variant: PropTypes.oneOf(["primary", "warning", "secondary"]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
+  className: PropTypes.string,
 };

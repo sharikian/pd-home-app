@@ -47,7 +47,7 @@ export const Went = (): JSX.Element => {
             <Image
               src={GreenDanger}
               alt="!"
-              className="w-6 h-6 md:w-8 md:h-8 dark:invert"
+              className="w-6 h-6 md:w-14 md:h-14 dark:invert"
             />
           </div>
           <>
@@ -59,7 +59,7 @@ export const Went = (): JSX.Element => {
                   </span>
                   <DropDown
                     placeholder="انتخاب کنید"
-                    options={[]}
+                    options={['num 1', 'num 2']}
                     className="dark:bg-slate-700 dark:text-white"
                   />
                 </div>
@@ -85,7 +85,7 @@ export const Went = (): JSX.Element => {
                   </span>
                   <DropDown
                     placeholder="انتخاب کنید"
-                    options={[]}
+                    options={['num 1', 'num 2']}
                     className="dark:bg-slate-700 dark:text-white"
                   />
                 </div>
@@ -95,7 +95,7 @@ export const Went = (): JSX.Element => {
             <Button
               text={"ثبت زمان ویزیت"}
               variant="secondary"
-              className="w-full md:w-fit self-end dark:bg-emerald-800 dark:text-emerald-100 dark:hover:bg-emerald-700"
+              className="w-full md:w-fit self-start dark:bg-emerald-800 dark:text-emerald-100 dark:hover:bg-emerald-700"
             />
           </>
         </>

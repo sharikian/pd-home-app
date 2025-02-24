@@ -23,10 +23,10 @@ export const NavBar = ({ className }: Props): JSX.Element => {
 
   const navItems = [
     { value: "خانه", icon: HomeTwo, link: "" },
-    { value: "پرونده", icon: FileCollection, link: "" },
+    { value: "پرونده", icon: FileCollection, link: "myplan" },
     { value: "مسیر توانبخشی", icon: ConnectionPointTwo, link: "wents" },
-    { value: "توصیه و آموزش ها", icon: BookOpen, link: "myplan" },
-    { value: "مشاوره", icon: PeopleSpeak, link: "" },
+    { value: "توصیه و آموزش ها", icon: BookOpen, link: "" },
+    { value: "مشاوره", icon: PeopleSpeak, link: "FAQ" },
   ];
 
   const getActiveItem = () => {
@@ -88,7 +88,7 @@ export const NavBar = ({ className }: Props): JSX.Element => {
             <NavBarItem
               item={{ value: "خروج", icon: MingcuteExitLine }}
               isActive={false}
-              link="logout"
+              link="auth/login"
             />
           </div>
         </div>
@@ -144,7 +144,7 @@ export const NavBar = ({ className }: Props): JSX.Element => {
               isActive={false}
               onClick={() => setIsMobileOpen(false)}
               mobile
-              link="logout"
+              link="/auth/login"
             />
           </div>
         </div>

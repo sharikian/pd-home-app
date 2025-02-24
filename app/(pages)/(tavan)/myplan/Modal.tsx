@@ -98,6 +98,7 @@ const Modal = ({ onClose }: Prop) => {
                 dark:focus:ring-emerald-400/30 dark:text-emerald-100
                 dark:placeholder-emerald-200/60 dark:bg-slate-700/90
                 dark:hover:border-emerald-400/50 dark:hover:shadow-slate-700/50
+                text-end
               `}
             />
             <Button 
