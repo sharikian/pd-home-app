@@ -46,10 +46,10 @@ export const Timeline: React.FC<TimelineProps> = ({ items, className = "" }) => 
 
             {/* Content */}
             <div className="pr-12">
-              <div className="[font-family:'Pelak-Regular',Helvetica] font-normal text-base text-black dark:text-slate-200">
+              <div className="font-normal text-base text-black dark:text-slate-200">
                 {item.title}
               </div>
-              <div className="[font-family:'Pelak-light',Helvetica] font-normal text-sm text-black dark:text-slate-300 mt-1">
+              <div className="font-normal text-sm text-black dark:text-slate-300 mt-1">
                 {item.date}
               </div>
             </div>

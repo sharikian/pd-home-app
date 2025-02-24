@@ -58,7 +58,7 @@ export const Card = ({
           </div>
           <div className="relative mt-[-9px] inline-flex flex-[0_0_auto] items-center justify-center gap-2.5 px-2.5 py-0">
             <div
-              className={`relative mt-[-1.00px] w-fit text-left [font-family:'Pelak-Regular',Helvetica] text-sm leading-[normal] font-normal tracking-[0] [direction:rtl] ${variantConfig[variant].text}`}
+              className={`relative mt-[-1.00px] w-fit text-left text-sm leading-[normal] font-normal tracking-[0] [direction:rtl] ${variantConfig[variant].text}`}
             >
               <span>{description}</span>
             </div>

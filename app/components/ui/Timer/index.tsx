@@ -61,7 +61,7 @@ export const Timer = ({ day, hour, minutes, className, divClassName }: Props) =>
             key={label}
             className="inline-flex items-center justify-center gap-1 p-1 relative flex-[1_1_0] min-w-[60px]"
           >
-            <div className="relative w-fit [font-family:'PelakFA-light',Helvetica] font-normal text-[#1a604e] text-[10px] text-center tracking-[0] leading-[normal] whitespace-nowrap [direction:rtl]">
+            <div className="relative w-fit font-normal text-[#1a604e] text-[10px] text-center tracking-[0] leading-[normal] whitespace-nowrap [direction:rtl]">
               {label}
             </div>
           </div>
@@ -70,11 +70,11 @@ export const Timer = ({ day, hour, minutes, className, divClassName }: Props) =>
 
       <div className="flex items-center justify-center gap-1 relative self-stretch w-full flex-[0_0_auto]">
         <AnimatedNumber value={convertToPersian(timeLeft.days)} className={`${divClassName} min-w-[40px]`} />
-        <div className="relative w-fit [font-family:'Poppins-Bold',Helvetica] font-bold text-[#1a604e] text-[32px] mx-1">
+        <div className="relative w-fit font-bold text-[#1a604e] text-[32px] mx-1">
           :
         </div>
         <AnimatedNumber value={convertToPersian(timeLeft.hours)} className="min-w-[40px]" />
-        <div className="relative w-fit [font-family:'Poppins-Bold',Helvetica] font-bold text-[#1a604e] text-[32px] mx-1">
+        <div className="relative w-fit font-bold text-[#1a604e] text-[32px] mx-1">
           :
         </div>
         <AnimatedNumber value={convertToPersian(timeLeft.minutes)} className="min-w-[40px]" />

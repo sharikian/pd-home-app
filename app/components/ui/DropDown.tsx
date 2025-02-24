@@ -43,7 +43,7 @@ export const DropDown: React.FC<DropdownProps> = ({
             style={{ transform: isOpen ? "rotate(180deg)" : "none" }}
           />
           <div className="inline-flex items-center justify-center gap-2.5 p-2.5 relative flex-[0_0_auto]">
-            <p className="relative w-fit mt-[-1.00px] [font-family:'Pelak-Regular',Helvetica] font-normal text-[#1A604E] dark:text-emerald-100 text-lg text-left tracking-[0] leading-[normal] [direction:rtl]">
+            <p className="relative w-fit mt-[-1.00px] font-normal text-[#1A604E] dark:text-emerald-100 text-lg text-left tracking-[0] leading-[normal] [direction:rtl]">
               {selectedOption || placeholder}
             </p>
           </div>
@@ -59,7 +59,7 @@ export const DropDown: React.FC<DropdownProps> = ({
                 onClick={() => handleOptionClick(option)}
               >
                 <div className="inline-flex items-center justify-center gap-2.5 p-2.5 relative flex-[0_0_auto]">
-                  <div className="relative w-fit mt-[-1.00px] [font-family:'Pelak-Regular',Helvetica] font-normal text-[#1A604E] dark:text-emerald-100 text-lg tracking-[0] leading-[normal] [direction:rtl]">
+                  <div className="relative w-fit mt-[-1.00px] font-normal text-[#1A604E] dark:text-emerald-100 text-lg tracking-[0] leading-[normal] [direction:rtl]">
                     {option}
                   </div>
                 </div>

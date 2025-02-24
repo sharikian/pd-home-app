@@ -22,7 +22,7 @@ export const AnimatedNumber = ({ value, className }: AnimatedNumberProps) => {
       key={animationKey}
       className={`relative h-[40px] flex justify-center overflow-hidden ${className}`}
     >
-      <div className="absolute animate-slide-in [font-family:'Poppins-Bold',Helvetica] font-bold text-[#1a604e] text-[32px] text-center tracking-[0] leading-[normal]">
+      <div className="absolute animate-slide-in font-bold text-[#1a604e] text-[32px] text-center tracking-[0] leading-[normal]">
         {displayValue.toString().padStart(2, "0")}
       </div>
     </div>
