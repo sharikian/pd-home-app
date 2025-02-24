@@ -4,24 +4,26 @@ import { Line1, Subtract } from "@/public/icons";
 import { useRef, useState, useEffect } from "react";
 import React, { JSX } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   varient: string;
   className?: string;
+  items?: Array<{ value: string; activate: boolean; link: string; }>;
 }
 
-export const Tabs = ({ varient, className }: Props): JSX.Element => {
-  const initialTabItems = [
-    { value: "پیگیری", activate: false },
-    { value: "فعالیت های پرونده", activate: false },
-    { value: "ارجاعات", activate: false },
-    { value: "تست ها", activate: false },
-    { value: "آزمایش ها", activate: false },
-    { value: "شرح حال اولیه", activate: false },
-    { value: "مشخصات عمومی", activate: true },
-  ];
+const initialTabItems = [
+  { value: "پیگیری", activate: false, link: '' },
+  { value: "فعالیت های پرونده", activate: false, link: '' },
+  { value: "ارجاعات", activate: false, link: '' },
+  { value: "تست ها", activate: false, link: '' },
+  { value: "آزمایش ها", activate: false, link: '' },
+  { value: "شرح حال اولیه", activate: false },
+  { value: "مشخصات عمومی", activate: true, link: '' },
+];
 
-  const [tabItems, setTabItems] = useState(initialTabItems);
+export const Tabs = ({ varient, className, items = initialTabItems }: Props): JSX.Element => {
+  const [tabItems, setTabItems] = useState(items);
   const climbRef = useRef<HTMLDivElement>(null);
   const tabContainerRef = useRef<HTMLDivElement>(null);
 
@@ -67,15 +69,19 @@ export const Tabs = ({ varient, className }: Props): JSX.Element => {
       } ${className}`}
     >
       <div className="flex flex-nowrap h-full w-full justify-between">
-        {tabItems.map(({ value, activate }, index) => (
+        {tabItems.map(({ value, activate, link }, index) => (
+          <Link key={index} href={link ? link : '/'}>
           <div
-            key={index}
+            
             className={`tab-item flex-1 flex items-center justify-center gap-2.5 px-[10px] md:px-[20px] py-2.5 relative cursor-pointer ${
               activate && varient == "pre"
                 ? "bg-[#1a604e] rounded-[35px] shadow-[inset_2px_4px_4px_#00000040] transition-all duration-300 ease-out"
                 : "transition-all duration-300 ease-out"
             }`}
-            onClick={() => handleTabClick(index)}
+            onClick={() => {
+              handleTabClick(index)
+              
+            }}
           >
             <div
               className={`relative w-fit font-normal text-white tracking-[0] leading-[normal] text-right whitespace-nowrap ${
@@ -84,14 +90,14 @@ export const Tabs = ({ varient, className }: Props): JSX.Element => {
                   : ""
               }`}
               style={{
-                fontSize: "clamp(12px, 2vw, 18px)", // Responsive font size
+                fontSize: "clamp(12px, 2vw, 18px)",
                 WebkitTextStrokeWidth: activate ? "1px" : "0",
                 WebkitTextStrokeColor: activate ? "#B9D0AA" : "transparent",
               }}
             >
               {value}
             </div>
-          </div>
+          </div></Link>
         ))}
       </div>
       {varient == "ligth" && <Climb ref={climbRef} />}
@@ -101,6 +107,13 @@ export const Tabs = ({ varient, className }: Props): JSX.Element => {
 
 Tabs.propTypes = {
   varient: PropTypes.oneOf(["pre", "default", "ligth"]),
+  className: PropTypes.string,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      activate: PropTypes.bool.isRequired,
+    })
+  ),
 };
 
 const Climb = React.forwardRef<HTMLDivElement>((_props, ref) => {
