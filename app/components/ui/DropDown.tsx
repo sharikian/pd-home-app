@@ -27,7 +27,7 @@ export const DropDown: React.FC<DropdownProps> = ({
   return (
     <div className={`relative w-full ${className}`}>
       <div
-        className={`flex flex-col items-start gap-2.5 p-2.5 relative bg-[#eaeef1] dark:bg-slate-700 rounded-[15px] overflow-hidden shadow-shadows border-r-2 border-[#b9d0aa] dark:border-emerald-400 ${
+        className={`flex flex-col items-start gap-2.5 p-2.5 relative bg-[#eaeef1] dark:bg-slate-700 rounded-[15px] overflow-hidden shadow-shadows border-r-2 dark:border-r-0 border-[#b9d0aa] dark:border-emerald-400 ${
           isOpen ? "rounded-b-none" : ""
         }`}
       >

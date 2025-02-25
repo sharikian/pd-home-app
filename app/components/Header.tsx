@@ -38,7 +38,7 @@ export const Header = ({ userName, userId, className }: Props): JSX.Element => {
               alt="Messages"
               src={MessageEmoji}
             />
-            <DarkLightToggle activate className="shrink-0" />
+            <DarkLightToggle activate={false} className="shrink-0" />
           </div>
 
           {/* Right Side Profile */}

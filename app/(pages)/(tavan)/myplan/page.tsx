@@ -110,7 +110,7 @@ const MyPlan = () => {
                 </div>
 
                 {/* Calendar Section */}
-                <div className="p-2 lg:p-4 hidden md:flex justify-center">
+                <div className="p-2 lg:p-4 hidden md:block" style={{justifySelf:'center'}}>
                   <Calendar
                     locale={gregorian_fa}
                     calendar={persian}
