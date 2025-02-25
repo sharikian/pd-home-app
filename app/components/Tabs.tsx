@@ -43,7 +43,7 @@ export const Tabs = ({ varient, className, items = initialTabItems }: Props): JS
     if (textElement) {
       const textWidth = textElement.getBoundingClientRect().width;
       setActiveTabWidth(textWidth);
-      updateClimbPosition(activeIndex, textWidth + 100);
+      updateClimbPosition(activeIndex, textWidth + 100 -28);
     }
   }, []);
 
@@ -65,7 +65,7 @@ export const Tabs = ({ varient, className, items = initialTabItems }: Props): JS
     const handleResize = () => {
       const activeIndex = tabItems.findIndex(item => item.activate);
       if (activeIndex !== -1) {
-        updateClimbPosition(activeIndex, activeTabWidth + 100);
+        updateClimbPosition(activeIndex, activeTabWidth + 100 -28);
       }
     };
 
@@ -88,7 +88,7 @@ export const Tabs = ({ varient, className, items = initialTabItems }: Props): JS
     if (textElement) {
       const textWidth = textElement.getBoundingClientRect().width;
       setActiveTabWidth(textWidth);
-      updateClimbPosition(index, textWidth + 100);
+      updateClimbPosition(index, textWidth + 100 -28);
     }
 
     router.push(link);
@@ -101,7 +101,7 @@ export const Tabs = ({ varient, className, items = initialTabItems }: Props): JS
         "bg-[#1a604e]"
       } ${className}`}
     >
-      <div className="flex flex-nowrap h-full w-full justify-between">
+      <div className="flex flex-nowrap h-full w-full justify-between px-4">
         {tabItems.map(({ value, activate, link }, index) => (
           <div
             key={index}
