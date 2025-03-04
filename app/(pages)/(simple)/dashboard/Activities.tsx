@@ -1,6 +1,7 @@
 import { Button } from "@/app/components";
 import { ArrowDown, Clock } from "@/public/icons";
 import Image from "next/image";
+import Parkinson from '@/public/imgs/dashboard/parkinsons.png';
 
 export const Activities = () => {
   return (
@@ -52,7 +53,7 @@ export const Activities = () => {
 
       {/* Image Panel */}
       <div className="w-full xl:w-1/2 relative aspect-[1.3] bg-[#1a604e] dark:bg-slate-800 rounded-2xl xl:rounded-[35px] overflow-hidden">
-        <div className="absolute inset-0 bg-[url(/imgs/dashboard/parkinsons.png)] bg-cover bg-center">
+        <div className={`absolute inset-0 bg-cover bg-center`} style={{ backgroundImage: `url(${Parkinson.src})` }}>
           <div className="absolute inset-0 bg-gradient-to-b from-[#1a604e] dark:from-slate-800 via-[#1a604ee6] dark:via-slate-800/90 to-transparent">
             <div className="absolute bottom-4 md:bottom-8 left-4 md:left-8 right-4 md:right-8">
               <div className="flex flex-col md:flex-row items-end justify-between gap-4">

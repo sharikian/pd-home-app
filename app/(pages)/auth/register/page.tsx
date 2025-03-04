@@ -4,6 +4,7 @@ import Logo from "@/public/imgs/logo.png";
 import Link from "next/link";
 import Image from "next/image";
 import { toast } from "react-toastify";
+import FadeLogin from '@/public/imgs/fade-login.png'
 
 const RegisterAuthPage = () => {
   return (
@@ -11,7 +12,7 @@ const RegisterAuthPage = () => {
       {/* Graphic Section */}
       <div className="w-full lg:w-2/5 flex items-center justify-center p-8 bg-cover bg-center relative min-h-[400px]
                      dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-900"
-        style={{ backgroundImage: `url(/imgs/fade-login.png)` }}>    
+        style={{ backgroundImage: `url(${FadeLogin.src})` }}>    
         <div className="text-center text-white dark:text-slate-100 max-w-md">
           <h2 className="mb-12 text-3xl md:text-5xl font-bold">!خوش اومدی</h2>
           <p className="text-lg md:text-xl leading-relaxed mb-8">

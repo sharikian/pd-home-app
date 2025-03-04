@@ -1,6 +1,7 @@
 import { Button } from '@/app/components';
 import { Danger, ArrowDown } from "@/public/icons";
 import Image from 'next/image';
+import ParkFamily from '@/public/imgs/dashboard/park-family.png';
 
 export const NotDoIt = () => (
   <div className="flex flex-col-reverse xl:flex-row md:flex-col-reverse sm:flex-col-reverse gap-6 md:gap-8 p-4 md:p-6 border-b border-[#00000030] dark:border-slate-700">
@@ -47,7 +48,7 @@ export const NotDoIt = () => (
     <div className="w-full xl:w-1/2 relative aspect-[1.3] bg-[#b9d0aa] dark:bg-emerald-900 rounded-2xl xl:rounded-[35px] overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(/imgs/dashboard/park-family.png)` }}
+        style={{ backgroundImage: `url(${ParkFamily.src})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#b9d0aa] dark:via-emerald-900 to-[#b9d0aa] dark:to-emerald-900 via-60%">
           <div className="absolute bottom-4 md:bottom-8 left-4 md:left-8 right-4 md:right-8">

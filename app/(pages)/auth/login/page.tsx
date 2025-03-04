@@ -2,6 +2,7 @@ import { Input, Button } from "@/app/components";
 import Logo from "@/public/imgs/logo-layer.png";
 import Link from "next/link";
 import Image from "next/image";
+import FadeLogin from '@/public/imgs/fade-login.png'
 
 const LoginAuthPage = () => {
   return (
@@ -38,7 +39,7 @@ const LoginAuthPage = () => {
       <div
         className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-cover bg-center relative min-h-[400px]
                      dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-900"
-        style={{ backgroundImage: `url(/imgs/fade-login.png)` }}
+        style={{ backgroundImage: `url(${FadeLogin.src})` }}
       >
         <Link href="/" className="absolute top-6 right-6">
           <Image
