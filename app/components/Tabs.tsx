@@ -1,5 +1,5 @@
 "use client"
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { flushSync } from 'react-dom';
 import PropTypes from 'prop-types';
 import { useRef, useState, useEffect } from 'react';
@@ -27,10 +27,32 @@ const initialTabItems = [
 
 export const Tabs = ({ varient, className, items = initialTabItems }: Props): JSX.Element => {
   const router = useRouter();
+  const pathname = usePathname();
   const [tabItems, setTabItems] = useState(items);
   const [activeTabWidth, setActiveTabWidth] = useState(0);
   const climbRef = useRef<HTMLDivElement>(null);
   const tabContainerRef = useRef<HTMLDivElement>(null);
+
+  // Sync active tab with URL path
+  useEffect(() => {
+    const updatedItems = items.map(item => ({
+      ...item,
+      activate: item.link === pathname,
+    }));
+    setTabItems(updatedItems);
+    const index = tabItems.findIndex((data) => {
+      return data.link === pathname
+    } )
+    const activeTabElement = document.querySelectorAll('.tab-item')[index];
+    const textElement = activeTabElement?.querySelector('.tab-text');
+    
+    if (textElement) {
+      const textWidth = textElement.getBoundingClientRect().width;
+      setActiveTabWidth(textWidth);
+      updateClimbPosition(index, textWidth + 100 -28);
+    }
+  }, [pathname, items]);
+
 
   // Initialize climb position on mount
   useEffect(() => {
