@@ -44,11 +44,11 @@ const MyPlan = () => {
         </div>
 
         {/* Main Calendar Section */}
-        <div className="lg:col-span-4 p-2 sm:p-4 rounded-[0.8rem] text-black dark:text-slate-200">
+        <div className="lg:col-span-4 p-2 sm:p-4 rounded-[0.8rem] text-black dark:text-slate-200 border border-stone-300 dark:border-stone-600">
           <div className="grid grid-cols-1 xl:grid-cols-10 gap-2">
             {/* FullCalendar Container */}
             <div 
-              className={`xl:col-span-7 ${isDarkMode ? 'fullcalendar-dark' : ''}`}
+              className={`xl:col-span-7 ${isDarkMode ? 'fullcalendar-dark' : ''} `}
             >
               <FullCalendar
                 plugins={[dayGridPlugin, listPlugin, multiMonthPlugin]}
@@ -76,7 +76,7 @@ const MyPlan = () => {
             <div className="xl:col-span-3 h-full mt-4 xl:mt-0">
               <div className="grid grid-rows-[auto] lg:grid-rows-[10%_40%_50%] gap-2 h-full relative">
                 {/* Add Event Button */}
-                <div className="p-2 lg:p-4 !pt-0">
+                <div className="p-2 lg:p-4 !pt-0 border-b border-stone-300 dark:border-stone-600">
                   <button
                     style={{ backgroundColor: "#1A604E", color: "white" }}
                     onClick={() => setShowModal(true)}
@@ -110,7 +110,7 @@ const MyPlan = () => {
                 </div>
 
                 {/* Calendar Section */}
-                <div className="p-2 lg:p-4 hidden md:block" style={{justifySelf:'center'}}>
+                <div className="p-2 lg:p-4 hidden md:block border-b border-stone-300 dark:border-stone-600" style={{justifySelf:'center'}}>
                   <Calendar
                     locale={gregorian_fa}
                     calendar={persian}
