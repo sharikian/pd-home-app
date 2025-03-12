@@ -1,4 +1,4 @@
-export { default as BookOpen } from "./park.svg";
+export { default as BookOpen } from "./book-open.svg";
 export { default as ConnectionPointTwo } from "./connection-point-two.svg";
 export { default as FileCollection } from "./file-connection.svg";
 export { default as HomeTwo } from "./home-two.svg";

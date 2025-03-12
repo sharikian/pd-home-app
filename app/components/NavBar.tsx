@@ -172,8 +172,8 @@ const NavBarItem = ({
         mobile ? "w-full" : "w-[160px]"
       } ${
         isActive
-          ? "shadow-[inset_2px_4px_4px_#00000040] bg-[#b9d0aa57]"
-          : "hover:bg-[#b9d0aa57] hover:scale-105"
+          ? "bg-[#b9d0aa57]"
+          : "hover:scale-105"
       } ${mobile ? "py-3" : "py-2"}`}
     >
       <Image
