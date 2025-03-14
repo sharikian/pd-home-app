@@ -3,6 +3,7 @@
 import { useSession } from "next-auth/react";
 import { Header, NavBar, Tabs } from "@/app/components";
 import { ReactNode } from "react";
+import { redirect } from "next/navigation";
 
 interface Prop {
   children: ReactNode;
@@ -18,11 +19,8 @@ const Layout = ({ children }: Prop) => {
 
   // Handle unauthenticated state (optional: redirect to login)
   if (status === "unauthenticated") {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        لطفاً وارد حساب کاربری خود شوید.
-      </div>
-    );
+    redirect('/auth/login')
+    
   }
 
   // Extract userName and userId from session

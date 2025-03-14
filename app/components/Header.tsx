@@ -7,7 +7,7 @@ import { JSX } from "react";
 
 interface Props {
   userName: string;
-  userId: number;
+  userId: string;
   className?: string;
 }
 
