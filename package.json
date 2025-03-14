@@ -11,7 +11,8 @@
     "build-storybook": "storybook build",
     "server": "cd server && json-server db.json -p 9090",
     "both": "concurrently \"npm run dev\" \"npm run server\"",
-    "sub-clean": "find .cache/online-pd -maxdepth 1 -not -name \".\" -not -name \".git\" -not -name \".github\" -not -name \"package.json\" -not -name \"node_module\" -not -name \"package-lock.json\" -exec rm -rf {} +"
+    "sub-clean": "cd .cache/online-pd/ && find . -maxdepth 1 -not -name \".\" -not -name \".git\" -not -name \".github\" -not -name \"package.json\" -not -name \"node_module\" -not -name \"package-lock.json\" -not -name \"next.config.ts\" -not -name \".gitignore\" -exec rm -rf {} +",
+    "test": "concurrently \"npm start\" \"npm run server\""
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.15",
