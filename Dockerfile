@@ -16,18 +16,22 @@ WORKDIR /app
 # Copy dependencies and files from the CI stage
 COPY --from=ci /app ./
 
+# Create .env file with environment variables
+RUN echo "NEXTAUTH_SECRET=vAjVKzU2wNPbrQTRVVmLuKGt4Evqy9NH24myyREBPFU" > .env && \
+    echo "NEXTAUTH_URL=http://localhost:3000" >> .env
+
 # Run the build script (includes next build, sub-clean, and mv)
 RUN npm run build
 
-# Stage 3: Run Tests with Next.js and JSON Server
+# Stage 3: Run Tests with Next.js (No JSON Server anymore)
 FROM node:18-alpine AS test
 WORKDIR /app
 
-# Copy the built project and dependencies
+# Copy the built project and dependencies, including .env
 COPY --from=build /app ./
 
-# Expose ports: 3000 for Next.js, 9090 for JSON server
+# Expose port 3000 for Next.js
 EXPOSE 3000
 
-# Run tests (concurrently runs npm start and npm run server)
+# Start the Next.js app
 CMD ["npm", "start"]
