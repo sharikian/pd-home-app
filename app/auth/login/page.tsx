@@ -14,6 +14,17 @@ const LoginAuthPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Check if username is empty
+    if (!username.trim()) {
+      toast.error("لطفاً نام کاربری را وارد کنید");
+      return;
+    }
+
+    // Check if password is empty
+    if (!password.trim()) {
+      toast.error("لطفاً رمز عبور را وارد کنید");
+      return;
+    }
     const result = await signIn("credentials", {
       username,
       password,

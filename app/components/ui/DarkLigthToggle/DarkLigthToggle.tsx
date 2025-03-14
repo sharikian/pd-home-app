@@ -4,6 +4,7 @@ import cloudsBack from "./svgs/clouds-back.svg";
 import cloudsFront from "./svgs/clouds-front.svg";
 import stars from "./svgs/stars.svg";
 import Image from "next/image";
+import useScreenSize from "@/app/hooks/useScreenSize";
 
 interface Props {
     activate: boolean;
@@ -11,6 +12,8 @@ interface Props {
 }
 
 export const DarkLightToggle = ({ activate, className }: Props): JSX.Element => {
+    const screenSize = useScreenSize();
+    
     const [isDark, setIsDark] = useState<boolean>(() => {
         // First load: Check localStorage -> then use prop
         if (typeof window !== 'undefined') {
@@ -43,7 +46,7 @@ export const DarkLightToggle = ({ activate, className }: Props): JSX.Element => 
 
     return (
         <div
-            className={`relative w-[4.25rem] h-[1.75rem] ${isDark ? "bg-[#242d36]" : "bg-[#1179f4]"} rounded-full overflow-hidden shadow-[inset_0_0.07rem_0.09rem_#00000040,inset_0_-0.05rem_0.14rem_#00000040,0_0.02rem_0.02rem_#fffffff0,0_-0.02rem_0.02rem_#00000040] ${className} transition-colors duration-500 cursor-pointer`}
+            className={`relative ${screenSize.width > 992 ? "w-[4.25rem] h-[1.75rem]" : "w-[1.8rem] h-[1.8rem]"} ${isDark ? "bg-[#242d36]" : "bg-[#1179f4]"} rounded-full overflow-hidden shadow-[inset_0_0.07rem_0.09rem_#00000040,inset_0_-0.05rem_0.14rem_#00000040,0_0.02rem_0.02rem_#fffffff0,0_-0.02rem_0.02rem_#00000040] ${className} transition-colors duration-500 cursor-pointer`}
             onClick={toggleMode}
             role="button"
             aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}

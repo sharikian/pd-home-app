@@ -1,6 +1,6 @@
 "use client";
 import { JSX } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { toast } from "react-toastify";
 import {
@@ -21,13 +21,12 @@ interface Props {
 
 export const NavBar = ({ className }: Props): JSX.Element => {
   const pathname = usePathname();
-  const router = useRouter();
 
   const navItems = [
     { value: "خانه", icon: HomeTwo, link: "" },
     { value: "پرونده", icon: FileCollection, link: "myplan" },
     { value: "مسیر توانبخشی", icon: ConnectionPointTwo, link: "wents" },
-    { value: "توصیه و آموزش ها", icon: BookOpen, link: "" },
+    { value: "توصیه و آموزش ها", icon: BookOpen, link: "dashboard" },
     { value: "مشاوره", icon: PeopleSpeak, link: "FAQ" },
   ];
 
@@ -41,9 +40,8 @@ export const NavBar = ({ className }: Props): JSX.Element => {
 
   const handleLogout = async () => {
     try {
-      await signOut({ redirect: false });
+      await signOut({ redirect: true, callbackUrl: "/auth/login" });
       toast.success("شما با موفقیت خارج شدید.");
-      router.push("/auth/login");
     } catch (error) {
       toast.error("خروج با خطا مواجه شد.");
       console.error("Logout error:", error);

@@ -1,9 +1,11 @@
+"use client";
 import { Help, MessageEmoji, SettingTwo, Remind } from "@/public/icons";
 import { DarkLightToggle } from "./ui/DarkLigthToggle/DarkLigthToggle";
 import Amo from "@/public/imgs/amo.jpeg";
 import Image from "next/image";
 import Link from "next/link";
 import { JSX } from "react";
+import useScreenSize from "../hooks/useScreenSize";
 
 interface Props {
   userName: string;
@@ -12,6 +14,8 @@ interface Props {
 }
 
 export const Header = ({ userName, userId, className }: Props): JSX.Element => {
+  const screenSize = useScreenSize();
+
   return (
     <header className={`w-full dark:bg-slate-800 shadow-lg ${className}`}>
       <div className="mx-auto h-10 w-full max-w-screen-2xl px-4 sm:px-6 lg:px-8">
@@ -32,12 +36,13 @@ export const Header = ({ userName, userId, className }: Props): JSX.Element => {
                 src={Help}
               />
             </Link>
-
-            <Image
-              className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
-              alt="Messages"
-              src={MessageEmoji}
-            />
+            {screenSize.width > 992 && (
+              <Image
+                className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
+                alt="Messages"
+                src={MessageEmoji}
+              />
+            )}
             <DarkLightToggle activate={false} className="shrink-0" />
           </div>
 

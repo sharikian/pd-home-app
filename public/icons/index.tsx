@@ -25,6 +25,7 @@ export { default as Sport } from "./sport.svg";
 export { default as HaveQuestion } from "./have-question.svg";
 export { default as GreenDanger } from "./green-danger.svg";
 export { default as PlusIcon } from "./plus-white.svg";
+export { default as Mark } from "./mark.svg";
 
 
 interface Prop {
