@@ -27,7 +27,8 @@ const RegisterAuthPage = () => {
     }
 
     try {
-      const response = await fetch("/api/users", {
+      const baseUrl = window.location.origin;
+      const response = await fetch(`${baseUrl}/api/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

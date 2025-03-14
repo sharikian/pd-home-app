@@ -12,9 +12,10 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         try {
+          const baseUrl = window.location.origin;
           const [usersRes, adminsRes] = await Promise.all([
-            fetch("/api/users"),
-            fetch("/api/admins"),
+            fetch(`${baseUrl}/api/users`),
+            fetch(`${baseUrl}/api/admins`),
           ]);
           const users = await usersRes.json();
           const admins = await adminsRes.json();
