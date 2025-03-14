@@ -33,7 +33,7 @@ export const FAQ = ({
             alt="Toggle icon"
             style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}
           />
-          <h3 className="relative flex-1 text-right [font-family:'Pelak-Bold'] font-bold text-[#1a604e] dark:text-emerald-600 text-xl md:text-md leading-normal [direction:rtl] px-2 whitespace-nowrap">
+          <h3 className="relative flex-1 text-right [font-family:'Pelak-Bold'] font-bold text-[#1a604e] dark:text-emerald-600 text-sm md:text-md leading-normal [direction:rtl] px-2 whitespace-wrap">
             {title}
           </h3>
         </div>

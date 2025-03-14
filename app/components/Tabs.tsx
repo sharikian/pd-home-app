@@ -51,6 +51,7 @@ export const Tabs = ({ varient, className, items = initialTabItems }: Props): JS
       setActiveTabWidth(textWidth);
       updateClimbPosition(index, textWidth + 100 -28);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname, items]);
 
 
@@ -67,6 +68,7 @@ export const Tabs = ({ varient, className, items = initialTabItems }: Props): JS
       setActiveTabWidth(textWidth);
       updateClimbPosition(activeIndex, textWidth + 100 -28);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const updateClimbPosition = (activeIndex: number, climbWidth: number) => {

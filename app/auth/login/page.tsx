@@ -41,7 +41,7 @@ const LoginAuthPage = () => {
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-[#EAEEF1] dark:bg-slate-800">
       {/* Form Section */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 md:p-8 lg:p-20 bg-white dark:bg-slate-900">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 md:p-8 lg:p-20 bg-white dark:bg-slate-900 mt-8 md:mt-0">
         <div className="w-full max-w-md">
           <h1 className="mb-8 md:mb-12 text-3xl md:text-5xl text-[#1a604e] dark:text-emerald-400 text-center font-bold">
             ورود به حساب کاربری
@@ -89,7 +89,7 @@ const LoginAuthPage = () => {
         </Link>
 
         <div className="text-center text-white dark:text-slate-100 max-w-md">
-          <h2 className="mb-4 text-3xl md:text-4xl font-bold">سلام دوست من!</h2>
+          <h2 className="mb-4 text-3xl md:text-4xl font-bold mt-20 md:mt-0">سلام دوست من!</h2>
           <p className="text-lg md:text-xl leading-relaxed mb-8">
             اگر تو هم دوست داری به خانه پارکینسون ملحق شی میتونی حساب خودتو
             ایجاد کنی!

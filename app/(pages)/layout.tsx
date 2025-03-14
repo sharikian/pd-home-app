@@ -35,7 +35,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   const userId = session?.user?.id || "N/A"; // Fallback if ID is missing
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row mb-20 md:mb-0">
       {screenSize.width <= 992 && (
         <Image className="fixed z-50 top-80" src={Mark} alt=">" />
       )}

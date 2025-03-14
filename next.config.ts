@@ -8,7 +8,8 @@ const nextConfig: NextConfig = {
   },
   assetPrefix: isProd ? repo_path : '',
   basePath: isProd ? repo_path : '',
-  // output: "export",
+  // output: isProd ? "export" : "standalone",
+  distDir: 'out',
   reactStrictMode: true,
 };
 

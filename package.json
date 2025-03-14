@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build && npm run sub-clean && mv out .cache/online-pd",
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "server": "cd server && json-server db.json -p 9090",
-    "both": "concurrently \"npm run dev\" \"npm run server\""
+    "both": "concurrently \"npm run dev\" \"npm run server\"",
+    "sub-clean": "find .cache/online-pd -maxdepth 1 -not -name \".\" -not -name \".git\" -not -name \".github\" -not -name \"package.json\" -not -name \"node_module\" -not -name \"package-lock.json\" -exec rm -rf {} +"
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.15",

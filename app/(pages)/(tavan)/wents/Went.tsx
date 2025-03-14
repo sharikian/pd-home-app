@@ -47,7 +47,7 @@ export const Went = (): JSX.Element => {
             <Image
               src={GreenDanger}
               alt="!"
-              className="w-6 h-6 md:w-14 md:h-14 dark:invert"
+              className="w-6 h-6 md:w-14 md:h-14 dark:invert hidden md:block"
             />
           </div>
           <>
