@@ -9,14 +9,3 @@ services:
       - "3000:3000"  # Map host port 3000 to container port 3000
     environment:
       - NODE_ENV=production  # Example env variable
-    depends_on:
-      - json-server  # If JSON server is needed
-
-  json-server:
-    image: node:18-alpine
-    working_dir: /app
-    command: ["npm", "install", "-g", "json-server", "&&", "json-server", "--port", "9090", "/app/data.json"]
-    volumes:
-      - ./data.json:/app/data.json  # Mount your JSON file (adjust path as needed)
-    ports:
-      - "9090:9090"  # Map host port 9090 to container port 9090

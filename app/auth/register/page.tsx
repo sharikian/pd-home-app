@@ -27,7 +27,7 @@ const RegisterAuthPage = () => {
     }
 
     try {
-      const response = await fetch("http://0.0.0.0:9090/users", {
+      const response = await fetch("/api/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

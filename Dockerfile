@@ -28,7 +28,6 @@ COPY --from=build /app ./
 
 # Expose ports: 3000 for Next.js, 9090 for JSON server
 EXPOSE 3000
-EXPOSE 9090
 
 # Run tests (concurrently runs npm start and npm run server)
-CMD ["npm", "test"]
+CMD ["npm", "start"]
