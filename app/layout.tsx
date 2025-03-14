@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import localFont from 'next/font/local';
+import localFont from "next/font/local";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
+import Providers from "./providers";
 
 const pelak = localFont({
-  src: '../public/fonts/Pelak.woff2',
-  variable: '--font-prlak-bold',
-})
+  src: "../public/fonts/Pelak.woff2",
+  variable: "--font-prlak-bold",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -35,7 +36,7 @@ export default function RootLayout({
           pauseOnHover
           theme="light"
         />
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

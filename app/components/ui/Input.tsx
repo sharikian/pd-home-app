@@ -33,12 +33,12 @@ export const Input = ({
   return (
     <div className={`flex flex-col gap-1 relative ${maxWidth} mx-auto`}>
       <div className="w-full flex items-center justify-end p-2.5">
-        <div className={`font-bold text-[${variantStyles[variant].border}] text-lg`}>
+        <div className={`font-bold text-[${variantStyles[variant].border}] dark:text-emerald-600 text-lg`}>
           {title}
         </div>
       </div>
       
-      <div className="w-full rounded-[15px] bg-[#eaeef165] p-2.5 py-0">
+      <div className="w-full rounded-[15px] bg-[#eaeef165] dark:bg-transparent p-2.5 py-0">
         <input
           {...rest}
           type={type}

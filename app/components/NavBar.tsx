@@ -1,6 +1,8 @@
 "use client";
 import { useState, JSX } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
+import { toast } from "react-toastify";
 import {
   BookOpen,
   ConnectionPointTwo,
@@ -19,6 +21,7 @@ interface Props {
 
 export const NavBar = ({ className }: Props): JSX.Element => {
   const pathname = usePathname();
+  const router = useRouter();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const navItems = [
@@ -31,11 +34,22 @@ export const NavBar = ({ className }: Props): JSX.Element => {
 
   const getActiveItem = () => {
     const currentPath = pathname?.split("/")[1] || ""; // Get first path segment
-    const active = navItems.find(item => item.link === currentPath);
+    const active = navItems.find((item) => item.link === currentPath);
     return active?.value || "خانه";
   };
 
   const activeItem = getActiveItem();
+
+  const handleLogout = async () => {
+    try {
+      await signOut({ redirect: false });
+      toast.success("شما با موفقیت خارج شدید.");
+      router.push("/auth/login");
+    } catch (error) {
+      toast.error("خروج با خطا مواجه شد.");
+      console.error("Logout error:", error);
+    }
+  };
 
   return (
     <>
@@ -85,11 +99,21 @@ export const NavBar = ({ className }: Props): JSX.Element => {
           </div>
 
           <div className="mt-auto w-full px-4">
-            <NavBarItem
-              item={{ value: "خروج", icon: MingcuteExitLine }}
-              isActive={false}
-              link="auth/login"
-            />
+            <button
+              onClick={handleLogout}
+              className="relative flex flex-col items-center justify-center rounded-[10px] px-4 pt-2 pb-1 transition-all duration-300 w-[160px] py-2 hover:scale-105"
+            >
+              <Image
+                className="h-[31px] w-[31px] transition duration-300"
+                alt="خروج"
+                src={MingcuteExitLine}
+                width={31}
+                height={31}
+              />
+              <div className="mt-1 text-[#1A604E] font-medium text-lg whitespace-nowrap dark:text-slate-200">
+                خروج
+              </div>
+            </button>
           </div>
         </div>
       </div>
@@ -139,13 +163,24 @@ export const NavBar = ({ className }: Props): JSX.Element => {
           </div>
 
           <div className="mt-8">
-            <NavBarItem
-              item={{ value: "خروج", icon: MingcuteExitLine }}
-              isActive={false}
-              onClick={() => setIsMobileOpen(false)}
-              mobile
-              link="/auth/login"
-            />
+            <button
+              onClick={() => {
+                setIsMobileOpen(false);
+                handleLogout();
+              }}
+              className="relative flex flex-col items-center justify-center rounded-[10px] px-4 pt-2 pb-1 transition-all duration-300 w-full py-3 hover:scale-105"
+            >
+              <Image
+                className="h-[31px] w-[31px] transition duration-300"
+                alt="خروج"
+                src={MingcuteExitLine}
+                width={31}
+                height={31}
+              />
+              <div className="mt-1 text-[#1A604E] font-medium text-lg whitespace-nowrap dark:text-slate-200">
+                خروج
+              </div>
+            </button>
           </div>
         </div>
       </div>
@@ -171,9 +206,7 @@ const NavBarItem = ({
       className={`relative flex flex-col items-center justify-center rounded-[10px] px-4 pt-2 pb-1 transition-all duration-300 ${
         mobile ? "w-full" : "w-[160px]"
       } ${
-        isActive
-          ? "bg-[#b9d0aa57]"
-          : "hover:scale-105"
+        isActive ? "bg-[#b9d0aa57]" : "hover:scale-105"
       } ${mobile ? "py-3" : "py-2"}`}
     >
       <Image
@@ -183,7 +216,7 @@ const NavBarItem = ({
         width={31}
         height={31}
       />
-      <div className="mt-1 text-[#1A604E] font-medium text-lg whitespace-nowrap dark:text-slate-400">
+      <div className="mt-1 text-[#1A604E] font-medium text-lg whitespace-nowrap dark:text-slate-200">
         {item.value}
       </div>
     </div>

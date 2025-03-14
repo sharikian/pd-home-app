@@ -37,7 +37,7 @@ export const Notice = ({
       >
         <p 
           dir="rtl" 
-          className={`w-full font-pelak-regular text-lg text-right ${variantStyles[variant].color}`}
+          className={`w-full font-pelak-regular text-lg text-right ${variantStyles[variant].color} dark:text-emerald-400`}
           style={{ direction: 'rtl' }}
         >
           {value}
