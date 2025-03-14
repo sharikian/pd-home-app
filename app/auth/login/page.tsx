@@ -8,6 +8,7 @@ import Image from "next/image";
 import FadeLogin from "@/public/imgs/fade-login.png";
 import { toast } from "react-toastify";
 
+
 const LoginAuthPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

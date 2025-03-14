@@ -7,6 +7,7 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 import FadeLogin from "@/public/imgs/fade-login.png";
 
+
 const RegisterAuthPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -29,7 +30,7 @@ const RegisterAuthPage = () => {
 
     // Proceed with API call if validation passes
     try {
-      const response = await fetch("http://localhost:9090/users", {
+      const response = await fetch("http://0.0.0.0:9090/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

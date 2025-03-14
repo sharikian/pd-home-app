@@ -1,10 +1,12 @@
-"use client";
-
 import { ReactNode } from "react";
 
 interface Prop {
   children: ReactNode;
 }
+
+export const metadata = {
+  title: 'داشبورد',
+};
 
 const Layout2 = ({ children }: Prop) => {
   return (

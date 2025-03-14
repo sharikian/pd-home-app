@@ -13,8 +13,8 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         try {
           const [usersRes, adminsRes] = await Promise.all([
-            fetch("http://localhost:9090/users"),
-            fetch("http://localhost:9090/admins"),
+            fetch("http://0.0.0.0:9090/users"),
+            fetch("http://0.0.0.0:9090/admins"),
           ]);
           const users = await usersRes.json();
           const admins = await adminsRes.json();

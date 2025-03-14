@@ -1,11 +1,13 @@
-"use client";
-
 import { Tabs } from "@/app/components";
 import { ReactNode } from "react";
 
 interface Prop {
   children: ReactNode;
 }
+
+export const metadata = {
+  title: 'سوالات متداول',
+};
 
 const Layout1 = ({ children }: Prop) => {
   return (
