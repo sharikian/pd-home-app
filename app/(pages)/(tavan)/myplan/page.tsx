@@ -16,6 +16,7 @@ import { CheckBox } from "@/app/components/ui/CheckBox";
 import useDarkMode from "@/app/hooks/useDarkMode";
 import "react-multi-date-picker/styles/colors/teal.css";
 import "react-multi-date-picker/styles/backgrounds/bg-dark.css";
+import { motion } from "framer-motion";
 
 const MyPlan = () => {
   const [showModal, setShowModal] = useState(false);
@@ -32,23 +33,64 @@ const MyPlan = () => {
     setOpenFilter(prev => prev === filterName ? null : filterName);
   };
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.6,
+        ease: "easeOut",
+        staggerChildren: 0.2 
+      }
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    },
+  };
+
   return (
     <>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>Hello from the modal!</Modal>
       )}
-      <div className="grid grid-cols-1 xl:grid-cols-5 gap-4 dark:bg-slate-900 p-2 sm:p-4">
+      <motion.div 
+        className="grid grid-cols-1 xl:grid-cols-5 gap-4 dark:bg-slate-900 p-2 sm:p-4"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {/* Experimental Section */}
-        <div className="lg:col-span-1 p-2 sm:p-4 rounded-[0.8rem] text-[#1A604E] dark:text-emerald-400">
+        <motion.div 
+          className="lg:col-span-1 p-2 sm:p-4 rounded-[0.8rem] text-[#1A604E] dark:text-emerald-400"
+          variants={itemVariants}
+        >
           <Experimental />
-        </div>
+        </motion.div>
 
         {/* Main Calendar Section */}
-        <div className="lg:col-span-4 p-2 sm:p-4 rounded-[0.8rem] text-black dark:text-slate-200 border border-stone-300 dark:border-stone-600">
-          <div className="grid grid-cols-1 xl:grid-cols-10 gap-2">
+        <motion.div 
+          className="lg:col-span-4 p-2 sm:p-4 rounded-[0.8rem] text-black dark:text-slate-200 border border-stone-300 dark:border-stone-600"
+          variants={itemVariants}
+        >
+          <motion.div 
+            className="grid grid-cols-1 xl:grid-cols-10 gap-2"
+            variants={containerVariants}
+          >
             {/* FullCalendar Container */}
-            <div 
-              className={`xl:col-span-7 ${isDarkMode ? 'fullcalendar-dark' : ''} `}
+            <motion.div 
+              className={`xl:col-span-7 ${isDarkMode ? 'fullcalendar-dark' : ''}`}
+              variants={itemVariants}
             >
               <FullCalendar
                 plugins={[dayGridPlugin, listPlugin, multiMonthPlugin]}
@@ -70,13 +112,19 @@ const MyPlan = () => {
                   weekday: screenSize.width > 768 ? 'long' : 'narrow' 
                 }}
               />
-            </div>
+            </motion.div>
 
             {/* Sidebar Section */}
-            <div className="xl:col-span-3 h-full mt-4 xl:mt-0">
+            <motion.div 
+              className="xl:col-span-3 h-full mt-4 xl:mt-0"
+              variants={itemVariants}
+            >
               <div className="grid grid-rows-[auto] lg:grid-rows-[10%_40%_50%] gap-2 h-full relative">
                 {/* Add Event Button */}
-                <div className="p-2 lg:p-4 !pt-0 border-b border-stone-300 dark:border-stone-600">
+                <motion.div 
+                  className="p-2 lg:p-4 !pt-0 border-b border-stone-300 dark:border-stone-600"
+                  variants={itemVariants}
+                >
                   <button
                     style={{ backgroundColor: "#1A604E", color: "white" }}
                     onClick={() => setShowModal(true)}
@@ -107,10 +155,14 @@ const MyPlan = () => {
                       />
                     </svg>
                   </button>
-                </div>
+                </motion.div>
 
                 {/* Calendar Section */}
-                <div className="p-2 lg:p-4 hidden md:block border-b border-stone-300 dark:border-stone-600" style={{justifySelf:'center'}}>
+                <motion.div 
+                  className="p-2 lg:p-4 hidden md:block border-b border-stone-300 dark:border-stone-600"
+                  variants={itemVariants}
+                  style={{justifySelf:'center'}}
+                >
                   <Calendar
                     locale={gregorian_fa}
                     calendar={persian}
@@ -132,14 +184,20 @@ const MyPlan = () => {
                       'bg-dark' : 
                       'bg-light'} ${screenSize.width < 1024 ? 'w-full' : ''}`}
                   />
-                </div>
+                </motion.div>
 
                 {/* Filter Section */}
-                <div className="p-2 pt-4 lg:pt-2 lg:p-4 flex align-start flex-col gap-3 lg:gap-4 md:mt-18">
+                <motion.div 
+                  className="p-2 pt-4 lg:pt-2 lg:p-4 flex align-start flex-col gap-3 lg:gap-4 md:mt-18"
+                  variants={itemVariants}
+                >
                   <span className="text-gray-500 dark:text-slate-300 self-end">فیلتر</span>
-                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 gap-4 items-end">
+                  <motion.div 
+                    className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 gap-4 items-end"
+                    variants={containerVariants}
+                  >
                     {/* Specialty Filter */}
-                    <div className="w-full">
+                    <motion.div className="w-full" variants={itemVariants}>
                       <div 
                         className="flex gap-2 dark:text-slate-300 cursor-pointer justify-end" 
                         onClick={() => toggleFilter('specialty')}
@@ -180,10 +238,10 @@ const MyPlan = () => {
                           ))}
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
 
                     {/* Visit Status Filter */}
-                    <div className="w-full">
+                    <motion.div className="w-full" variants={itemVariants}>
                       <div 
                         className="flex gap-2 dark:text-slate-300 cursor-pointer justify-end" 
                         onClick={() => toggleFilter('visitStatus')}
@@ -224,15 +282,17 @@ const MyPlan = () => {
                           ))}
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
+                    </motion.div>
+                  </motion.div>
+                </motion.div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <Helpers />
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+      <motion.div variants={itemVariants}>
+        <Helpers />
+      </motion.div>
     </>
   );
 };

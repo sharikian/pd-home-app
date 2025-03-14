@@ -7,7 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import FadeLogin from "@/public/imgs/fade-login.png";
 import { toast } from "react-toastify";
-
+import { motion } from "framer-motion";
 
 const LoginAuthPage = () => {
   const [username, setUsername] = useState("");
@@ -15,13 +15,11 @@ const LoginAuthPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Check if username is empty
     if (!username.trim()) {
       toast.error("لطفاً نام کاربری را وارد کنید");
       return;
     }
 
-    // Check if password is empty
     if (!password.trim()) {
       toast.error("لطفاً رمز عبور را وارد کنید");
       return;
@@ -35,14 +33,52 @@ const LoginAuthPage = () => {
       toast.error("نام کاربری یا رمز عبور اشتباه است");
     } else {
       toast.success("ورود با موفقیت انجام شد");
-      window.location.href = "/"; // Redirect to home
+      window.location.href = "/";
     }
   };
 
+  // Animation variants
+  const containerVariants = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: 0.5 } },
+    exit: { opacity: 0, transition: { duration: 0.5 } },
+  };
+
+  const graphicVariants = {
+    initial: { x: "-100%" },
+    animate: { 
+      x: 0, 
+      transition: { 
+        type: "spring", 
+        stiffness: 100, 
+        damping: 20,
+        duration: 0.8 
+      } 
+    },
+    exit: { 
+      x: "100%", 
+      transition: { 
+        type: "spring", 
+        stiffness: 100, 
+        damping: 20,
+        duration: 0.8 
+      } 
+    },
+  };
+
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen bg-[#EAEEF1] dark:bg-slate-800">
+    <motion.div 
+      className="flex flex-col lg:flex-row min-h-screen bg-[#EAEEF1] dark:bg-slate-800"
+      variants={containerVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       {/* Form Section */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 md:p-8 lg:p-20 bg-white dark:bg-slate-900 mt-8 md:mt-0">
+      <motion.div 
+        className="w-full lg:w-1/2 flex items-center justify-center p-4 md:p-8 lg:p-20 bg-white dark:bg-slate-900 mt-8 md:mt-0"
+        variants={containerVariants}
+      >
         <div className="w-full max-w-md">
           <h1 className="mb-8 md:mb-12 text-3xl md:text-5xl text-[#1a604e] dark:text-emerald-400 text-center font-bold">
             ورود به حساب کاربری
@@ -74,10 +110,11 @@ const LoginAuthPage = () => {
             </button>
           </form>
         </div>
-      </div>
+      </motion.div>
 
       {/* Graphic Section */}
-      <div
+      <motion.div
+        variants={graphicVariants}
         className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-cover bg-center relative min-h-[400px] dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-900"
         style={{ backgroundImage: `url(${FadeLogin.src})` }}
       >
@@ -103,8 +140,8 @@ const LoginAuthPage = () => {
             />
           </Link>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

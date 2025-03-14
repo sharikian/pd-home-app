@@ -1,3 +1,4 @@
+"use client"
 import {
   SpeakAI,
   Sport,
@@ -11,6 +12,7 @@ import { PersonCard } from "./PersonCard";
 import { MoreInfo } from "./MoreInfo";
 import { GroupShow } from "./GroupShow";
 import { JSX } from "react";
+import { motion } from "framer-motion";
 
 const Page = (): JSX.Element => {
   const toggles = [
@@ -21,62 +23,112 @@ const Page = (): JSX.Element => {
     { title: "تغذیه", icon: Food },
   ];
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.6,
+        ease: "easeOut",
+        staggerChildren: 0.2 
+      }
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    },
+  };
+
   return (
-    <div className="w-full max-w-[1220px] px-4 xs:px-6 sm:px-8 mx-auto flex flex-col items-center gap-6 md:gap-12 lg:gap-[71px]">
-      <MainCarousel />
+    <motion.div 
+      className="w-full max-w-[1220px] px-4 xs:px-6 sm:px-8 mx-auto flex flex-col items-center gap-6 md:gap-12 lg:gap-[71px]"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+        <MainCarousel />
 
-      <div className="flex flex-wrap justify-center md:justify-around gap-6 md:gap-6 lg:gap-8 w-full">
+      <motion.div 
+        className="flex flex-wrap justify-center md:justify-around gap-6 md:gap-6 lg:gap-8 w-full"
+        variants={containerVariants}
+      >
         {toggles.map((data, index) => (
-          <ToggleShow title={data.title} Icon={data.icon} key={index} />
+          <motion.div key={index} variants={itemVariants}>
+            <ToggleShow title={data.title} Icon={data.icon} />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
-      <div className="flex flex-col lg:flex-row gap-4 md:gap-6 w-full p-4 md:p-6 bg-[#1a604eba] rounded-2xl items-center">
+      <motion.div 
+        className="flex flex-col lg:flex-row gap-4 md:gap-6 w-full p-4 md:p-6 bg-[#1a604eba] rounded-2xl items-center"
+        variants={itemVariants}
+      >
         <div className="flex gap-4 md:gap-6 w-full md:w-[75%] [direction:rtl] overflow-x-auto">
           {Array.from({ length: 4 }, (_, i) => (
-            <div
+            <motion.div
               key={i}
               className="flex-shrink-0 w-[280px] md:w-[320px] lg:w-[370px]"
+              variants={itemVariants}
             >
               <PersonCard />
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        <div className="flex items-center">
+        <motion.div variants={itemVariants} className="flex items-center">
           <p className="font-semibold text-white text-2xl md:text-4xl lg:text-[50px] leading-normal flex flex-row-reverse md:flex-col gap-2 items-center">
             <span className="block">آموزش های</span>
             <span className="font-black block mt-2">ویژه شما</span>
           </p>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      <MoreInfo />
+      <motion.div variants={itemVariants}>
+        <MoreInfo />
+      </motion.div>
 
-      <GroupShow />
+      <motion.div variants={itemVariants}>
+        <GroupShow />
+      </motion.div>
 
-      <div className="flex flex-col lg:flex-row gap-4 md:gap-6 w-full p-4 md:p-6 bg-[#1a604eba] rounded-2xl items-center">
+      <motion.div 
+        className="flex flex-col lg:flex-row gap-4 md:gap-6 w-full p-4 md:p-6 bg-[#1a604eba] rounded-2xl items-center"
+        variants={itemVariants}
+      >
         <div className="flex gap-4 md:gap-6 w-full md:w-[75%] [direction:rtl] overflow-x-auto">
           {Array.from({ length: 4 }, (_, i) => (
-            <div
+            <motion.div
               key={i}
               className="flex-shrink-0 w-[280px] md:w-[320px] lg:w-[370px]"
+              variants={itemVariants}
             >
               <PersonCard />
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        <div className="flex items-center">
+        <motion.div variants={itemVariants} className="flex items-center">
           <p className="font-semibold text-white text-2xl md:text-4xl lg:text-[40px] leading-normal flex flex-row-reverse md:flex-col gap-2 items-center">
             <span className="font-semibold block">پربازدید ترین</span>
             <span className="font-black block">ویدیو ها</span>
           </p>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      <GroupShow />
-    </div>
+      <motion.div variants={itemVariants}>
+        <GroupShow />
+      </motion.div>
+    </motion.div>
   );
 };
 
