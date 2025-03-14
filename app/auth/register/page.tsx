@@ -27,8 +27,8 @@ const RegisterAuthPage = () => {
     }
 
     try {
-      const baseUrl = window.location.origin;
-      const response = await fetch(`${baseUrl}/api/users`, {
+      // const baseUrl = window.location.origin;
+      const response = await fetch(`${"https://pd-home-app-production.up.railway.app"}/api/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
