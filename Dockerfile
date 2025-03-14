@@ -32,16 +32,3 @@ EXPOSE 9090
 
 # Run tests (concurrently runs npm start and npm run server)
 CMD ["npm", "test"]
-
-# Stage 4: Final Runner (Optional, for running the app)
-FROM node:18-alpine AS runner
-WORKDIR /app
-
-# Copy the built project
-COPY --from=build /app ./
-
-# Expose port 3000 for Next.js app
-EXPOSE 3000
-
-# Start the Next.js app
-CMD ["npm", "run", "start"]
