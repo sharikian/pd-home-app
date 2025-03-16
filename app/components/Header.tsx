@@ -17,7 +17,9 @@ export const Header = ({ userName, userId, className }: Props): JSX.Element => {
   const screenSize = useScreenSize();
 
   return (
-    <header className={`w-full dark:bg-slate-800 shadow-lg ${className}`}>
+    <header
+      className={`sticky top-0 z-50 w-full dark:bg-slate-800/80 bg-white/80 backdrop-blur-md shadow-md ${className}`} // Added backdrop-blur-md and modified shadow
+    >
       <div className="mx-auto h-10 w-full max-w-screen-2xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-full items-center justify-between">
           {/* Left Side Icons */}

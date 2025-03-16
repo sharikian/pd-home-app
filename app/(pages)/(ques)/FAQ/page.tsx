@@ -102,6 +102,7 @@ const FAQPage = () => {
             hover:border-[#1A604E]/80 dark:hover:border-emerald-400/70
           `}
           placeholder="سوال خود را اینجا بنویسید..."
+          style={{direction: 'rtl'}}
         />
         
         <motion.div variants={itemVariants}>

@@ -22,10 +22,10 @@ export const GroupShow = () => {
         </h2>
       </div>
 
-      <div className="overflow-x-auto scroll-smooth flex justify-evenly dark:bg-slate-800/50 rounded-xl">
-        <div className="flex gap-4 md:gap-6 flex-nowrap w-max">
+      <div className="overflow-x-auto scroll-smooth flex dark:bg-slate-800/50 rounded-xl py-4">
+        <div className="flex gap-4 md:gap-6 flex-nowrap justify-between w-full">
           {Array.from({ length: 3 }, (_, i) => (
-            <div key={i} className="flex-shrink-0 w-[280px] md:w-[320px]">
+            <div key={i} className="flex-shrink-0 w-[280px] md:w-[360px]">
               <PersonCard />
             </div>
           ))}

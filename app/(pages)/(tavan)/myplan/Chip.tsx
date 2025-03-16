@@ -5,44 +5,51 @@ import Image from "next/image";
 interface Props {
   text: string;
   icon: string;
-  varient?: 'primary' | 'secondary' | 'danger';
+  varient?: "primary" | "secondary" | "danger";
 }
 
 export const Chip = ({
-  varient = 'primary',
+  varient = "primary",
   text,
   icon,
 }: Props): JSX.Element => {
-  // Determine background and text colors based on variant
   const variantStyles = {
     primary: {
-      bg: 'bg-[#1a604e]',
-      text: 'text-white',
+      bg: "bg-[#1a604e]",
+      text: "text-white",
     },
     secondary: {
-      bg: 'bg-[#B9D0AA]',
-      text: 'text-[#1a604e]',
+      bg: "bg-[#B9D0AA]",
+      text: "text-[#1a604e]",
     },
     danger: {
-      bg: 'bg-[#D85562]',
-      text: 'text-white',
+      bg: "bg-[#D85562]",
+      text: "text-white",
     },
   };
 
   return (
     <div
-      className={`flex w-full md:w-[138px] items-center justify-end pl-1 pr-[5px] py-0 rounded-[5px] whitespace-nowrap ${variantStyles[varient].bg}`}
+      className={`flex w-full items-center gap-2.5 px-2.5 py-1 rounded-[5px] ${variantStyles[varient].bg} direction-[inherit] rtl:flex-row-reverse`}
+      style={{direction: 'rtl'}}
+
     >
-      <div className="inline-flex items-center justify-center gap-2.5 pl-2.5 pr-0.5 py-2">
-        <div
-          className={`relative w-fit mt-[-1.00px] font-medium ${variantStyles[varient].text} text-base text-left`}
-        >
-          {text}
-        </div>
-      </div>
-      <Image className="!relative !w-[25px] !h-[25px]" src={icon} alt="chip icon" />
+      <Image
+        className="relative w-[20px] h-[20px]"
+        src={icon}
+        alt="chip icon"
+      />
+      <span
+        className={`flex-1 font-medium ${variantStyles[varient].text} text-base whitespace-normal line-clamp-2 ltr:text-left rtl:text-right`}
+      >
+        {text}
+      </span>
     </div>
   );
 };
 
-Chip.propTypes = { text: PropTypes.string };
+Chip.propTypes = {
+  text: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  varient: PropTypes.oneOf(["primary", "secondary", "danger"]),
+};

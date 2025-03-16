@@ -28,7 +28,7 @@ const RegisterAuthPage = () => {
 
     try {
       // const baseUrl = window.location.origin;
-      const response = await fetch(`${"https://pd-home-app-production.up.railway.app"}/api/users`, {
+      const response = await fetch(`${process.env.REQ_URL}/api/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -78,7 +78,7 @@ const RegisterAuthPage = () => {
 
   return (
     <motion.div 
-      className="flex flex-col lg:flex-row min-h-screen bg-gray-100 dark:bg-slate-800"
+      className="flex flex-col lg:flex-row min-h-screen bg-gray-100 dark:bg-slate-800 h-[100vh]"
       variants={containerVariants}
       initial="initial"
       animate="animate"
@@ -124,7 +124,7 @@ const RegisterAuthPage = () => {
 
           <form
             onSubmit={handleSubmit}
-            className="space-y-5 w-fit flex flex-col items-center"
+            className="space-y-5 w-fit flex flex-col items-center w-full"
           >
             <Input
               title="نام کاربری"

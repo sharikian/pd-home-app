@@ -18,6 +18,7 @@ COPY --from=ci /app ./
 
 # Create .env file with environment variables
 RUN echo "NEXTAUTH_SECRET=vAjVKzU2wNPbrQTRVVmLuKGt4Evqy9NH24myyREBPFU" > .env && \
+    echo "REQ_URL=https://pd-home-app-production.up.railway.app" > .env && \
     echo "NEXTAUTH_URL=https://pd-home-app-production.up.railway.app" >> .env
 
 # Run the build script (includes next build, sub-clean, and mv)

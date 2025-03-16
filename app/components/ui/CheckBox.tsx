@@ -12,9 +12,9 @@ export const CheckBox = ({ active = false, className }: Props): JSX.Element => {
 
   return (
     <div
-      className={`flex items-center p-[5px] relative ${
-        state.variant === "not-select" ? "w-10 h-10 rotate-90" : "h-10 w-10"
-      } flex-col rounded-[7px] gap-2.5 bg-[#eaeef1] dark:bg-[#2d333b] overflow-hidden justify-center ${
+      className={`flex items-center p-[3px] relative ${
+        state.variant === "not-select" ? "w-6 h-6 rotate-90" : "h-6 w-6"
+      } flex-col rounded-[4px] gap-2.5 bg-[#eaeef1] dark:bg-[#2d333b] overflow-hidden justify-center ${
         state.variant === "hover-1"
           ? "shadow-[inset_-7px_7px_4.7px_-5px_#00000059,inset_13px_-9px_4.3px_-12px_#ffffffa1] dark:shadow-none"
           : "shadow-[-6px_7px_21px_-6px_#1a604e,2px_-1px_66.3px_18px_#ffffff] dark:shadow-[-6px_7px_21px_-6px_#1a604e,2px_-1px_66.3px_18px_#2d333b]"
@@ -30,10 +30,10 @@ export const CheckBox = ({ active = false, className }: Props): JSX.Element => {
       <div
         className={`rounded-sm relative ${
           state.variant === "hover-2"
-            ? "w-2.5 h-2.5"
+            ? "w-[6px] h-[6px]"
             : state.variant === "hover-1"
-            ? "w-[30px] h-[30px]"
-            : "w-[22px] h-[22px]"
+            ? "w-[18px] h-[18px]"
+            : "w-[14px] h-[14px]"
         } ${
           state.variant === "hover-1" || state.variant === "not-select"
             ? "shadow-[-1px_1px_4px_#00000040,inset_-1px_1px_4px_#ffffff] dark:shadow-none"
@@ -50,7 +50,6 @@ export const CheckBox = ({ active = false, className }: Props): JSX.Element => {
   );
 };
 
-// Reducer function remains the same
 function reducer(state: { variant: string }, action: string) {
   switch (state.variant) {
     case "default":

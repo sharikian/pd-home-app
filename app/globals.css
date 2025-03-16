@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -55,24 +56,84 @@ body {
 
 /* Webkit scrollbar setup */
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 8px; /* Slim but visible scrollbar */
+  height: 8px; /* For horizontal scrollbars */
+}
+
+/* Track - Hidden by default */
+.overflow-x-auto::-webkit-scrollbar-track,
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: rgba(226, 232, 240, 0); /* Fully transparent by default */
+  border-radius: 4px;
+  margin-top: 4px; /* Small gap from top */
+  transition: background 0.3s ease; /* Smooth transition */
+}
+
+.dark .overflow-x-auto::-webkit-scrollbar-track,
+.dark .overflow-y-auto::-webkit-scrollbar-track {
+  background: rgba(45, 55, 72, 0); /* Fully transparent by default */
+}
+
+/* Handle - Hidden by default */
+.overflow-x-auto::-webkit-scrollbar-thumb,
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: rgba(26, 96, 78, 0); /* Fully transparent by default */
+  border-radius: 4px;
+  transition: background 0.3s ease; /* Smooth transition */
+}
+
+.dark .overflow-x-auto::-webkit-scrollbar-thumb,
+.dark .overflow-y-auto::-webkit-scrollbar-thumb {
+  background: rgba(45, 212, 191, 0); /* Fully transparent by default */
+}
+
+/* Show on hover - Track */
+.overflow-x-auto:hover::-webkit-scrollbar-track,
+.overflow-y-auto:hover::-webkit-scrollbar-track {
+  background: rgba(226, 232, 240, 0.7); /* Light gray with 70% opacity */
+}
+
+.dark .overflow-x-auto:hover::-webkit-scrollbar-track,
+.dark .overflow-y-auto:hover::-webkit-scrollbar-track {
+  background: rgba(45, 55, 72, 0.7); /* Darker slate with 70% opacity */
+}
+
+/* Show on hover - Handle */
+.overflow-x-auto:hover::-webkit-scrollbar-thumb,
+.overflow-y-auto:hover::-webkit-scrollbar-thumb {
+  background: rgba(26, 96, 78, 0.8); /* Teal with 80% opacity */
+}
+
+.dark .overflow-x-auto:hover::-webkit-scrollbar-thumb,
+.dark .overflow-y-auto:hover::-webkit-scrollbar-thumb {
+  background: rgba(45, 212, 191, 0.8); /* Emerald with 80% opacity */
+}
+
+/* Handle on hover (while hovering the scrollable area) */
+.overflow-x-auto:hover::-webkit-scrollbar-thumb:hover,
+.overflow-y-auto:hover::-webkit-scrollbar-thumb:hover {
+  background: rgba(20, 64, 56, 0.9); /* Darker teal with 90% opacity */
+}
+
+.dark .overflow-x-auto:hover::-webkit-scrollbar-thumb:hover,
+.dark .overflow-y-auto:hover::-webkit-scrollbar-thumb:hover {
+  background: rgba(94, 234, 212, 0.9); /* Lighter emerald with 90% opacity */
 }
 
 @layer utilities {
   .scroll-smooth {
     scroll-behavior: smooth;
   }
-  
-  .overflow-x-auto::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .overflow-x-auto {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
 }
 
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
 
 /* FullCalendar Dark Mode */
 @media (prefers-color-scheme: dark) {
@@ -110,4 +171,8 @@ body {
 
 .rmdp-shadow {
   box-shadow: 0 0 0px !important;
+}
+
+.teal .rmdp-day.rmdp-today span {
+  background: #1a604e !important;
 }

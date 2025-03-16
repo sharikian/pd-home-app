@@ -17,6 +17,7 @@ export const Button = ({ text, className, icon, variant = "primary", ...rest }: 
         px-4 py-2 md:px-6 md:py-3 
         text-sm md:text-base 
         rounded-lg transition-all
+        cursor-pointer
         ${variant === 'primary' ? 
           'bg-[#1A604E] dark:bg-emerald-600 text-white hover:bg-[#14483a] dark:hover:bg-emerald-500' : ''}
         ${variant === 'secondary' ? 

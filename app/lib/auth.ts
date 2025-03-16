@@ -14,8 +14,8 @@ export const authOptions: NextAuthOptions = {
         try {
           // const baseUrl = window.location.origin;
           const [usersRes, adminsRes] = await Promise.all([
-            fetch(`${"https://pd-home-app-production.up.railway.app"}/api/users`),
-            fetch(`${"https://pd-home-app-production.up.railway.app"}/api/admins`),
+            fetch(`${process.env.REQ_URL}/api/users`),
+            fetch(`${process.env.REQ_URL}/api/admins`),
           ]);
           const users = await usersRes.json();
           const admins = await adminsRes.json();

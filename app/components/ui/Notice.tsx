@@ -5,12 +5,14 @@ interface Props {
   variant?: "primary" | "warning" | "secondary";
   value: string | ReactNode;
   className?: string;
+  center?: string;
 }
 
 export const Notice = ({
   variant = "primary",
   value,
   className = "",
+  center = "text-center ",
 }: Props) => {
   const variantStyles = {
     primary: {
@@ -31,14 +33,13 @@ export const Notice = ({
   };
 
   return (
-    <div className={`w-full flex items-start gap-2.5 shadow-shadows p-2.5 overflow-hidden rounded-[15px] ${variantStyles[variant].bg} ${className}`}>
+    <div className={`w-full flex items-start gap-4 shadow-shadows p-4 overflow-hidden rounded-[15px] ${variantStyles[variant].bg} ${className}`}>
       <div
-        className={`w-full border-[1.5px] border-solid ${variantStyles[variant].border} flex items-center justify-end gap-2.5 rounded-[5px] px-[9px] py-[7px]`}
+        className={`w-full border-[1.5px] border-solid ${variantStyles[variant].border} flex items-center justify-end gap-4 rounded-[10px] px-4 py-3`}
       >
         <p 
           dir="rtl" 
-          className={`w-full font-pelak-regular text-lg text-right ${variantStyles[variant].color} dark:text-emerald-400`}
-          style={{ direction: 'rtl' }}
+          className={`w-full font-pelak-regular ${center} ${variantStyles[variant].color} dark:text-emerald-400  whitespace-nowrap`}
         >
           {value}
         </p>

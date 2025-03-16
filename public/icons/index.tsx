@@ -26,6 +26,8 @@ export { default as HaveQuestion } from "./have-question.svg";
 export { default as GreenDanger } from "./green-danger.svg";
 export { default as PlusIcon } from "./plus-white.svg";
 export { default as Mark } from "./mark.svg";
+export { default as CloseRingLight } from "./close-ring-light.svg";
+export { default as MRI } from "./mri.svg";
 
 
 interface Prop {

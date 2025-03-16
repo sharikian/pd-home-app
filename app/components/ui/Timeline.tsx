@@ -33,7 +33,7 @@ export const Timeline: React.FC<TimelineProps> = ({ items, className = "" }) => 
               <Image
                 src={item.iconSrc}
                 alt="timeline-icon"
-                className="w-6 h-6 dark:invert"
+                className="w-10 h-10 dark:invert"
               />
             </div>
 

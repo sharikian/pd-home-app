@@ -1,6 +1,7 @@
 import { Chip } from "./Chip";
 import Image from "next/image";
 import BloodIcon from '@/public/imgs/myplan/blood.svg';
+import { MRI } from "@/public/icons";
 import ExperimentalIcon from '@/public/imgs/myplan/experimental.svg';
 import { JSX } from "react";
 
@@ -24,12 +25,13 @@ export const Experimental = (): JSX.Element => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-1 gap-3 w-full overflow-y-auto custom-scrollbar">
         <Chip
           icon={BloodIcon}
-          text="MRI"
+          text="آزمایش خون"
+          varient="secondary"
         />
         <Chip
-          icon={BloodIcon}
-          text="CT Scan"
-          varient="secondary"
+          icon={MRI}
+          text="MRI"
+          varient="danger"
         />
       </div>
     </div>

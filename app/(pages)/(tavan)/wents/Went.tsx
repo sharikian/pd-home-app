@@ -3,7 +3,7 @@ import React, { JSX, useState } from "react";
 import Image from "next/image";
 import { Button, Notice, DropDown } from "@/app/components";
 import { ArrowLeft, GreenDanger } from "@/public/icons";
-import ParkRow from "@/public/imgs/wents/parkRow.svg";
+import ParkRow from "@/public/imgs/wents/parkRow.png";
 
 export const Went = (): JSX.Element => {
   const [isCollapsed, setIsCollapsed] = useState(false);

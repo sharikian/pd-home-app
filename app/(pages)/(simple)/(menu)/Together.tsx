@@ -11,7 +11,7 @@ export const Together = ({ className }: Prop) => {
   const screenSize = useScreenSize();
   return (
     <div
-      className={`rtl relative w-[36.5rem] h-[16rem] md:h-[21.1rem] text-[#1a604e] bg-[#b9d0aa] rounded-[35px] overflow-hidden ${className}`}
+      className={`rtl relative w-full h-[16rem] md:h-[21.1rem] text-[#1a604e] bg-[#b9d0aa] rounded-[35px] overflow-hidden ${className}`}
     >
       <Image
         alt="together"

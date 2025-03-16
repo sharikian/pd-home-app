@@ -8,10 +8,12 @@ import Image from "next/image";
 import FadeLogin from "@/public/imgs/fade-login.png";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const LoginAuthPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,21 +21,38 @@ const LoginAuthPage = () => {
       toast.error("لطفاً نام کاربری را وارد کنید");
       return;
     }
-
     if (!password.trim()) {
       toast.error("لطفاً رمز عبور را وارد کنید");
       return;
     }
+
+    // Show loading toast with progress indicator
+    const toastId = toast.loading("در حال ورود...");
+
+    // Attempt to sign in
     const result = await signIn("credentials", {
       username,
       password,
       redirect: false,
     });
+
     if (result?.error) {
-      toast.error("نام کاربری یا رمز عبور اشتباه است");
+      // Update toast to error state
+      toast.update(toastId, {
+        render: "نام کاربری یا رمز عبور اشتباه است",
+        type: "error",
+        isLoading: false,
+        autoClose: 5000,
+      });
     } else {
-      toast.success("ورود با موفقیت انجام شد");
-      window.location.href = "/";
+      // Update toast to success state and redirect
+      toast.update(toastId, {
+        render: "ورود با موفقیت انجام شد",
+        type: "success",
+        isLoading: false,
+        autoClose: 5000,
+      });
+      router.push("/");
     }
   };
 
@@ -46,36 +65,36 @@ const LoginAuthPage = () => {
 
   const graphicVariants = {
     initial: { x: "-100%" },
-    animate: { 
-      x: 0, 
-      transition: { 
-        type: "spring", 
-        stiffness: 100, 
+    animate: {
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
         damping: 20,
-        duration: 0.8 
-      } 
+        duration: 0.8,
+      },
     },
-    exit: { 
-      x: "100%", 
-      transition: { 
-        type: "spring", 
-        stiffness: 100, 
+    exit: {
+      x: "100%",
+      transition: {
+        type: "spring",
+        stiffness: 100,
         damping: 20,
-        duration: 0.8 
-      } 
+        duration: 0.8,
+      },
     },
   };
 
   return (
-    <motion.div 
-      className="flex flex-col lg:flex-row min-h-screen bg-[#EAEEF1] dark:bg-slate-800"
+    <motion.div
+      className="flex flex-col lg:flex-row min-h-screen bg-[#EAEEF1] dark:bg-slate-800 h-[100vh]"
       variants={containerVariants}
       initial="initial"
       animate="animate"
       exit="exit"
     >
       {/* Form Section */}
-      <motion.div 
+      <motion.div
         className="w-full lg:w-1/2 flex items-center justify-center p-4 md:p-8 lg:p-20 bg-white dark:bg-slate-900 mt-8 md:mt-0"
         variants={containerVariants}
       >
@@ -86,7 +105,7 @@ const LoginAuthPage = () => {
 
           <form
             onSubmit={handleSubmit}
-            className="space-y-6 flex flex-col items-center"
+            className="space-y-6 flex flex-col items-center w-full"
           >
             <Input
               title="نام کاربری"
@@ -127,7 +146,9 @@ const LoginAuthPage = () => {
         </Link>
 
         <div className="text-center text-white dark:text-slate-100 max-w-md">
-          <h2 className="mb-4 text-3xl md:text-4xl font-bold mt-20 md:mt-0">سلام دوست من!</h2>
+          <h2 className="mb-4 text-3xl md:text-4xl font-bold mt-20 md:mt-0">
+            سلام دوست من!
+          </h2>
           <p className="text-lg md:text-xl leading-relaxed mb-8">
             اگر تو هم دوست داری به خانه پارکینسون ملحق شی میتونی حساب خودتو
             ایجاد کنی!
