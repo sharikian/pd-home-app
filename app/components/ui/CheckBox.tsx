@@ -12,16 +12,12 @@ export const CheckBox = ({ active = false, className }: Props): JSX.Element => {
 
   return (
     <div
-      className={`flex items-center p-[3px] relative ${
+      className={`flex items-center p-[3px] cursor-pointer relative ${
         state.variant === "not-select" ? "w-6 h-6 rotate-90" : "h-6 w-6"
       } flex-col rounded-[4px] gap-2.5 bg-[#eaeef1] dark:bg-[#2d333b] overflow-hidden justify-center ${
         state.variant === "hover-1"
           ? "shadow-[inset_-7px_7px_4.7px_-5px_#00000059,inset_13px_-9px_4.3px_-12px_#ffffffa1] dark:shadow-none"
-          : "shadow-[-6px_7px_21px_-6px_#1a604e,2px_-1px_66.3px_18px_#ffffff] dark:shadow-[-6px_7px_21px_-6px_#1a604e,2px_-1px_66.3px_18px_#2d333b]"
-      } ${
-        state.variant === "not-select"
-          ? "shadow-[inset_6px_7px_21px_-6px_#6b7280,2px_-1px_66.3px_18px_#f8fafc] dark:shadow-none"
-          : ""
+          : "" // حذف سایه‌های خارجی
       } ${className}`}
       onMouseEnter={() => dispatch("mouse_enter")}
       onClick={() => dispatch("click")}
@@ -37,7 +33,7 @@ export const CheckBox = ({ active = false, className }: Props): JSX.Element => {
         } ${
           state.variant === "hover-1" || state.variant === "not-select"
             ? "shadow-[-1px_1px_4px_#00000040,inset_-1px_1px_4px_#ffffff] dark:shadow-none"
-            : "shadow-[inset_-1px_1px_4px_#00000040,-1px_1px_4px_#ffffff] dark:shadow-[inset_-1px_1px_4px_#00000080,-1px_1px_4px_#ffffff20]"
+            : "shadow-[inset_-2px_2px_2px_#00000030] dark:shadow-[inset_-2px_2px_2px_#00000050]" // تورفتگی متمرکز بالا-راست
         } ${
           state.variant === "not-select"
             ? "bg-[#eaeef1] dark:bg-[#444c56]"

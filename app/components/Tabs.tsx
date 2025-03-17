@@ -31,14 +31,14 @@ export const Tabs = ({
 }: Props): JSX.Element => {
   const router = useRouter();
   const pathname = usePathname();
-  const [tabItems, setTabItems] = useState(items);
+  const [tabItems, setTabItems] = useState(items.slice().reverse()); // Reverse the initial items
   const [activeTabWidth, setActiveTabWidth] = useState(0);
   const climbRef = useRef<HTMLDivElement>(null);
   const tabContainerRef = useRef<HTMLDivElement>(null);
 
   // Update tabItems based on the current pathname
   useLayoutEffect(() => {
-    const updatedItems = items.map((item) => ({
+    const updatedItems = items.slice().reverse().map((item) => ({
       ...item,
       activate: item.link === pathname,
     }));
@@ -59,7 +59,7 @@ export const Tabs = ({
     }
   }, [tabItems]);
 
-  // New useEffect to simulate a click on the active tab after initial render
+  // Simulate a click on the active tab after initial render
   useEffect(() => {
     const activeIndex = tabItems.findIndex((item) => item.activate);
     if (activeIndex !== -1) {

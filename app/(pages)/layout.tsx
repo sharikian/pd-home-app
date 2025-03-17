@@ -41,7 +41,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
       )}
       <NavBar className="shadow-left fixed top-0 right-0 z-50 bg-white pt-3 dark:bg-slate-800" />
       <main className="flex-1 md:mr-[200px] mt-0 dark:bg-slate-900">
-        <div className="flex w-full md:w-[81vw] lg:w-[89vw] flex-col items-center gap-4 md:gap-6">
+        <div className="flex w-full md:w-[86vw] lg:w-[91vw] flex-col items-center gap-4 md:gap-6">
           <Header
             userName={userName}
             userId={userId}

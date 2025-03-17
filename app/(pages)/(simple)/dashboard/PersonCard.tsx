@@ -16,7 +16,7 @@ export const PersonCard = () => {
       </div>
       
       <div className="flex flex-col mt-4">
-        <h3 className="font-medium text-lg md:text-xl text-right">
+        <h3 className="font-medium text-lg md:text-xl text-right cursor-pointer">
           رژیم بیماران پارکینسون
         </h3>
         

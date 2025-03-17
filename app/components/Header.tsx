@@ -40,7 +40,7 @@ export const Header = ({ userName, userId, className }: Props): JSX.Element => {
             </Link>
             {screenSize.width > 992 && (
               <Image
-                className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
+                className="h-8 w-8 cursor-pointer transition-opacity hover:opacity-80 md:h-9 md:w-9"
                 alt="Messages"
                 src={MessageEmoji}
               />

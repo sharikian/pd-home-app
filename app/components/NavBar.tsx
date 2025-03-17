@@ -22,7 +22,7 @@ interface Props {
 interface NavItem {
   value: string;
   icon: string;
-  link: string | string[]; // link can be a string or an array of strings
+  link: string | string[];
 }
 
 export const NavBar = ({ className }: Props): JSX.Element => {
@@ -31,19 +31,16 @@ export const NavBar = ({ className }: Props): JSX.Element => {
   const navItems: NavItem[] = [
     { value: "خانه", icon: HomeTwo, link: "" },
     { value: "پرونده", icon: FileCollection, link: "parvande" },
-    { value: "مسیر توانبخشی", icon: ConnectionPointTwo, link: ["wents", "myplan"] },
+    { value: "مسیر توانبخشی", icon: ConnectionPointTwo, link: ["myplan", "wents"] },
     { value: "توصیه و آموزش ها", icon: BookOpen, link: "dashboard" },
     { value: "مشاوره", icon: PeopleSpeak, link: "FAQ" },
   ];
 
   const getActiveItem = () => {
     const currentPath = pathname?.split("/")[1] || "";
-    const active = navItems.find((item) => {
-      if (Array.isArray(item.link)) {
-        return item.link.includes(currentPath); // Check if current path is in the array
-      }
-      return item.link === currentPath;
-    });
+    const active = navItems.find((item) =>
+      Array.isArray(item.link) ? item.link.includes(currentPath) : item.link === currentPath
+    );
     return active?.value || "خانه";
   };
 
@@ -59,7 +56,6 @@ export const NavBar = ({ className }: Props): JSX.Element => {
     }
   };
 
-  // Helper function to get the target link (first item if array)
   const getTargetLink = (link: string | string[]): string => {
     return Array.isArray(link) ? link[0] : link;
   };
@@ -67,38 +63,38 @@ export const NavBar = ({ className }: Props): JSX.Element => {
   return (
     <>
       {/* Desktop NavBar */}
-      <div className="hidden md:block fixed right-0 top-0 h-[100vh]" style={{zIndex: 60}}>
+      <div className="hidden md:block fixed right-0 top-0 h-[100vh]" style={{ zIndex: 60 }}>
         <div
-          className={`bg-gray relative flex h-full w-[calc(1.8229vw+132px)] flex-col items-center gap-12 px-0 py-3 shadow-[-4px_0px_46.7px_#0000001c] ${className}`}
+          className={`bg-gray relative flex h-full w-[140px] flex-col items-center gap-8 px-0 py-2 shadow-[-4px_0px_46.7px_#0000001c] ${className}`}
         >
-          <Link href="/" className="mt-4">
-            <Image className="h-[122px] w-[122px]" src={Logo} alt="Logo" />
+          <Link href="/" className="mt-3">
+            <Image className="h-[80px] w-[80px]" src={Logo} alt="Logo" />
           </Link>
 
-          <div className="flex flex-col items-center gap-[8px] w-full px-2">
+          <div className="flex flex-col items-center gap-[6px] w-full px-1">
             {navItems.map((item) => (
               <NavBarItem
                 key={item.value}
                 item={item}
                 isActive={activeItem === item.value}
-                link={getTargetLink(item.link)} // Use first link if array
+                link={getTargetLink(item.link)}
               />
             ))}
           </div>
 
-          <div className="mt-auto w-full px-2">
+          <div className="mt-auto mb-4 w-full px-1 justify-center flex">
             <button
               onClick={handleLogout}
-              className="relative flex flex-col items-center justify-center rounded-[10px] px-4 pt-2 pb-1 transition-all duration-300 w-[90%] py-2 hover:scale-105"
+              className="relative flex flex-col items-center justify-center rounded-[8px] px-2 pt-1 pb-1 transition-all duration-300 w-[90%] hover:scale-105"
             >
               <Image
-                className="h-[31px] w-[31px] transition duration-300"
+                className="h-[24px] w-[24px] transition duration-300"
                 alt="خروج"
                 src={MingcuteExitLine}
-                width={31}
-                height={31}
+                width={24}
+                height={24}
               />
-              <div className="mt-1 text-[#1A604E] font-medium text-lg whitespace-nowrap dark:text-slate-200">
+              <div className="mt-1 text-[#1A604E] font-medium text-sm whitespace-nowrap dark:text-slate-200">
                 خروج
               </div>
             </button>
@@ -107,27 +103,27 @@ export const NavBar = ({ className }: Props): JSX.Element => {
       </div>
 
       {/* Mobile Bottom Toolbar */}
-      <div className="md:hidden fixed bottom-2 left-2 right-2 z-50 bg-[#EAEEF1] dark:bg-slate-700 shadow-[0_-8px_20px_rgba(0,0,0,0.15),0_2px_10px_rgba(0,0,0,0.1)] border border-[#00000010] dark:border-slate-600/50 px-1 py-1 flex justify-around items-center h-[80px] rounded-[20px]">
+      <div className="md:hidden fixed bottom-1 left-1 right-1 z-50 bg-[#EAEEF1] dark:bg-slate-700 shadow-[0_-8px_20px_rgba(0,0,0,0.15),0_2px_10px_rgba(0,0,0,0.1)] border border-[#00000010] dark:border-slate-600/50 px-1 py-1 flex justify-around items-center h-[60px] rounded-[16px]">
         {navItems.map((item) => (
           <MobileNavItem
             key={item.value}
             item={item}
             isActive={activeItem === item.value}
-            link={getTargetLink(item.link)} // Use first link if array
+            link={getTargetLink(item.link)}
           />
         ))}
         <button
           onClick={handleLogout}
-          className="flex flex-col items-center justify-center p-1 w-[50px]"
+          className="flex flex-col items-center justify-center p-1 w-[40px]"
         >
           <Image
-            className="h-[24px] w-[24px] transition duration-300"
+            className="h-[20px] w-[20px] transition duration-300"
             alt="خروج"
             src={MingcuteExitLine}
-            width={24}
-            height={24}
+            width={20}
+            height={20}
           />
-          <span className="text-[#1A604E] dark:text-slate-200 text-[10px] font-medium mt-[2px]">
+          <span className="text-[#1A604E] dark:text-slate-200 text-[9px] font-medium mt-[1px]">
             خروج
           </span>
         </button>
@@ -148,20 +144,19 @@ const NavBarItem = ({
 }) => (
   <Link href={`/${link}`} className="w-[90%]">
     <div
-      className={`relative flex flex-col items-center justify-center rounded-[10px] px-4 pt-2 pb-1 transition-all duration-300 w-full ${
+      className={`relative flex flex-col items-center justify-center rounded-[8px] px-2 pt-1 pb-1 transition-all duration-300 w-full ${
         isActive ? "bg-[#b9d0aa57]" : "hover:scale-105"
-      } py-2`}
+      }`}
     >
       <Image
-        className="h-[31px] w-[31px] transition duration-300"
+        className="h-[24px] w-[24px] transition duration-300"
         alt={item.value}
         src={item.icon}
-        width={31}
-        height={31}
+        width={24}
+        height={24}
       />
       <div
-        className="mt-1 text-[#1A604E] font-medium whitespace-nowrap dark:text-slate-200"
-        style={{ fontSize: "90%" }}
+        className="mt-1 text-[#1A604E] font-medium whitespace-nowrap dark:text-slate-200 text-sm"
       >
         {item.value}
       </div>
@@ -179,25 +174,25 @@ const MobileNavItem = ({
   isActive: boolean;
   link?: string;
 }) => (
-  <Link href={`/${link}`} className="flex flex-col items-center justify-center p-1 w-[50px]">
+  <Link href={`/${link}`} className="flex flex-col items-center justify-center p-1 w-[40px]">
     <div
-      className={`flex items-center justify-center w-[44px] h-[44px] rounded-full transition-all duration-300 ease-in-out ${
+      className={`flex items-center justify-center w-[36px] h-[36px] rounded-full transition-all duration-300 ease-in-out ${
         isActive ? "bg-[#1A604E] scale-110" : ""
       }`}
     >
       <Image
-        className={`h-[24px] w-[24px] transition-all duration-300 ease-in-out ${
+        className={`h-[20px] w-[20px] transition-all duration-300 ease-in-out ${
           isActive ? "invert" : ""
         }`}
         alt={item.value}
         src={item.icon}
-        width={24}
-        height={24}
+        width={20}
+        height={20}
       />
     </div>
     {!isActive && (
       <span
-        className={`text-[#1A604E] dark:text-slate-200 text-[10px] font-medium mt-[2px] transition-opacity duration-300 ease-in-out ${
+        className={`text-[#1A604E] dark:text-slate-200 text-[9px] font-medium mt-[1px] transition-opacity duration-300 ease-in-out ${
           isActive ? "opacity-0" : "opacity-100"
         }`}
       >

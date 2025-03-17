@@ -118,7 +118,7 @@ const DashBoardPage = () => {
                   alt="arrow" 
                   className="w-5 h-5 transform rotate-90 dark:invert"
                 />
-                <span className="text-sm md:text-base">شرح فعالیت ها</span>
+                <span className="text-sm md:text-base cursor-pointer">شرح فعالیت ها</span>
               </div>
             </motion.div>
             <motion.div variants={itemVariants}>

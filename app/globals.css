@@ -169,6 +169,19 @@ body {
   }
 }
 
+.fc-event {
+  border: none !important; /* Removes the border */
+  outline: none !important; /* Removes any outline */
+  background-color: transparent !important; /* Optional: ensures no background interference */
+}
+
+/* Optional: If you want to remove borders from specific event states (e.g., hover, focus) */
+.fc-event:hover,
+.fc-event:focus {
+  border: none !important;
+  outline: none !important;
+}
+
 .rmdp-shadow {
   box-shadow: 0 0 0px !important;
 }

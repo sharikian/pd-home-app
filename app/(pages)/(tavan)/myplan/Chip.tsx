@@ -30,7 +30,7 @@ export const Chip = ({
 
   return (
     <div
-      className={`flex w-full items-center gap-2.5 px-2.5 py-1 rounded-[5px] ${variantStyles[varient].bg} direction-[inherit] rtl:flex-row-reverse`}
+      className={`flex w-full items-center cursor-pointer gap-2.5 px-2.5 py-1 rounded-[5px] ${variantStyles[varient].bg} direction-[inherit] rtl:flex-row-reverse`}
       style={{direction: 'rtl'}}
 
     >

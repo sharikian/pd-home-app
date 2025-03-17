@@ -43,6 +43,7 @@ export const Went = (): JSX.Element => {
               className="w-full dark:bg-emerald-900/30 dark:text-emerald-100"
               variant="secondary"
               value="شما در حال حاضر نیاز به ویزیت توسط متخصص توانبخشی دارید، لطفا زمان ویزیت توانبخشی خود را انتخاب و ثبت کنید."
+              center="text-start"
             />
             <Image
               src={GreenDanger}
