@@ -22,6 +22,7 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: '#1A604E',
       },
       boxShadow: {
         'custom': '8px -23px 81.4px #FFF, -8px 23px 81.4px rgba(26, 96, 78, 0.10)',

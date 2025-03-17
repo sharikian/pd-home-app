@@ -28,6 +28,11 @@ export { default as PlusIcon } from "./plus-white.svg";
 export { default as Mark } from "./mark.svg";
 export { default as CloseRingLight } from "./close-ring-light.svg";
 export { default as MRI } from "./mri.svg";
+export { default as Calendar } from "./calendar.svg";
+export { default as PersonalIcon } from "./personal-icon.svg";
+export { default as FileProtection } from "./file-protection.svg";
+export { default as LoveHelp } from "./love-and-help.svg";
+export { default as Heart } from "./heart-ballon.svg";
 
 
 interface Prop {
