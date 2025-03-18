@@ -33,6 +33,9 @@ export { default as PersonalIcon } from "./personal-icon.svg";
 export { default as FileProtection } from "./file-protection.svg";
 export { default as LoveHelp } from "./love-and-help.svg";
 export { default as Heart } from "./heart-ballon.svg";
+export { default as Writing } from "./writing.svg";
+export { default as WorriedFace } from "./worried-face.svg";
+export { default as UserPosition } from "./user-position.svg";
 
 
 interface Prop {

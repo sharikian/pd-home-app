@@ -9,7 +9,8 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   centerize?: boolean;
   variant?: 'primary' | 'warning';
   Size?: 'sm' | 'md' | 'lg';
-  icon?: string; // New prop for icon
+  icon?: string;
+  alignRight?: boolean; // New prop for right alignment
 }
 
 export const Input = ({
@@ -22,6 +23,7 @@ export const Input = ({
   type = 'text',
   Size = 'md',
   icon,
+  alignRight = false, // Default to false
   ...rest
 }: InputProps) => {
   const variantStyles = {
@@ -62,13 +64,21 @@ export const Input = ({
   const currentSize = sizeStyles[Size];
 
   return (
-    <div className={`flex flex-col ${currentSize.container} relative ${maxWidth} mx-auto`}>
+    <div
+      className={`flex flex-col ${currentSize.container} relative ${maxWidth} ${
+        alignRight ? 'ml-auto' : 'mx-auto'
+      }`}
+    >
       <div className="w-full flex items-center justify-end p-1.5 sm:p-2.5">
-        <div className={`font-bold text-[${variantStyles[variant].border}] dark:text-emerald-600 ${currentSize.titleSize}`}>
+        <div
+          className={`font-bold text-[${variantStyles[variant].border}] dark:text-emerald-600 ${currentSize.titleSize}`}
+        >
           {title}
         </div>
       </div>
-      <div className={`w-full rounded-[15px] bg-[#eaeef165] dark:bg-transparent ${currentSize.padding} relative`}>
+      <div
+        className={`w-full rounded-[15px] bg-[#eaeef165] dark:bg-transparent ${currentSize.padding} relative`}
+      >
         <input
           {...rest}
           type={type}
