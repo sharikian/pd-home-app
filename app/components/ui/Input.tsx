@@ -2,7 +2,7 @@ import { InputHTMLAttributes } from 'react';
 import Image from 'next/image';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  title: string;
+  title?: string;            // Made optional with `?`
   placeholder?: string;
   className?: string;
   maxWidth?: string;
@@ -10,7 +10,8 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   variant?: 'primary' | 'warning';
   Size?: 'sm' | 'md' | 'lg';
   icon?: string;
-  alignRight?: boolean; // New prop for right alignment
+  alignRight?: boolean;
+  readonly?: boolean;
 }
 
 export const Input = ({
@@ -23,7 +24,8 @@ export const Input = ({
   type = 'text',
   Size = 'md',
   icon,
-  alignRight = false, // Default to false
+  alignRight = false,
+  readonly = false,
   ...rest
 }: InputProps) => {
   const variantStyles = {
@@ -69,13 +71,15 @@ export const Input = ({
         alignRight ? 'ml-auto' : 'mx-auto'
       }`}
     >
-      <div className="w-full flex items-center justify-end p-1.5 sm:p-2.5">
-        <div
-          className={`font-bold text-[${variantStyles[variant].border}] dark:text-emerald-600 ${currentSize.titleSize}`}
-        >
-          {title}
+      {title && (
+        <div className="w-full flex items-center justify-end p-1.5 sm:p-2.5">
+          <div
+            className={`font-bold text-[${variantStyles[variant].border}] dark:text-emerald-600 ${currentSize.titleSize}`}
+          >
+            {title}
+          </div>
         </div>
-      </div>
+      )}
       <div
         className={`w-full rounded-[15px] bg-[#eaeef165] dark:bg-transparent ${currentSize.padding} relative`}
       >
@@ -83,6 +87,7 @@ export const Input = ({
           {...rest}
           type={type}
           placeholder={placeholder || "متن مورد نظر را وارد کنید"}
+          readOnly={readonly}
           className={`
             w-full ${currentSize.inputHeight} px-[5px] rounded-[5px] border-[1.5px] border-solid
             bg-white ${currentSize.fontSize} ${className}

@@ -30,7 +30,7 @@ export const Slider: React.FC<SliderProps> = ({
   return (
     <div className="relative w-full px-8 py-12">
       {/* Step labels */}
-      <div className="flex justify-between w-full absolute top-0 left-0">
+      <div className="flex justify-between w-[96%] absolute top-0 left-6">
         {stepArray.map((step) => (
           <div
             key={step}

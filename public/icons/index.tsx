@@ -37,6 +37,10 @@ export { default as Writing } from "./writing.svg";
 export { default as WorriedFace } from "./worried-face.svg";
 export { default as UserPosition } from "./user-position.svg";
 export { default as Bone } from "./bone.svg";
+export { default as Spoon } from "./spoon.svg";
+export { default as GreenBlood } from "./green-blood.svg";
+export { default as NordicWalking } from "./nordic-walking.svg";
+export { default as Brain } from "./brain.svg";
 
 
 interface Prop {

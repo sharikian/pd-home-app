@@ -11,6 +11,7 @@ interface DropdownProps {
   title?: string; // New prop to match Input
   maxWidth?: string; // New prop to match Input
   Size?: 'sm' | 'md' | 'lg'; // New prop to match Input
+  alignRight?: boolean
 }
 
 export const DropDown: React.FC<DropdownProps> = ({
@@ -21,6 +22,7 @@ export const DropDown: React.FC<DropdownProps> = ({
   title,
   maxWidth = 'w-full max-w-[429px]',
   Size = 'md',
+  alignRight=false
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -67,7 +69,7 @@ export const DropDown: React.FC<DropdownProps> = ({
 
   if (variant === 'input-like') {
     return (
-      <div className={`flex flex-col ${currentSize.container} relative ${maxWidth} mx-auto ${className}`}>
+      <div className={`flex flex-col ${currentSize.container} relative ${maxWidth} ${alignRight ? "ml-auto" : "mx-auto"} ${className}`}>
         {title && (
           <div className="w-full flex items-center justify-end p-1.5 sm:p-2.5">
             <div className={`font-bold text-[${variantStyles.primary.border}] dark:text-emerald-600 ${currentSize.titleSize}`}>

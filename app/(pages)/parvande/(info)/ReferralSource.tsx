@@ -17,6 +17,7 @@ const ReferralSource = () => {
         options={['دوست', 'پزشک', 'اینترنت']}
         placeholder="گزینه مورد نظر را انتخاب کنید"
         variant='input-like'
+        alignRight
       />
     </div>
   );

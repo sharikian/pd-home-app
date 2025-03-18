@@ -1,28 +1,18 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import { Input } from "@/app/components";
 import { CheckBox } from "@/app/components/ui/CheckBox";
+import { Button, Input } from "@/app/components";
 import { ArrowLeft } from "@/public/icons";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface DropBoxItem {
-  checkboxName: string;
-  firstInput: string;
-  secondInput: string;
-}
-
-interface CustomDropBoxProps {
+interface QuizProps {
   title: string;
-  items: DropBoxItem[];
-  icon: string;
+  items: string[];
+  icon?: string;
 }
 
-export const CustomDropBox: React.FC<CustomDropBoxProps> = ({
-  title,
-  items,
-  icon = "",
-}) => {
+export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
   // Toggle collapse state when header is clicked
@@ -51,7 +41,7 @@ export const CustomDropBox: React.FC<CustomDropBoxProps> = ({
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-8">
       {/* Header */}
       <div
         className="flex gap-2 flex-row-reverse items-center text-primary font-bold cursor-pointer"
@@ -67,11 +57,11 @@ export const CustomDropBox: React.FC<CustomDropBoxProps> = ({
         {icon !== "" && (
           <Image
             src={icon}
-            alt="❤️"
+            alt="Icon"
             className="w-6 h-6 md:w-8 md:h-8 dark:invert"
           />
         )}
-        <span>{title}</span>
+        <h1 className="text-xl">{title}</h1>
       </div>
 
       {/* Collapsible Section with Animation */}
@@ -83,44 +73,39 @@ export const CustomDropBox: React.FC<CustomDropBoxProps> = ({
             initial="closed"
             animate="open"
             exit="closed"
-            style={{ overflow: "hidden" }} // Prevents content overflow during animation
+            style={{ overflow: "hidden" }}
           >
+            <div className="flex flex-row-reverse justify-between items-center self-stretch">
+              <h2 className="text-black text-xl">سوالات</h2>
+              <div className="flex justify-between items-center gap-14  ">
+                <span className="text-black text-xl w-4 ml-4">۱</span>
+                <span className="text-black text-xl w-4">۲</span>
+                <span className="text-black text-xl w-4">۳</span>
+                <span className="text-black text-xl w-4">۴</span>
+              </div>
+            </div>
             {items.map((item, index) => (
               <div
                 key={index}
-                className="flex justify-between items-center w-full min-w-[300px]"
+                className="flex justify-between items-center"
+                dir="rtl"
               >
-                {/* Second Input with Title on Right */}
-                <div
-                  className="flex gap-2 items-center"
-                  style={{ direction: "rtl" }}
-                >
-                  <span className="text-primary whitespace-nowrap">
-                    {item.secondInput}
-                  </span>
-                  <Input title="" className="max-w-24" placeholder="12" />
-                </div>
-
-                {/* First Input with Title on Right */}
-                <div
-                  className="flex gap-2 items-center"
-                  style={{ direction: "rtl" }}
-                >
-                  <span className="text-primary whitespace-nowrap">
-                    {item.firstInput}
-                  </span>
-                  <Input title="" className="max-w-24" placeholder="4" />
-                </div>
-
-                {/* Checkbox and Label */}
-                <div className="flex items-center gap-2 flex-row-reverse">
+                <Input title="" value={item} readonly alignRight />
+                <div className="flex justify-between items-center gap-10">
                   <CheckBox className="check-box-instance" />
-                  <span className="text-sm text-black w-40" dir="rtl">
-                    {item.checkboxName}
-                  </span>
+                  <CheckBox className="check-box-instance" />
+                  <CheckBox className="check-box-instance" />
+                  <CheckBox className="check-box-instance" />
                 </div>
               </div>
             ))}
+            <div className="flex gap-4 items-center justify-end" dir="rtl">
+              <h2 className="text-black text-xl mt-4">نتیجه:</h2>
+              <div className="w-[12rem]">
+                <Input title={""} placeholder=" " />
+              </div>
+            </div>
+            <Button text={"ثبت تست"} variant="secondary" className="w-fit mt-2"/>
           </motion.div>
         )}
       </AnimatePresence>
