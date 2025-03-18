@@ -36,6 +36,7 @@ export { default as Heart } from "./heart-ballon.svg";
 export { default as Writing } from "./writing.svg";
 export { default as WorriedFace } from "./worried-face.svg";
 export { default as UserPosition } from "./user-position.svg";
+export { default as Bone } from "./bone.svg";
 
 
 interface Prop {

@@ -86,7 +86,7 @@ export const FilePicker = ({ buttonName, title, onFileSelected }: FilePickerProp
 						htmlFor="fileInput"
 						className="bg-light-green mt-4 cursor-pointer rounded-lg px-6 py-2 shadow-[2px_-1px_66.3px_18px_#ffffff]"
 					>
-						<Button text={buttonName} icon={Plus} />
+						<Button text={buttonName} icon={Plus} variant="secondary" />
 					</label>
 
 					{/* Drag overlay */}
