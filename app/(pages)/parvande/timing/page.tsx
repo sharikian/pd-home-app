@@ -1,48 +1,29 @@
-"use client";
-
-import { motion } from "framer-motion";
+import Image from "next/image";
+import { ClockArrowDown, SearchVisual } from "@/public/icons";
+import { Input, DropDown } from "@/app/components";
+import ActivityTable from "./Table";
 
 const Parvande = () => {
-  // Animation variants for the container
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-        when: "beforeChildren", // Ensure container animates before children
-      },
-    },
-  };
-
-  // Animation variants for the text
-  const textVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-    },
-  };
-
   return (
-    <motion.div
-      className="flex flex-col items-center justify-center min-h-screen" // Centered layout
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      <motion.h1
-        className="text-black font-bold text-3xl" // Removed fixed positioning
-        variants={textVariants}
-      >
-        ...در دست تاسیس
-      </motion.h1>
-    </motion.div>
+    <div className="flex flex-col gap-8">
+      {/* Header */}
+      <div className="flex justify-end gap-4 items-center">
+        <div className="text-lg font-bold text-primary">
+          فعالت ها در یک نگاه
+        </div>
+        <Image className="w-8 h-8" alt="Personal Icon" src={ClockArrowDown} />
+      </div>
+      <div className="flex justify-between flex-row-reverse">
+        <Input icon={SearchVisual} placeholder="جستجو" alignRight />
+        <div className="flex gap-4 items-center justify-end" dir="rtl">
+          <h2 className="text-black text-xl">تعداد ردیف:</h2>
+          <div className="w-fit" dir="ltr">
+            <DropDown options={['1', '2', '3', '4']} variant="input-like" placeholder="1" />
+          </div>
+        </div>
+      </div>
+      <ActivityTable/>
+    </div>
   );
 };
 

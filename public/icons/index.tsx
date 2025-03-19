@@ -45,6 +45,8 @@ export { default as Park } from "./park.svg";
 export { default as Swimming } from "./swimming.svg";
 export { default as Medicine } from "./medicine.svg";
 export { default as PlusBox } from "./plus-box.svg";
+export { default as ClockArrowDown } from "./clock-arrow-down.svg";
+export { default as SearchVisual } from "./search-visual.svg";
 
 
 interface Prop {
