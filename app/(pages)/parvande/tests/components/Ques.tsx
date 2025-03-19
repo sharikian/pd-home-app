@@ -10,8 +10,70 @@ interface QuesProps {
   icon: string | StaticImageData;
 }
 
+interface FormRowProps {
+  rowNumber: number;
+  index?: number;
+}
+
+const FormRow: React.FC<FormRowProps> = ({ rowNumber, index = 0 }) => {
+  const fieldStyles = (fieldIndex: number) => `
+    w-full
+    ${fieldIndex % 2 === 0 ? "bg-[#EAEEF1] dark:bg-[#2d333b]" : "bg-[#d4dadf] dark:bg-[#3b444b]"}
+  `;
+
+  const containerStyles = `
+    flex items-center flex-col gap-0
+    rounded-[15px] 
+    border-r-[2px] border-r-[#B9D0AA] border-l-[2px] border-l-[#B9D0AA]
+    shadow-[0_2px_4px_rgba(0,0,0,0.1)]
+    ${index % 2 === 0 ? "bg-[#EAEEF1] dark:bg-[#2d333b]" : "bg-[#d4dadf] dark:bg-[#3b444b]"}
+  `;
+
+  const textareaStyles = `
+    w-[95%] h-32 md:h-40 rounded-lg border-2 border-[#1A604E] dark:border-emerald-400/50
+    p-4 text-lg md:text-xl placeholder:text-[#1A604EBA] dark:placeholder:text-emerald-200/80
+    focus:outline-none focus:ring-2 focus:ring-[#1A604E] dark:focus:ring-emerald-400/50
+    shadow-[inset_-1px_1px_4px_#00000040,_-1px_1px_4px_#ffffff] 
+    dark:shadow-[inset_-1px_1px_4px_#00000080,_-1px_1px_4px_#1e293b]
+    resize-none mt-0 mb-2 bg-white/50 dark:bg-slate-700/50 
+    text-[#1A604E] dark:text-slate-200 text-right transition-all
+    hover:border-[#1A604E]/80 dark:hover:border-emerald-400/70
+    mt-2
+  `;
+
+  return (
+    <div className="flex flex-col gap-4 min-w-[400px]" style={{ width: "-webkit-fill-available" }}>
+      <h2 className="text-black text-xl mr-4" dir="rtl">
+        {rowNumber}
+      </h2>
+      <div className={containerStyles} dir="ltr">
+          <DropDown options={['1', '2', '3']} placeholder="انتخاب کنید" variant="input-like" />
+        <div className={fieldStyles(1)}>
+          <Input placeholder=" " />
+        </div>
+        <div className={fieldStyles(2)}>
+          <Input placeholder=" " />
+        </div>
+        <div className={fieldStyles(3)}>
+          <Input placeholder=" " />
+        </div>
+        <div className={fieldStyles(4)}>
+          <Input placeholder=" " />
+        </div>
+        <div className={fieldStyles(5)}>
+          <Input placeholder=" " />
+        </div>
+          <textarea
+            className={textareaStyles}
+            placeholder=""
+            style={{ direction: "rtl" }}
+          />
+      </div>
+    </div>
+  );
+};
+
 const Ques = ({ title, icon }: QuesProps) => {
-  // Changed initial state to true (collapsed by default)
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
   const toggleCollapse = (): void => {
@@ -27,10 +89,21 @@ const Ques = ({ title, icon }: QuesProps) => {
     closed: {
       height: 0,
       opacity: 0,
-      overflow: "hidden", // Moved overflow here for consistency
+      overflow: "hidden",
       transition: { duration: 0.3, ease: "easeInOut" },
     },
   };
+
+  const labels = [
+    "ردیف",
+    "متخصص",
+    "اطلاعات",
+    "علت ارجاع",
+    "توضیحات",
+    "تاریخ مراجعه",
+    "نتیجه مختصر",
+    "گزارش کامل",
+  ];
 
   return (
     <div className="flex flex-col gap-8">
@@ -62,18 +135,9 @@ const Ques = ({ title, icon }: QuesProps) => {
             animate="open"
             exit="closed"
           >
-            <div className="flex gap-24 items-start justify-between" dir="rtl">
+            <div className="flex gap-8 items-start justify-between p-4" dir="rtl">
               <div className="flex flex-col gap-12">
-                {[
-                  "ردیف",
-                  "متخصص",
-                  "اطلاعات",
-                  "علت ارجاع",
-                  "توضیحات",
-                  "تاریخ مراجعه",
-                  "نتیجه مختصر",
-                  "گزارش کامل",
-                ].map((data, index) => (
+                {labels.map((data, index) => (
                   <h2
                     className="text-black text-xl whitespace-nowrap"
                     dir="rtl"
@@ -83,80 +147,8 @@ const Ques = ({ title, icon }: QuesProps) => {
                   </h2>
                 ))}
               </div>
-              <div
-                className="flex flex-col gap-4"
-                style={{ width: "-webkit-fill-available" }}
-              >
-                <h2 className="text-black text-xl mr-4" dir="rtl">
-                  ۱
-                </h2>
-                <div
-                  className="flex flex-col items-center gap-2 bg-[#eaeef1] dark:bg-[#2d333b] border-[1.5px] border-solid border-[#1a604e] rounded-[10px] shadow-[0_2px_4px_rgba(0,0,0,0.1)]"
-                  dir="ltr"
-                >
-                  <DropDown
-                    options={[]}
-                    placeholder="انتخاب کنید"
-                    variant="input-like"
-                  />
-                  <Input placeholder=" " />
-                  <Input placeholder=" " />
-                  <Input placeholder=" " />
-                  <Input placeholder=" " />
-                  <Input placeholder=" " />
-                  <textarea
-                    className={`
-                      w-[95%] h-32 md:h-40 rounded-lg border-2 border-[#1A604E] dark:border-emerald-400/50
-                      p-4 text-lg md:text-xl placeholder:text-[#1A604EBA] dark:placeholder:text-emerald-200/80
-                      focus:outline-none focus:ring-2 focus:ring-[#1A604E] dark:focus:ring-emerald-400/50
-                      shadow-[inset_-1px_1px_4px_#00000040,_-1px_1px_4px_#ffffff] 
-                      dark:shadow-[inset_-1px_1px_4px_#00000080,_-1px_1px_4px_#1e293b]
-                      resize-none mt-0 mb-2 bg-white/50 dark:bg-slate-700/50 
-                      text-[#1A604E] dark:text-slate-200 text-right transition-all
-                      hover:border-[#1A604E]/80 dark:hover:border-emerald-400/70
-                    `}
-                    placeholder=""
-                    style={{ direction: "rtl" }}
-                  />
-                </div>
-              </div>
-              <div
-                className="flex flex-col gap-4"
-                style={{ width: "-webkit-fill-available" }}
-              >
-                <h2 className="text-black text-xl mr-4" dir="rtl">
-                  ۲
-                </h2>
-                <div
-                  className="flex items-center flex-col gap-2 bg-[#eaeef1] dark:bg-[#2d333b] border-[1.5px] border-solid border-[#1a604e] rounded-[10px] shadow-[0_2px_4px_rgba(0,0,0,0.1)]"
-                  dir="ltr"
-                >
-                  <DropDown
-                    options={[]}
-                    placeholder="انتخاب کنید"
-                    variant="input-like"
-                  />
-                  <Input placeholder=" " />
-                  <Input placeholder=" " />
-                  <Input placeholder=" " />
-                  <Input placeholder=" " />
-                  <Input placeholder=" " />
-                  <textarea
-                    className={`
-                      w-[95%] h-32 md:h-40 rounded-lg border-2 border-[#1A604E] dark:border-emerald-400/50
-                      p-4 text-lg md:text-xl placeholder:text-[#1A604EBA] dark:placeholder:text-emerald-200/80
-                      focus:outline-none focus:ring-2 focus:ring-[#1A604E] dark:focus:ring-emerald-400/50
-                      shadow-[inset_-1px_1px_4px_#00000040,_-1px_1px_4px_#ffffff] 
-                      dark:shadow-[inset_-1px_1px_4px_#00000080,_-1px_1px_4px_#1e293b]
-                      resize-none mt-0 mb-2 bg-white/50 dark:bg-slate-700/50 
-                      text-[#1A604E] dark:text-slate-200 text-right transition-all
-                      hover:border-[#1A604E]/80 dark:hover:border-emerald-400/70
-                    `}
-                    placeholder=""
-                    style={{ direction: "rtl" }}
-                  />
-                </div>
-              </div>
+              <FormRow rowNumber={1} index={0} />
+              <FormRow rowNumber={2} index={1} />
             </div>
             <Button
               text={"اضافه کردن"}
