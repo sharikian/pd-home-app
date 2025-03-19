@@ -11,6 +11,7 @@ interface QuesProps {
 }
 
 const Ques = ({ title, icon }: QuesProps) => {
+  // Changed initial state to true (collapsed by default)
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
   const toggleCollapse = (): void => {
@@ -26,6 +27,7 @@ const Ques = ({ title, icon }: QuesProps) => {
     closed: {
       height: 0,
       opacity: 0,
+      overflow: "hidden", // Moved overflow here for consistency
       transition: { duration: 0.3, ease: "easeInOut" },
     },
   };
@@ -59,7 +61,6 @@ const Ques = ({ title, icon }: QuesProps) => {
             initial="closed"
             animate="open"
             exit="closed"
-            style={{ overflow: "hidden" }}
           >
             <div className="flex gap-24 items-start justify-between" dir="rtl">
               <div className="flex flex-col gap-12">
@@ -89,7 +90,6 @@ const Ques = ({ title, icon }: QuesProps) => {
                 <h2 className="text-black text-xl mr-4" dir="rtl">
                   ۱
                 </h2>
-                {/* Styled Title Container 1 */}
                 <div
                   className="flex flex-col items-center gap-2 bg-[#eaeef1] dark:bg-[#2d333b] border-[1.5px] border-solid border-[#1a604e] rounded-[10px] shadow-[0_2px_4px_rgba(0,0,0,0.1)]"
                   dir="ltr"
@@ -106,20 +106,15 @@ const Ques = ({ title, icon }: QuesProps) => {
                   <Input placeholder=" " />
                   <textarea
                     className={`
-                        w-[95%] h-32 md:h-40 rounded-lg border-2 border-[#1A604E] dark:border-emerald-400/50
-                        p-4 text-lg md:text-xl placeholder:text-[#1A604EBA] dark:placeholder:text-emerald-200/80
-                        focus:outline-none focus:ring-2 focus:ring-[#1A604E] dark:focus:ring-emerald-400/50
-                        shadow-[inset_-1px_1px_4px_#00000040,_-1px_1px_4px_#ffffff] 
-                        dark:shadow-[inset_-1px_1px_4px_#00000080,_-1px_1px_4px_#1e293b]
-                        resize-none
-                        mt-0
-                        mb-2
-                        bg-white/50 dark:bg-slate-700/50 
-                        text-[#1A604E] dark:text-slate-200
-                        text-right
-                        transition-all
-                        hover:border-[#1A604E]/80 dark:hover:border-emerald-400/70
-                      `}
+                      w-[95%] h-32 md:h-40 rounded-lg border-2 border-[#1A604E] dark:border-emerald-400/50
+                      p-4 text-lg md:text-xl placeholder:text-[#1A604EBA] dark:placeholder:text-emerald-200/80
+                      focus:outline-none focus:ring-2 focus:ring-[#1A604E] dark:focus:ring-emerald-400/50
+                      shadow-[inset_-1px_1px_4px_#00000040,_-1px_1px_4px_#ffffff] 
+                      dark:shadow-[inset_-1px_1px_4px_#00000080,_-1px_1px_4px_#1e293b]
+                      resize-none mt-0 mb-2 bg-white/50 dark:bg-slate-700/50 
+                      text-[#1A604E] dark:text-slate-200 text-right transition-all
+                      hover:border-[#1A604E]/80 dark:hover:border-emerald-400/70
+                    `}
                     placeholder=""
                     style={{ direction: "rtl" }}
                   />
@@ -132,7 +127,6 @@ const Ques = ({ title, icon }: QuesProps) => {
                 <h2 className="text-black text-xl mr-4" dir="rtl">
                   ۲
                 </h2>
-                {/* Styled Title Container 2 */}
                 <div
                   className="flex items-center flex-col gap-2 bg-[#eaeef1] dark:bg-[#2d333b] border-[1.5px] border-solid border-[#1a604e] rounded-[10px] shadow-[0_2px_4px_rgba(0,0,0,0.1)]"
                   dir="ltr"
@@ -154,13 +148,8 @@ const Ques = ({ title, icon }: QuesProps) => {
                       focus:outline-none focus:ring-2 focus:ring-[#1A604E] dark:focus:ring-emerald-400/50
                       shadow-[inset_-1px_1px_4px_#00000040,_-1px_1px_4px_#ffffff] 
                       dark:shadow-[inset_-1px_1px_4px_#00000080,_-1px_1px_4px_#1e293b]
-                      resize-none
-                      mt-0
-                      mb-2
-                      bg-white/50 dark:bg-slate-700/50 
-                      text-[#1A604E] dark:text-slate-200
-                      text-right
-                      transition-all
+                      resize-none mt-0 mb-2 bg-white/50 dark:bg-slate-700/50 
+                      text-[#1A604E] dark:text-slate-200 text-right transition-all
                       hover:border-[#1A604E]/80 dark:hover:border-emerald-400/70
                     `}
                     placeholder=""

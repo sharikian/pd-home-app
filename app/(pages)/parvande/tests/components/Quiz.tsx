@@ -13,6 +13,7 @@ interface QuizProps {
 }
 
 export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
+  // Changed to true so it starts collapsed
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
   // Toggle collapse state when header is clicked
@@ -33,6 +34,7 @@ export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
     closed: {
       height: 0,
       opacity: 0,
+      overflow: "hidden", // Moved here for consistency
       transition: {
         duration: 0.3,
         ease: "easeInOut",
@@ -73,11 +75,10 @@ export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
             initial="closed"
             animate="open"
             exit="closed"
-            style={{ overflow: "hidden" }}
           >
             <div className="flex flex-row-reverse justify-between items-center self-stretch">
               <h2 className="text-black text-xl">سوالات</h2>
-              <div className="flex justify-between items-center gap-14  ">
+              <div className="flex justify-between items-center gap-14">
                 <span className="text-black text-xl w-4 ml-4">۱</span>
                 <span className="text-black text-xl w-4">۲</span>
                 <span className="text-black text-xl w-4">۳</span>
@@ -105,7 +106,11 @@ export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
                 <Input title={""} placeholder=" " />
               </div>
             </div>
-            <Button text={"ثبت تست"} variant="secondary" className="w-fit mt-2"/>
+            <Button
+              text={"ثبت تست"}
+              variant="secondary"
+              className="w-fit mt-2"
+            />
           </motion.div>
         )}
       </AnimatePresence>

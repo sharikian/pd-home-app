@@ -1,10 +1,10 @@
-"use client";
+"use client"
 import React, { useState } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import { Input } from "@/app/components";
 import { CheckBox } from "@/app/components/ui/CheckBox";
 import { ArrowLeft } from "@/public/icons";
-import { motion, AnimatePresence } from "framer-motion";
 
 interface DropBoxItem {
   checkboxName: string;
@@ -15,7 +15,7 @@ interface DropBoxItem {
 interface CustomDropBoxProps {
   title: string;
   items: DropBoxItem[];
-  icon: string;
+  icon?: string;
 }
 
 export const CustomDropBox: React.FC<CustomDropBoxProps> = ({
@@ -25,24 +25,24 @@ export const CustomDropBox: React.FC<CustomDropBoxProps> = ({
 }) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
-  // Toggle collapse state when header is clicked
   const toggleCollapse = (): void => {
     setIsCollapsed((prev) => !prev);
   };
 
   // Animation variants for the collapsible section
   const collapseVariants = {
-    open: {
-      height: "auto",
+    hidden: { opacity: 0, height: 0, overflow: "hidden" },
+    visible: {
       opacity: 1,
+      height: "auto",
       transition: {
         duration: 0.3,
         ease: "easeInOut",
       },
     },
-    closed: {
-      height: 0,
+    exit: {
       opacity: 0,
+      height: 0,
       transition: {
         duration: 0.3,
         ease: "easeInOut",
@@ -80,10 +80,9 @@ export const CustomDropBox: React.FC<CustomDropBoxProps> = ({
           <motion.div
             className="flex flex-col gap-4 mx-8"
             variants={collapseVariants}
-            initial="closed"
-            animate="open"
-            exit="closed"
-            style={{ overflow: "hidden" }} // Prevents content overflow during animation
+            initial="hidden"
+            animate="visible"
+            exit="exit"
           >
             {items.map((item, index) => (
               <div

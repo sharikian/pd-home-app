@@ -6,12 +6,13 @@ interface Prop {
 }
 
 export const metadata = {
-  title: 'پرونده',
+  title: "پرونده",
 };
 
 const Layout4 = ({ children }: Prop) => {
   return (
-    <div className="flex flex-col items-center gap-4 md:gap-6">
+    <div className="flex flex-col items-center gap-4 md:gap-6 min-h-screen">
+      {/* Tabs Section */}
       <Tabs
         varient="ligth"
         className="w-full max-w-[90vw]"
@@ -25,7 +26,9 @@ const Layout4 = ({ children }: Prop) => {
           { value: "پیگیری", activate: false, link: "/parvande/feed" },
         ]}
       />
-      <div className="rounded-[1.5rem] md:rounded-[2.1875rem] p-3 md:p-6 lg:p-8 border border-[#00000010] bg-white w-full md:scale-90 md:mt-[-2rem] dark:bg-slate-800 dark:border-slate-700/30">
+
+      {/* Content Section with Fixed Positioning */}
+      <div className="flex-1 w-full max-w-[84vw] overflow-auto rounded-[1.5rem] md:rounded-[2.1875rem] p-3 md:p-6 lg:p-8 border border-[#00000010] bg-white dark:bg-slate-800 dark:border-slate-700/30">
         {children}
       </div>
     </div>

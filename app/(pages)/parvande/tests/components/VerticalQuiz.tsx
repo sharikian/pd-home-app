@@ -22,6 +22,7 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
   items,
   icon = "",
 }) => {
+  // Changed to true so it starts collapsed
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const [selectedAnswers, setSelectedAnswers] = useState<(number | null)[]>(
     items.map(() => null)
@@ -52,6 +53,7 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
     closed: {
       height: 0,
       opacity: 0,
+      overflow: "hidden", // Moved here for consistency
       transition: { duration: 0.3, ease: "easeInOut" },
     },
   };
@@ -87,7 +89,6 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
             initial="closed"
             animate="open"
             exit="closed"
-            style={{ overflow: "hidden" }}
           >
             {items.map((item, questionIndex) => (
               <Container key={questionIndex}>
@@ -95,7 +96,7 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
                   className="flex flex-col justify-between gap-4 items-start"
                   dir="rtl"
                 >
-                  <h2 className="text-black text-xl ">{item.title}</h2>
+                  <h2 className="text-black text-xl">{item.title}</h2>
                   <div className="flex flex-col flex-wrap justify-between items-start gap-4 mx-8 w-full">
                     {item.items.map((data, answerIndex) => (
                       <div
@@ -122,7 +123,7 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
             <Container>
               <div className="flex flex-col-reverse justify-between gap-14 items-end">
                 <Slider min={0} max={10} steps={10} />
-                <h2 className="text-black text-xl ">
+                <h2 className="text-black text-xl">
                   به طور کلی، نشت ادرار چقدر با زندگی روزمره شما تداخل دارد؟
                   لطفاً بین 0 (اصلاً) و 10 (بسیار) زنگ بزنید
                 </h2>
@@ -133,7 +134,7 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
                 className="flex flex-col justify-between gap-4 items-start"
                 dir="rtl"
               >
-                <h2 className="text-black text-xl ">
+                <h2 className="text-black text-xl">
                   چه زمانی ادرار نشت می کند؟ (لطفاً تمام مواردی که برای شما
                   اعمال می شود را علامت بزنید)
                 </h2>
@@ -144,7 +145,7 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
                     "هنگام سرفه یا عطسه نشت می کند",
                     "هنگام خواب نشت می کند",
                     "وقتی از نظر بدنی فعال هستید/ورزش می کنید نشت می کند",
-                    " وقتی که ادرارتان تمام شده و لباس پوشیده اید",
+                    "وقتی که ادرارتان تمام شده و لباس پوشیده اید",
                     "بدون هیچ دلیل واضحی نشت می کند",
                   ].map((data, answerIndex) => (
                     <div className="flex items-center gap-2" key={answerIndex}>

@@ -1,16 +1,16 @@
 import Image from "next/image";
-import { FileCollection } from "@/public/icons";
 import { CustomDropBox } from "./components/DropBox";
 import { Button } from "@/app/components";
 import { Plus } from "@/public/icons";
+import Pill from './components/pill.svg'
 
 const ConDrugs = () => {
   return (
     <div className="flex flex-col gap-8">
       {/* Header */}
       <div className="flex justify-end gap-4 items-center">
-        <div className="text-lg font-bold text-primary">سابقه بیماری ها</div>
-        <Image className="w-8 h-8" alt="Personal Icon" src={FileCollection} />
+        <div className="text-lg font-bold text-primary">دارو های مصرفی</div>
+        <Image className="w-8 h-8" alt="Personal Icon" src={Pill} />
       </div>
       <CustomDropBox title={'گوارشی'} items={[
         {
