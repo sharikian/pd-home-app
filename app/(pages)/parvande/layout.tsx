@@ -17,13 +17,13 @@ const Layout4 = ({ children }: Prop) => {
         varient="ligth"
         className="w-full max-w-[90vw]"
         items={[
-          { value: "مشخصات عمومی", activate: true, link: "/parvande" },
-          { value: "شرح حال اولیه", activate: false, link: "/parvande/first" },
-          { value: "آزمایش ها", activate: false, link: "/parvande/exper" },
-          { value: "تست ها", activate: false, link: "/parvande/tests" },
-          { value: "ارجاعات", activate: false, link: "/parvande/wents" },
-          { value: "تایم لانگ پرونده", activate: false, link: "/parvande/timing" },
-          { value: "پیگیری", activate: false, link: "/parvande/feed" },
+          { value: "مشخصات عمومی",  link: "/parvande" },
+          { value: "شرح حال اولیه",  link: "/parvande/first" },
+          { value: "آزمایش ها",  link: "/parvande/exper" },
+          { value: "تست ها",  link: "/parvande/tests" },
+          { value: "ارجاعات",  link: "/parvande/wents" },
+          { value: "تایم لانگ پرونده",  link: "/parvande/timing" },
+          { value: "پیگیری",  link: "/parvande/feed" },
         ]}
       />
 

@@ -6,7 +6,7 @@ interface Prop {
 }
 
 export const metadata = {
-  title: 'برنامه من',
+  title: "برنامه من",
 };
 
 const Layout3 = ({ children }: Prop) => {
@@ -16,8 +16,8 @@ const Layout3 = ({ children }: Prop) => {
         varient="ligth"
         className="w-full max-w-[90vw]"
         items={[
-          { value: "برنامه من", activate: true, link: "/myplan" },
-          { value: "ارجاعات", activate: false, link: "/wents" },
+          { value: "برنامه من", link: "/myplan" },
+          { value: "ارجاعات", link: "/wents" },
         ]}
       />
       <div className="rounded-[1.5rem] md:rounded-[2.1875rem] p-3 md:p-6 lg:p-8 border border-[#00000010] bg-white w-full md:scale-90 md:mt-[-2rem] dark:bg-slate-800 dark:border-slate-700/30">

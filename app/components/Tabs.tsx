@@ -7,7 +7,7 @@ import React, { JSX } from "react";
 interface Props {
   varient: string;
   className?: string;
-  items?: Array<{ value: string; activate: boolean; link: string }>;
+  items?: Array<{ value: string; link: string }>; // Removed `activate` from items
 }
 
 interface ClimbProps {
@@ -15,13 +15,13 @@ interface ClimbProps {
 }
 
 const initialTabItems = [
-  { value: "پیگیری", activate: true, link: "/tracking" },
-  { value: "فعالیت های پرونده", activate: false, link: "/activities" },
-  { value: "ارجاعات", activate: false, link: "/references" },
-  { value: "تست ها", activate: false, link: "/tests" },
-  { value: "آزمایش ها", activate: false, link: "/labs" },
-  { value: "شرح حال اولیه", activate: false, link: "/history" },
-  { value: "مشخصات عمومی", activate: false, link: "/general" },
+  { value: "پیگیری", link: "/tracking" },
+  { value: "فعالیت های پرونده", link: "/activities" },
+  { value: "ارجاعات", link: "/references" },
+  { value: "تست ها", link: "/tests" },
+  { value: "آزمایش ها", link: "/labs" },
+  { value: "شرح حال اولیه", link: "/history" },
+  { value: "مشخصات عمومی", link: "/general" },
 ];
 
 export const Tabs = ({
@@ -31,12 +31,16 @@ export const Tabs = ({
 }: Props): JSX.Element => {
   const router = useRouter();
   const pathname = usePathname();
-  const [tabItems, setTabItems] = useState(items.slice().reverse()); // Reverse the initial items
+  const [tabItems, setTabItems] = useState(() =>
+    items.slice().reverse().map((item) => ({
+      ...item,
+      activate: item.link === pathname, // Set initial active state based on pathname
+    }))
+  );
   const [activeTabWidth, setActiveTabWidth] = useState(0);
   const climbRef = useRef<HTMLDivElement>(null);
-  const tabContainerRef = useRef<HTMLDivElement>(null);
 
-  // Update tabItems based on the current pathname
+  // Sync tabItems with pathname on mount and route changes
   useLayoutEffect(() => {
     const updatedItems = items.slice().reverse().map((item) => ({
       ...item,
@@ -58,14 +62,6 @@ export const Tabs = ({
       }
     }
   }, [tabItems]);
-
-  // Simulate a click on the active tab after initial render
-  useEffect(() => {
-    const activeIndex = tabItems.findIndex((item) => item.activate);
-    if (activeIndex !== -1) {
-      handleTabClick(activeIndex, tabItems[activeIndex].link);
-    }
-  }, []); // Empty dependency array ensures this runs only once after mount
 
   const updateClimbPosition = (activeIndex: number, climbWidth: number) => {
     const tabElements = document.querySelectorAll(".tab-item");
@@ -116,7 +112,6 @@ export const Tabs = ({
 
   return (
     <div
-      ref={tabContainerRef}
       className={`flex h-[70px] md:h-[95px] items-center relative w-max rounded-[35px] overflow-x-hidden shadow-shadows bg-[#1a604e] ${className}`}
     >
       <div className="flex flex-nowrap h-full w-full justify-between px-4 no-scrollbar">
@@ -197,7 +192,7 @@ Tabs.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.string.isRequired,
-      activate: PropTypes.bool.isRequired,
+      link: PropTypes.string.isRequired,
     })
   ),
 };

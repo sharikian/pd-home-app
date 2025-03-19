@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 // Define the type for each cell's state
 interface CellState {
@@ -8,6 +9,10 @@ interface CellState {
 }
 
 const ActivityTable: React.FC = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const currentPage = Number(searchParams.get("page")) || 1;
+
   // Sample options for the dropdown
   const options: string[] = ['گزینه 1', 'گزینه 2', 'گزینه 3'];
 
@@ -43,6 +48,14 @@ const ActivityTable: React.FC = () => {
       return newState;
     });
   };
+
+  // Handle page change
+  const handlePageChange = (page: number) => {
+    router.push(`?page=${page}`, { scroll: false });
+  };
+
+  // Total pages (example value, adjust based on your data)
+  const totalPages = 35;
 
   return (
     <div className="w-full max-w-[1457px] mx-auto">
@@ -89,12 +102,10 @@ const ActivityTable: React.FC = () => {
                       className={cellClass}
                       onClick={() => toggleDropdown(rowIndex, colIndex)}
                     >
-                      {/* Cell content acts as the dropdown trigger */}
                       <div className="w-full h-full flex items-center justify-between text-lg font-medium text-black [direction:rtl] cursor-pointer">
                         <span>{selected || "انتخاب کنید"}</span>
                       </div>
 
-                      {/* Dropdown menu */}
                       {isOpen && (
                         <div className="absolute top-full left-0 w-full bg-white border border-[#1A604E] rounded shadow-lg z-10">
                           {options.map((option: string, index: number) => (
@@ -102,7 +113,7 @@ const ActivityTable: React.FC = () => {
                               key={index}
                               className="p-2 hover:bg-[#b9d0aa] cursor-pointer text-right text-lg font-medium text-black [direction:rtl]"
                               onClick={(e: React.MouseEvent<HTMLDivElement>) => {
-                                e.stopPropagation(); // Prevent closing the dropdown when clicking an option
+                                e.stopPropagation();
                                 selectOption(rowIndex, colIndex, option);
                               }}
                             >
@@ -123,28 +134,37 @@ const ActivityTable: React.FC = () => {
       {/* Pagination */}
       <div className="flex w-full items-center justify-between p-4 border-t border-[#1A604E]">
         <div className="flex flex-row-reverse items-center gap-2">
-          <button className="bg-[#eaeef1] text-xs text-[#0000005e] px-3 py-2 rounded">
+          <button
+            className="bg-[#eaeef1] text-xs text-[#0000005e] px-3 py-2 rounded disabled:opacity-50"
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
             قبلی
           </button>
           {[1, 2, 3, 4].map((num: number) => (
             <button
               key={num}
-              className={`px-3 py-2 rounded ${
-                num === 1
-                  ? "bg-[#1a604e] hover:bg-[#15503e] transition-colors duration-200 text-white"
-                  : "bg-[#b9d0aa] hover:bg-[#899a7e] transition-colors duration-200 text-black"
+              className={`px-3 py-2 rounded transition-colors duration-200 ${
+                num === currentPage
+                  ? "bg-[#1a604e] hover:bg-[#15503e] text-white"
+                  : "bg-[#b9d0aa] hover:bg-[#899a7e] text-black"
               }`}
+              onClick={() => handlePageChange(num)}
             >
               {num}
             </button>
           ))}
-          <button className="bg-[#1a604e] hover:bg-[#15503e] transition-colors duration-200 text-white text-xs px-3 py-2 rounded">
+          <button
+            className="bg-[#1a604e] hover:bg-[#15503e] transition-colors duration-200 text-white text-xs px-3 py-2 rounded disabled:opacity-50"
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
             بعدی
           </button>
         </div>
         <p className="text-xl font-medium text-[#1a604eba] [direction:rtl]">
-          صفحه <span className="font-semibold text-[#1a604e] mx-4">۱</span> از{" "}
-          <span className="font-semibold text-[#1a604e] mx-4">۳۵</span>
+          صفحه <span className="font-semibold text-[#1a604e] mx-4">{currentPage}</span> از{" "}
+          <span className="font-semibold text-[#1a604e] mx-4">{totalPages}</span>
         </p>
       </div>
     </div>
