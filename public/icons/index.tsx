@@ -41,6 +41,10 @@ export { default as Spoon } from "./spoon.svg";
 export { default as GreenBlood } from "./green-blood.svg";
 export { default as NordicWalking } from "./nordic-walking.svg";
 export { default as Brain } from "./brain.svg";
+export { default as Park } from "./park.svg";
+export { default as Swimming } from "./swimming.svg";
+export { default as Medicine } from "./medicine.svg";
+export { default as PlusBox } from "./plus-box.svg";
 
 
 interface Prop {
