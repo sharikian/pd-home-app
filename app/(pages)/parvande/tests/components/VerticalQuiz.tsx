@@ -22,7 +22,6 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
   items,
   icon = "",
 }) => {
-  // Changed to true so it starts collapsed
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const [selectedAnswers, setSelectedAnswers] = useState<(number | null)[]>(
     items.map(() => null)
@@ -37,7 +36,7 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
       prev.map((selected, idx) =>
         idx === questionIndex
           ? selected === answerIndex
-            ? null // Allow deselection (optional)
+            ? null
             : answerIndex
           : selected
       )
@@ -53,7 +52,7 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
     closed: {
       height: 0,
       opacity: 0,
-      overflow: "hidden", // Moved here for consistency
+      overflow: "hidden",
       transition: { duration: 0.3, ease: "easeInOut" },
     },
   };
@@ -84,7 +83,7 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
       <AnimatePresence>
         {!isCollapsed && (
           <motion.div
-            className="flex flex-col gap-4 mx-8"
+            className="flex flex-col gap-4 mx-4 md:mx-8"
             variants={collapseVariants}
             initial="closed"
             animate="open"
@@ -97,13 +96,17 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
                   dir="rtl"
                 >
                   <h2 className="text-black text-xl">{item.title}</h2>
-                  <div className="flex flex-col flex-wrap justify-between items-start gap-4 mx-8 w-full">
+                  <div
+                    className={`flex flex-col flex-wrap justify-between items-start ${
+                      window.innerWidth < 768 ? "gap-2 mx-4" : "gap-4 mx-8"
+                    } w-full`}
+                  >
                     {item.items.map((data, answerIndex) => (
                       <div
                         className="flex items-center gap-2"
                         key={answerIndex}
                         onClick={(e) => {
-                          e.stopPropagation(); // Prevent CheckBox’s internal click from bubbling
+                          e.stopPropagation();
                           handleCheckboxClick(questionIndex, answerIndex);
                         }}
                       >
@@ -113,7 +116,13 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
                           }
                           className="check-box-instance"
                         />
-                        <span className="text-sm text-black">{data}</span>
+                        <span
+                          className={`${
+                            window.innerWidth < 768 ? "text-xs" : "text-sm"
+                          } text-black`}
+                        >
+                          {data}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -121,9 +130,19 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
               </Container>
             ))}
             <Container>
-              <div className="flex flex-col-reverse justify-between gap-14 items-end">
+              <div
+                className={`flex ${
+                  window.innerWidth < 768 ? "flex-col" : "flex-col-reverse"
+                } justify-between gap-6 md:gap-14 items-${
+                  window.innerWidth < 768 ? "start" : "end"
+                }`}
+              >
                 <Slider min={0} max={10} steps={10} />
-                <h2 className="text-black text-xl">
+                <h2
+                  className={`text-black ${
+                    window.innerWidth < 768 ? "text-lg" : "text-xl"
+                  }`}
+                >
                   به طور کلی، نشت ادرار چقدر با زندگی روزمره شما تداخل دارد؟
                   لطفاً بین 0 (اصلاً) و 10 (بسیار) زنگ بزنید
                 </h2>
@@ -138,7 +157,11 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
                   چه زمانی ادرار نشت می کند؟ (لطفاً تمام مواردی که برای شما
                   اعمال می شود را علامت بزنید)
                 </h2>
-                <div className="flex flex-col flex-wrap justify-between items-start gap-4 mx-8 w-full">
+                <div
+                  className={`flex flex-col flex-wrap justify-between items-start ${
+                    window.innerWidth < 768 ? "gap-2 mx-4" : "gap-4 mx-8"
+                  } w-full`}
+                >
                   {[
                     "هرگز ادرار نشت نمی کند",
                     "قبل از اینکه بتوانید به توالت بروید نشت می کند",
@@ -150,16 +173,39 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
                   ].map((data, answerIndex) => (
                     <div className="flex items-center gap-2" key={answerIndex}>
                       <CheckBox className="check-box-instance" />
-                      <span className="text-sm text-black">{data}</span>
+                      <span
+                        className={`${
+                          window.innerWidth < 768 ? "text-xs" : "text-sm"
+                        } text-black`}
+                      >
+                        {data}
+                      </span>
                     </div>
                   ))}
                 </div>
               </div>
             </Container>
-            <div className="flex gap-4 items-center justify-end" dir="rtl">
-              <h2 className="text-black text-xl mt-4">نتیجه:</h2>
-              <div className="w-[12rem]">
-                <Input title={""} placeholder=" " />
+            <div
+              className={`flex ${
+                window.innerWidth < 768 ? "flex-col" : "gap-4"
+              } items-center ${
+                window.innerWidth < 768 ? "gap-4" : "justify-end"
+              }`}
+              dir="rtl"
+            >
+              <h2
+                className={`text-black ${
+                  window.innerWidth < 768 ? "text-lg mt-0" : "text-xl mt-4"
+                }`}
+              >
+                نتیجه:
+              </h2>
+              <div className={window.innerWidth < 768 ? "w-full" : "w-[12rem]"}>
+                <Input
+                  title=""
+                  placeholder=" "
+                  className={window.innerWidth < 768 ? "w-full" : ""}
+                />
               </div>
             </div>
             <Button

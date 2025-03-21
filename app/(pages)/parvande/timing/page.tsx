@@ -6,19 +6,17 @@ import { ClockArrowDown, SearchVisual } from "@/public/icons";
 import { Input, DropDown } from "@/app/components";
 import ActivityTable from "./Table";
 
-// Animation variants for the container
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2, // Stagger child animations
+      staggerChildren: 0.2,
       when: "beforeChildren",
     },
   },
 };
 
-// Animation variants for each child
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -40,7 +38,10 @@ const Parvande = () => {
       animate="visible"
     >
       {/* Header */}
-      <motion.div variants={itemVariants} className="flex justify-end gap-4 items-center">
+      <motion.div
+        variants={itemVariants}
+        className="flex justify-end gap-4 items-center"
+      >
         <div className="text-lg font-bold text-primary">
           فعالت ها در یک نگاه
         </div>
@@ -48,10 +49,31 @@ const Parvande = () => {
       </motion.div>
 
       {/* Search and Dropdown */}
-      <motion.div variants={itemVariants} className="flex justify-between flex-row-reverse">
-        <Input icon={SearchVisual} placeholder="جستجو" alignRight />
-        <div className="flex gap-4 items-center justify-end" dir="rtl">
-          <h2 className="text-black text-xl">تعداد ردیف:</h2>
+      <motion.div
+        variants={itemVariants}
+        className={`flex ${
+          window.innerWidth < 768 ? "flex-col" : "justify-between flex-row-reverse"
+        } gap-4`}
+      >
+        <Input
+          icon={SearchVisual}
+          placeholder="جستجو"
+          alignRight
+          className={window.innerWidth < 768 ? "w-full" : ""}
+        />
+        <div
+          className={`flex ${
+            window.innerWidth < 768 ? "flex-col" : "gap-4"
+          } items-center justify-end`}
+          dir="rtl"
+        >
+          <h2
+            className={`text-black ${
+              window.innerWidth < 768 ? "text-lg" : "text-xl"
+            }`}
+          >
+            تعداد ردیف:
+          </h2>
           <div className="w-fit" dir="ltr">
             <DropDown
               options={["1", "2", "3", "4"]}

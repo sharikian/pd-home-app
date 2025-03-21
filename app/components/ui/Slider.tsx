@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 
 interface SliderProps {
@@ -17,7 +17,10 @@ export const Slider: React.FC<SliderProps> = ({
   onChange,
 }) => {
   const [value, setValue] = useState(defaultValue);
-  const stepArray = Array.from({ length: steps + 1 }, (_, i) => min + (max - min) * (i / steps));
+  const stepArray = Array.from(
+    { length: steps + 1 },
+    (_, i) => min + (max - min) * (i / steps)
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseFloat(e.target.value);
@@ -28,13 +31,24 @@ export const Slider: React.FC<SliderProps> = ({
   const percentage = ((value - min) / (max - min)) * 100;
 
   return (
-    <div className="relative w-full px-8 py-12">
+    <div
+      className={`relative w-full ${
+        window.innerWidth < 768 ? "px-4 py-8" : "px-8 py-12"
+      }`}
+      dir="ltr"
+    >
       {/* Step labels */}
-      <div className="flex justify-between w-[96%] absolute top-0 left-6">
+      <div
+        className={`flex justify-between ${
+          window.innerWidth < 768 ? "w-[92%]" : "w-[96%]"
+        } absolute top-0 ${window.innerWidth < 768 ? "left-4" : "left-6"}`}
+      >
         {stepArray.map((step) => (
           <div
             key={step}
-            className="w-8 text-center font-bold text-gray-800 text-xl"
+            className={`${
+              window.innerWidth < 768 ? "w-6 text-base" : "w-8 text-xl"
+            } text-center font-bold text-gray-800`}
           >
             {step}
           </div>
@@ -42,39 +56,63 @@ export const Slider: React.FC<SliderProps> = ({
       </div>
 
       {/* Track container */}
-      <div className="relative w-full h-16">
+      <div
+        className={`relative w-full ${
+          window.innerWidth < 768 ? "h-12" : "h-16"
+        }`}
+      >
         {/* Background track */}
-        <div className="absolute w-full h-2 bg-gray-200 top-1/2 -translate-y-1/2 rounded-full" />
-        
+        <div
+          className={`absolute w-full ${
+            window.innerWidth < 768 ? "h-1" : "h-2"
+          } bg-gray-200 top-1/2 -translate-y-1/2 rounded-full`}
+        />
+
         {/* Colored progress track */}
-        <div 
-          className="absolute h-4 bg-[#1A604E] top-1/2 -translate-y-1/2 rounded-full"
+        <div
+          className={`absolute ${
+            window.innerWidth < 768 ? "h-2" : "h-4"
+          } bg-[#1A604E] top-1/2 -translate-y-1/2 rounded-full`}
           style={{
             width: `${percentage}%`,
             transition: "width 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         />
-        
+
         {/* Step markers */}
-        <div className="flex justify-between w-full absolute top-1/2 -translate-y-1/2">
+        <div
+          className={`flex justify-between w-full absolute top-1/2 -translate-y-1/2`}
+        >
           {stepArray.map((step) => (
             <div
               key={step}
-              className="w-2 h-2 bg-[#b9d0aa] rounded-full"
+              className={`${
+                window.innerWidth < 768 ? "w-1 h-1" : "w-2 h-2"
+              } bg-[#b9d0aa] rounded-full`}
             />
           ))}
         </div>
 
         {/* Slider thumb */}
         <div
-          className="absolute top-1/2 -translate-y-1/2 -ml-6"
+          className={`absolute top-1/2 -translate-y-1/2 ${
+            window.innerWidth < 768 ? "-ml-4" : "-ml-6"
+          }`}
           style={{
             left: `${percentage}%`,
             transition: "left 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
-          <div className="flex flex-col items-center justify-center gap-2.5 p-[5px] bg-[#eaeef1] rounded-lg shadow-[-6px_7px_21px_-6px_#1a604e,2px_-1px_66.3px_18px_#ffffff] transition-transform duration-200 hover:scale-105">
-            <div className="w-12 h-12 bg-[#b9d0aa] rounded-md shadow-[inset_-1px_1px_4px_#00000040,-1px_1px_4px_#ffffff]" />
+          <div
+            className={`flex flex-col items-center justify-center ${
+              window.innerWidth < 768 ? "gap-1.5 p-[3px]" : "gap-2.5 p-[5px]"
+            } bg-[#eaeef1] rounded-lg shadow-[-6px_7px_21px_-6px_#1a604e,2px_-1px_66.3px_18px_#ffffff] transition-transform duration-200 hover:scale-105`}
+          >
+            <div
+              className={`${
+                window.innerWidth < 768 ? "w-8 h-8" : "w-12 h-12"
+              } bg-[#b9d0aa] rounded-md shadow-[inset_-1px_1px_4px_#00000040,-1px_1px_4px_#ffffff]`}
+            />
           </div>
         </div>
       </div>

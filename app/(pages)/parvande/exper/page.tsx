@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import BMD from "./BMD";
-import MRI from "./MRI";
-import BloodTest from "./BloodTest";
+import TestComponent from "./TestComponent";
+import BloodIcon from "@/public/imgs/myplan/blood.svg";
+import { Bone, MRI as MRIIcon } from "@/public/icons";
 
 // Animation variants for the container
 const containerVariants = {
@@ -11,7 +11,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2, // Delay between each child animation
+      staggerChildren: 0.2,
     },
   },
 };
@@ -30,6 +30,13 @@ const itemVariants = {
 };
 
 const ExperPage = () => {
+  const bmdInputs: [string, string][] = [
+    ["HIP FEX", "15%"],
+    ["Major osteoporotic FX", "3.4%"],
+    ["HIP", "0.728"],
+    ["SPINE", "0.735"],
+  ];
+
   return (
     <motion.div
       className="flex flex-col gap-8 p-4 md:p-8"
@@ -38,13 +45,13 @@ const ExperPage = () => {
       animate="visible"
     >
       <motion.div variants={itemVariants}>
-        <BMD />
+        <TestComponent title="BMD" icon={Bone} extraInputs={bmdInputs} />
       </motion.div>
       <motion.div variants={itemVariants}>
-        <MRI />
+        <TestComponent title="MRI" icon={MRIIcon} />
       </motion.div>
       <motion.div variants={itemVariants}>
-        <BloodTest />
+        <TestComponent title="آزمایش خون" icon={BloodIcon} />
       </motion.div>
     </motion.div>
   );

@@ -13,15 +13,12 @@ interface QuizProps {
 }
 
 export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
-  // Changed to true so it starts collapsed
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
-  // Toggle collapse state when header is clicked
   const toggleCollapse = (): void => {
     setIsCollapsed((prev) => !prev);
   };
 
-  // Animation variants for the collapsible section
   const collapseVariants = {
     open: {
       height: "auto",
@@ -34,7 +31,7 @@ export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
     closed: {
       height: 0,
       opacity: 0,
-      overflow: "hidden", // Moved here for consistency
+      overflow: "hidden",
       transition: {
         duration: 0.3,
         ease: "easeInOut",
@@ -70,15 +67,23 @@ export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
       <AnimatePresence>
         {!isCollapsed && (
           <motion.div
-            className="flex flex-col gap-4 mx-8"
+            className="flex flex-col gap-4 mx-4 md:mx-8"
             variants={collapseVariants}
             initial="closed"
             animate="open"
             exit="closed"
           >
-            <div className="flex flex-row-reverse justify-between items-center self-stretch">
+            <div
+              className={`flex ${
+                window.innerWidth < 768 ? "flex-col" : "flex-row-reverse"
+              } justify-between items-center self-stretch gap-4 md:gap-0`}
+            >
               <h2 className="text-black text-xl">سوالات</h2>
-              <div className="flex justify-between items-center gap-14">
+              <div
+                className={`flex justify-between items-center ${
+                  window.innerWidth < 768 ? "gap-6" : "gap-14"
+                }`}
+              >
                 <span className="text-black text-xl w-4 ml-4">۱</span>
                 <span className="text-black text-xl w-4">۲</span>
                 <span className="text-black text-xl w-4">۳</span>
@@ -88,11 +93,23 @@ export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
             {items.map((item, index) => (
               <div
                 key={index}
-                className="flex justify-between items-center"
+                className={`flex ${
+                  window.innerWidth < 768 ? "flex-col" : "justify-between"
+                } items-center gap-4 md:gap-0`}
                 dir="rtl"
               >
-                <Input title="" value={item} readonly alignRight />
-                <div className="flex justify-between items-center gap-10">
+                <Input
+                  title=""
+                  value={item}
+                  readonly
+                  alignRight
+                  className={window.innerWidth < 768 ? "w-full" : ""}
+                />
+                <div
+                  className={`flex justify-between items-center ${
+                    window.innerWidth < 768 ? "gap-6" : "gap-10"
+                  }`}
+                >
                   <CheckBox className="check-box-instance" />
                   <CheckBox className="check-box-instance" />
                   <CheckBox className="check-box-instance" />
@@ -100,10 +117,27 @@ export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
                 </div>
               </div>
             ))}
-            <div className="flex gap-4 items-center justify-end" dir="rtl">
-              <h2 className="text-black text-xl mt-4">نتیجه:</h2>
-              <div className="w-[12rem]">
-                <Input title={""} placeholder=" " />
+            <div
+              className={`flex ${
+                window.innerWidth < 768 ? "flex-col" : "gap-4"
+              } items-center ${
+                window.innerWidth < 768 ? "gap-4" : "justify-end"
+              }`}
+              dir="rtl"
+            >
+              <h2
+                className={`text-black text-xl ${
+                  window.innerWidth < 768 ? "mt-0" : "mt-4"
+                }`}
+              >
+                نتیجه:
+              </h2>
+              <div className={window.innerWidth < 768 ? "w-full" : "w-[12rem]"}>
+                <Input
+                  title=""
+                  placeholder=" "
+                  className={window.innerWidth < 768 ? "w-full" : ""}
+                />
               </div>
             </div>
             <Button

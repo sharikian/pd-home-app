@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -84,42 +84,90 @@ export const CustomDropBox: React.FC<CustomDropBoxProps> = ({
             animate="visible"
             exit="exit"
           >
-            {items.map((item, index) => (
-              <div
-                key={index}
-                className="flex justify-between items-center w-full min-w-[300px]"
-              >
-                {/* Second Input with Title on Right */}
+            {items.map((item, index) =>
+              window.innerWidth < 768 ? (
+                // Mobile Layout: Preferred spacing and styles
                 <div
-                  className="flex gap-2 items-center"
-                  style={{ direction: "rtl" }}
+                  key={index}
+                  className="flex flex-col-reverse items-center w-full gap-4"
                 >
-                  <span className="text-primary whitespace-nowrap">
-                    {item.secondInput}
-                  </span>
-                  <Input title="" className="max-w-24" placeholder="12" />
+                  <div className="flex flex-row flex-wrap justify-between w-full gap-4">
+                    {/* Second Input */}
+                    <div
+                      className="flex gap-2 items-center flex-1 min-w-0"
+                      style={{ direction: "rtl" }}
+                    >
+                      <span className="text-primary whitespace-nowrap">
+                        {item.secondInput}
+                      </span>
+                      <Input
+                        title=""
+                        className="w-full md:max-w-24"
+                        placeholder="12"
+                      />
+                    </div>
+                    {/* First Input */}
+                    <div
+                      className="flex gap-2 items-center flex-1 min-w-0"
+                      style={{ direction: "rtl" }}
+                    >
+                      <span className="text-primary whitespace-nowrap">
+                        {item.firstInput}
+                      </span>
+                      <Input
+                        title=""
+                        className="w-full md:max-w-24"
+                        placeholder="4"
+                      />
+                    </div>
+                  </div>
+                  {/* Checkbox and Label */}
+                  <div className="flex items-center gap-2 flex-row-reverse w-full">
+                    <CheckBox className="check-box-instance" />
+                    <span
+                      className="text-xs text-black w-full"
+                      dir="rtl"
+                    >
+                      {item.checkboxName}
+                    </span>
+                  </div>
                 </div>
-
-                {/* First Input with Title on Right */}
+              ) : (
+                // Desktop Layout: Original, unchanged
                 <div
-                  className="flex gap-2 items-center"
-                  style={{ direction: "rtl" }}
+                  key={index}
+                  className="flex justify-between items-center w-full min-w-[300px]"
                 >
-                  <span className="text-primary whitespace-nowrap">
-                    {item.firstInput}
-                  </span>
-                  <Input title="" className="max-w-24" placeholder="4" />
+                  {/* Second Input */}
+                  <div
+                    className="flex gap-2 items-center"
+                    style={{ direction: "rtl" }}
+                  >
+                    <span className="text-primary whitespace-nowrap">
+                      {item.secondInput}
+                    </span>
+                    <Input title="" className="max-w-24" placeholder="12" />
+                  </div>
+                  {/* First Input */}
+                  <div
+                    className="flex gap-2 items-center"
+                    style={{ direction: "rtl" }}
+                  >
+                    <span className="text-primary whitespace-nowrap">
+                      {item.firstInput}
+                    </span>
+                    <Input title="" className="max-w-24" placeholder="4" />
+                  </div>
+                  {/* Checkbox and Label */}
+                  <div className="flex items-center gap-2 flex-row-reverse">
+                    <CheckBox className="check-box-instance" />
+                    <span className="text-sm text-black w-40" dir="rtl">
+                      {item.checkboxName}
+                    </span>
+                  </div>
                 </div>
-
-                {/* Checkbox and Label */}
-                <div className="flex items-center gap-2 flex-row-reverse">
-                  <CheckBox className="check-box-instance" />
-                  <span className="text-sm text-black w-40" dir="rtl">
-                    {item.checkboxName}
-                  </span>
-                </div>
-              </div>
-            ))}
+              )
+            )}
           </motion.div>
         )}
       </AnimatePresence>
