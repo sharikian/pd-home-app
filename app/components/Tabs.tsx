@@ -7,7 +7,7 @@ import React, { JSX } from "react";
 interface Props {
   varient: string;
   className?: string;
-  items?: Array<{ value: string; link: string }>; // Removed `activate` from items
+  items?: Array<{ value: string; link: string }>;
 }
 
 interface ClimbProps {
@@ -34,13 +34,13 @@ export const Tabs = ({
   const [tabItems, setTabItems] = useState(() =>
     items.slice().reverse().map((item) => ({
       ...item,
-      activate: item.link === pathname, // Set initial active state based on pathname
+      activate: item.link === pathname,
     }))
   );
   const [activeTabWidth, setActiveTabWidth] = useState(0);
   const climbRef = useRef<HTMLDivElement>(null);
 
-  // Sync tabItems with pathname on mount and route changes
+  // Sync tabItems with pathname
   useLayoutEffect(() => {
     const updatedItems = items.slice().reverse().map((item) => ({
       ...item,
@@ -49,16 +49,18 @@ export const Tabs = ({
     setTabItems(updatedItems);
   }, [pathname, items]);
 
-  // Update Climb position when tabItems change
+  // Update climb position (desktop only)
   useLayoutEffect(() => {
-    const activeIndex = tabItems.findIndex((item) => item.activate);
-    if (activeIndex !== -1) {
-      const activeTabElement = document.querySelectorAll(".tab-item")[activeIndex];
-      const textElement = activeTabElement?.querySelector(".tab-text");
-      if (textElement) {
-        const textWidth = textElement.getBoundingClientRect().width;
-        setActiveTabWidth(textWidth);
-        updateClimbPosition(activeIndex, textWidth + 100 - 28);
+    if (window.innerWidth >= 768) {
+      const activeIndex = tabItems.findIndex((item) => item.activate);
+      if (activeIndex !== -1) {
+        const activeTabElement = document.querySelectorAll(".tab-item")[activeIndex];
+        const textElement = activeTabElement?.querySelector(".tab-text");
+        if (textElement) {
+          const textWidth = textElement.getBoundingClientRect().width;
+          setActiveTabWidth(textWidth);
+          updateClimbPosition(activeIndex, textWidth + 100 - 28);
+        }
       }
     }
   }, [tabItems]);
@@ -79,12 +81,14 @@ export const Tabs = ({
     climbRef.current.style.left = `${newLeft}px`;
   };
 
-  // Handle resize events
+  // Handle resize events (desktop only)
   useEffect(() => {
     const handleResize = () => {
-      const activeIndex = tabItems.findIndex((item) => item.activate);
-      if (activeIndex !== -1) {
-        updateClimbPosition(activeIndex, activeTabWidth + 100 - 28);
+      if (window.innerWidth >= 768) {
+        const activeIndex = tabItems.findIndex((item) => item.activate);
+        if (activeIndex !== -1) {
+          updateClimbPosition(activeIndex, activeTabWidth + 100 - 28);
+        }
       }
     };
 
@@ -99,17 +103,58 @@ export const Tabs = ({
     }));
     setTabItems(updatedItems);
 
-    const activeTabElement = document.querySelectorAll(".tab-item")[index];
-    const textElement = activeTabElement?.querySelector(".tab-text");
-    if (textElement) {
-      const textWidth = textElement.getBoundingClientRect().width;
-      setActiveTabWidth(textWidth);
-      updateClimbPosition(index, textWidth + 100 - 28);
+    if (window.innerWidth >= 768) {
+      const activeTabElement = document.querySelectorAll(".tab-item")[index];
+      const textElement = activeTabElement?.querySelector(".tab-text");
+      if (textElement) {
+        const textWidth = textElement.getBoundingClientRect().width;
+        setActiveTabWidth(textWidth);
+        updateClimbPosition(index, textWidth + 100 - 28);
+      }
     }
 
     router.push(link);
   };
 
+  // Conditional rendering based on screen size
+  if (window.innerWidth < 768) {
+    // Mobile layout (vertical stack)
+    return (
+      <div
+        className={`flex flex-col items-center relative w-full rounded-[35px] shadow-shadows bg-[#1a604e] ${className}`}
+      >
+        <div className="flex flex-col w-full justify-between px-4 relative gap-2">
+          {tabItems.map(({ value, activate, link }, index) => (
+            <div
+              key={index}
+              className={`tab-item flex items-center justify-center gap-2.5 px-[10px] py-2.5 relative cursor-pointer w-full ${
+                activate ? "bg-[#1a604e] rounded-[35px]" : ""
+              } border-b border-gray-600`}
+              onClick={() => handleTabClick(index, link)}
+            >
+              <div
+                className={`tab-text relative w-fit font-normal tracking-[0] leading-[normal] text-right whitespace-nowrap text-[16px]`}
+                style={{
+                  fontFamily: "Pelak, sans-serif",
+                  WebkitTextStrokeWidth: activate ? "1px" : "0",
+                  WebkitTextStrokeColor: activate ? "#B9D0AA" : "transparent",
+                  WebkitTextStroke: activate ? "1px rgb(226 226 226)" : "",
+                  filter: activate
+                    ? "drop-shadow(0px 0px 10px #B9D0AA) drop-shadow(0px 0px 10px #B9D0AA)"
+                    : "",
+                  color: activate ? "#FFF" : "#D1D5DB",
+                }}
+              >
+                {value}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Desktop layout (your original code)
   return (
     <div
       className={`flex h-[70px] md:h-[95px] items-center relative w-max rounded-[35px] overflow-x-hidden shadow-shadows bg-[#1a604e] ${className}`}
