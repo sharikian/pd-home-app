@@ -78,6 +78,20 @@ const SimpleActivityTable: React.FC = () => {
                           }
                           format="YYYY/MM/DD"
                           calendar={persian}
+                          months={[
+                            "فروردین",
+                            "اردیبهشت",
+                            "خرداد",
+                            "تیر",
+                            "مرداد",
+                            "شهریور",
+                            "مهر",
+                            "آبان",
+                            "آذر",
+                            "دی",
+                            "بهمن",
+                            "اسفند",
+                          ]}
                           locale={gregorian_fa}
                           placeholder="1327/12/9"
                           render={

@@ -32,6 +32,20 @@ const BMD = () => {
         <DatePicker
           format="YYYY/MM/DD"
           calendar={persian}
+          months={[
+            "فروردین",
+            "اردیبهشت",
+            "خرداد",
+            "تیر",
+            "مرداد",
+            "شهریور",
+            "مهر",
+            "آبان",
+            "آذر",
+            "دی",
+            "بهمن",
+            "اسفند",
+          ]}
           locale={gregorian_fa}
           className="w-full p-2 border border-[#1A604E] rounded-[5px] text-right bg-white"
           render={
