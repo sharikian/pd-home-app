@@ -38,7 +38,7 @@ const FormRow: React.FC<FormRowProps> = ({ rowNumber, index = 0 }) => {
     focus:outline-none focus:ring-2 focus:ring-[#1A604E] dark:focus:ring-emerald-400/50
     shadow-[inset_-1px_1px_4px_#00000040,_-1px_1px_4px_#ffffff] 
     dark:shadow-[inset_-1px_1px_4px_#00000080,_-1px_1px_4px_#1e293b]
-    resize-none mt-0 mb-2 bg-white/50 dark:bg-slate-700/50 
+    resize-none mt-0 mb-2 
     text-[#1A604E] dark:text-slate-200 text-right transition-all
     hover:border-[#1A604E]/80 dark:hover:border-emerald-400/70
     mt-2
@@ -54,6 +54,11 @@ const FormRow: React.FC<FormRowProps> = ({ rowNumber, index = 0 }) => {
     "گزارش کامل",
   ];
 
+  // Determine background color for textarea based on index (6th item)
+  const textareaBg = `
+    ${6 % 2 === 0 ? "bg-[#EAEEF1] dark:bg-[#2d333b]" : "bg-[#d4dadf] dark:bg-[#3b444b]"}
+  `;
+
   return (
     <div
       className={`flex flex-col gap-4 ${
@@ -67,38 +72,42 @@ const FormRow: React.FC<FormRowProps> = ({ rowNumber, index = 0 }) => {
       <div className={containerStyles} dir="ltr">
         <DropDown
           options={["1", "2", "3"]}
-          placeholder={
-            window.innerWidth < 768 ? labels[0] : "انتخاب کنید"
-          }
+          placeholder={window.innerWidth < 768 ? labels[0] : "انتخاب کنید"}
           variant="input-like"
+          // bgIndex={0} // Assuming DropDown accepts bgIndex
         />
         <div className={fieldStyles(1)}>
           <Input
             placeholder={window.innerWidth < 768 ? labels[1] : " "}
+            bgIndex={1}
           />
         </div>
         <div className={fieldStyles(2)}>
           <Input
             placeholder={window.innerWidth < 768 ? labels[2] : " "}
+            bgIndex={2}
           />
         </div>
         <div className={fieldStyles(3)}>
           <Input
             placeholder={window.innerWidth < 768 ? labels[3] : " "}
+            bgIndex={3}
           />
         </div>
         <div className={fieldStyles(4)}>
           <Input
             placeholder={window.innerWidth < 768 ? labels[4] : " "}
+            bgIndex={4}
           />
         </div>
         <div className={fieldStyles(5)}>
           <Input
             placeholder={window.innerWidth < 768 ? labels[5] : " "}
+            bgIndex={5}
           />
         </div>
         <textarea
-          className={textareaStyles}
+          className={`${textareaStyles} ${textareaBg}`}
           placeholder={window.innerWidth < 768 ? labels[6] : ""}
           style={{ direction: "rtl" }}
         />
