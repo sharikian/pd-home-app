@@ -47,15 +47,15 @@ const RehabHistory = () => {
             />
           }
         />
-        <Input title="کارشناس توانبخشی" placeholder="خانم طاهری" />
+        <Input title="کارشناس توانبخشی" placeholder=" " />
         <DropDown
           variant="input-like"
           options={["کاردرمانی", "فیزیوتراپی"]}
           placeholder="نوع توانبخشی"
           title="نوع توانبخشی"
         />
-        <Input title="علت قطع جلسات" placeholder="مشکل در رفت و آمد" />
-        <Input title="نتیجه جلسات" placeholder="بهبود تعادل - راضی" />
+        <Input title="علت قطع جلسات" placeholder=" " />
+        <Input title="نتیجه جلسات" placeholder=" " />
         <Input title="تعداد جلسات" type="number" placeholder="12" />
       </div>
 

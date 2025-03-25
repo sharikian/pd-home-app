@@ -43,11 +43,11 @@ const PersonalInfo = () => {
             <Input title={"تولد"} placeholder="22/03/1385" icon={Calendar} />
           }
         />
-        <Input title="کد ملی" placeholder="092547**89" />
-        <Input title="نام و نام خانوادگی" placeholder="احمد شریفی" />
-        <Input title="آدرس" placeholder="دانش آموز 64، پلاک 30" />
-        <Input title="شغل" placeholder="بازنشسته" />
-        <Input title="تحصیلات" placeholder="دیپلم" />
+        <Input title="کد ملی" placeholder=" " />
+        <Input title="نام و نام خانوادگی" placeholder=" " />
+        <Input title="آدرس" placeholder=" " />
+        <Input title="شغل" placeholder=" " />
+        <Input title="تحصیلات" placeholder=" " />
       </div>
       <hr className="h-[0.1rem] bg-slate-300" />
 

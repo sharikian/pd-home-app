@@ -47,7 +47,7 @@ const MedicalHistory = () => {
             />
           }
         />
-        <Input title="پزشک معالج" placeholder="دکتر شعیبی" />
+        <Input title="پزشک معالج" placeholder=" " />
         <DatePicker
           format="YYYY/MM/DD"
           calendar={persian}
