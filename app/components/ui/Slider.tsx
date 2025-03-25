@@ -105,12 +105,12 @@ export const Slider: React.FC<SliderProps> = ({
         >
           <div
             className={`flex flex-col items-center justify-center ${
-              window.innerWidth < 768 ? "gap-1.5 p-[3px]" : "gap-2.5 p-[5px]"
+              window.innerWidth < 768 ? "gap-1.5 p-[5px]" : "gap-2.5 p-[8px]"
             } bg-[#eaeef1] rounded-lg shadow-[-6px_7px_21px_-6px_#1a604e,2px_-1px_66.3px_18px_#ffffff] transition-transform duration-200 hover:scale-105`}
           >
             <div
               className={`${
-                window.innerWidth < 768 ? "w-8 h-8" : "w-12 h-12"
+                window.innerWidth < 768 ? "w-8 h-8" : "w-8 h-8"
               } bg-[#b9d0aa] rounded-md shadow-[inset_-1px_1px_4px_#00000040,-1px_1px_4px_#ffffff]`}
             />
           </div>
