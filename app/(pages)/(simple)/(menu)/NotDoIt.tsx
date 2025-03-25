@@ -52,9 +52,9 @@ export const NotDoIt = () => (
       >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#b9d0aa] dark:via-emerald-900 to-[#b9d0aa] dark:to-emerald-900 via-60%">
           <div className="absolute bottom-4 md:bottom-8 left-4 md:left-8 right-4 md:right-8">
-            <div className="flex flex-col md:flex-row items-end justify-between gap-4">
-              <p className="text-white text-xl md:text-3xl xl:text-[40px]" style={{lineHeight: '3rem'}}>
-                رویداد ها و همایش های<br />
+            <div className="flex flex-col-reverse md:flex-row-reverse items-end justify-between gap-4">
+              <p className="text-xl md:text-3xl xl:text-[40px] text-right text-primary" style={{lineHeight: '3rem'}}>
+                رویداد ها<br/> و همایش های<br />
                 <span className="font-black">خانواده پارکینسون</span>
               </p>
               <Button 

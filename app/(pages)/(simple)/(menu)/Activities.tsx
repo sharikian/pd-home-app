@@ -5,7 +5,7 @@ import Parkinson from '@/public/imgs/dashboard/parkinsons.png';
 
 export const Activities = () => {
   return (
-    <div className="flex flex-col-reverse xl:flex-row md:flex-col-reverse sm:flex-col-reverse gap-6 md:gap-8 p-4 md:p-6 border-b border-[#00000030] dark:border-slate-700">
+    <div className="flex flex-col-reverse xl:flex-row-reverse md:flex-col-reverse sm:flex-col-reverse gap-6 md:gap-8 p-4 md:p-6 border-b border-[#00000030] dark:border-slate-700">
       {/* Activities Panel */}
       <div className="w-full xl:w-1/2">
         <div className="flex flex-col gap-4 md:gap-6">
@@ -55,9 +55,9 @@ export const Activities = () => {
       <div className="w-full xl:w-1/2 relative aspect-[1.3] bg-[#1a604e] dark:bg-slate-800 rounded-2xl xl:rounded-[35px] overflow-hidden">
         <div className={`absolute inset-0 bg-cover bg-center`} style={{ backgroundImage: `url(${Parkinson.src})` }}>
           <div className="absolute inset-0 bg-gradient-to-b from-[#1a604e] dark:from-slate-800 via-[#1a604ee6] dark:via-slate-800/90 to-transparent">
-            <div className="absolute bottom-4 md:bottom-8 left-4 md:left-8 right-4 md:right-8">
-              <div className="flex flex-col md:flex-row items-end justify-between gap-4">
-                <p className="text-white text-xl md:text-3xl xl:text-[40px] font-semibold" style={{lineHeight: '3rem'}}>
+            <div className="absolute top-4 md:top-8 left-4 md:left-8 right-4 md:right-8">
+              <div className="flex flex-col md:flex-col items-start justify-between gap-4">
+                <p className="text-white text-xl md:text-3xl xl:text-[40px] " style={{lineHeight: '3rem'}}>
                   کارگاه های <br /> حضوری و آنلاین <br /> 
                   <span className="font-black font-pelak">زندگی با پارکینسون</span>
                 </p>
