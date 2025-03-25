@@ -20,7 +20,7 @@ const Layout3 = ({ children }: Prop) => {
           { value: "ارجاعات", link: "/wents" },
         ]}
       />
-      <div className="rounded-[1.5rem] md:rounded-[2.1875rem] p-3 md:p-6 lg:p-8 border border-[#00000010] bg-white w-full md:scale-90 md:mt-[-2rem] dark:bg-slate-800 dark:border-slate-700/30">
+      <div className="rounded-[1.5rem] md:rounded-[2.1875rem] p-3 md:p-6 lg:p-8 border border-[#00000010] bg-white w-[110%] md:scale-90 md:mt-[-2rem] dark:bg-slate-800 dark:border-slate-700/30">
         {children}
       </div>
     </div>

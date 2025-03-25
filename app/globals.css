@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -20,15 +19,13 @@ body {
   background: var(--background);
 }
 
-
 .shadow-inset {
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
 }
 
-.fc-toolbar-title{
+.fc-toolbar-title {
   font-size: 1rem !important;
 }
-
 
 /* For modal setup */
 .modal-wrapper {
@@ -180,6 +177,23 @@ body {
 .fc-event:focus {
   border: none !important;
   outline: none !important;
+}
+
+.fc .fc-button-primary[title="قبلی"], .fc .fc-button-primary[title="بعدی"] {
+  background-color: white;
+  border: none;
+  color: black;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active, .fc .fc-button-primary:not(:disabled):active {
+  background-color: rgb(26 96 78 / var(--tw-bg-opacity, 1));
+  border: none;
+}
+
+.fc-direction-rtl .fc-button-group > .fc-button:not(:first-child):not(.fc-button-primary[title="بعدی"]) {
+  background-color: rgb(185 208 170 / var(--tw-bg-opacity, 1));
+  color: rgb(26 96 78 / var(--tw-bg-opacity, 1));
+  border: none;
 }
 
 .rmdp-shadow {

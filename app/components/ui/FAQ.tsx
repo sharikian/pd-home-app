@@ -39,7 +39,7 @@ export const FAQ = ({
         className={`border-[1.5px] border-solid border-[#1a604e] w-full flex gap-2.5 flex-1 overflow-hidden rounded-[5px] relative flex-col`}
       >
         <div
-          className={`flex items-center justify-between w-full px-4 md:px-[19px] py-[7px] flex-[0_0_auto]`}
+          className={`flex items-center justify-between w-full pt-2 flex-[0_0_auto]`}
         >
           <Image
             className="relative w-6 md:w-[34px] transition-transform duration-300"
@@ -47,7 +47,7 @@ export const FAQ = ({
             alt="Toggle icon"
             style={{ transform: isOpen ? "rotate(180deg)" : "none" }}
           />
-          <h3 className="relative flex-1 text-right font-bold text-[#1a604e] dark:text-emerald-600 text-sm md:text-md leading-normal [direction:rtl] px-2 whitespace-wrap">
+          <h3 className="relative font-black flex-1 text-right text-[#1a604e] dark:text-emerald-600 text-sm md:text-lg leading-normal [direction:rtl] px-2 whitespace-wrap">
             {title}
           </h3>
         </div>
@@ -60,7 +60,7 @@ export const FAQ = ({
           className="overflow-hidden"
         >
           <motion.p
-            className="w-full font-medium text-black dark:text-slate-300 text-lg md:text-xl leading-normal [direction:rtl] px-4 md:px-[19px] pb-[11px] break-words"
+            className="w-full font-bold text-black dark:text-slate-300 text-md leading-normal [direction:rtl] px-4 md:px-[19px] pb-[11px] break-words"
           >
             {description}
           </motion.p>

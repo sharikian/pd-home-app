@@ -81,6 +81,7 @@ const SimpleActivityTable: React.FC = () => {
                         icon={Calendar}
                         value={inputValues.date}
                         className="w-full"
+                        noBorder // No border, no shadow
                       />
                     }
                   />
@@ -93,6 +94,7 @@ const SimpleActivityTable: React.FC = () => {
                   }
                   placeholder="توضیحات را وارد کنید"
                   className="w-full text-base font-medium text-black [direction:rtl]"
+                  noBorder // No border, no shadow
                 />
               )}
             </div>
@@ -121,8 +123,7 @@ const SimpleActivityTable: React.FC = () => {
             <tbody>
               <tr className="bg-white h-[87px]">
                 {[...Array(3)].map((_: unknown, colIndex: number) => {
-                  let cellClass: string =
-                    "p-2.5 border border-[#1A604E] relative";
+                  let cellClass: string = "p-2.5 border border-[#1A604E] relative"; // Reintroduced padding
                   if (colIndex === 0)
                     cellClass += " rounded-tr-[15px] rounded-br-[15px]";
                   if (colIndex === 2)
@@ -136,6 +137,8 @@ const SimpleActivityTable: React.FC = () => {
                             options={options}
                             placeholder="انتخاب کنید"
                             variant="input-like"
+                            className="w-full" // Keep it full width but with padding
+                            noBorder
                           />
                         </div>
                       ) : colIndex === 1 ? (
@@ -168,6 +171,8 @@ const SimpleActivityTable: React.FC = () => {
                                 placeholder="22/03/1385"
                                 icon={Calendar}
                                 value={inputValues.date}
+                                className="w-full" // Keep it full width but with padding
+                                noBorder // No border, no shadow
                               />
                             }
                           />
@@ -179,7 +184,8 @@ const SimpleActivityTable: React.FC = () => {
                             handleInputChange("description", e.target.value)
                           }
                           placeholder="توضیحات را وارد کنید"
-                          className="w-full h-full text-lg font-medium text-black [direction:rtl]"
+                          className="w-full text-lg font-medium text-black [direction:rtl]" // Keep it full width but with padding
+                          noBorder // No border, no shadow
                         />
                       )}
                     </td>

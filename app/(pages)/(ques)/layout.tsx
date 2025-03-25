@@ -16,11 +16,11 @@ const Layout1 = ({ children }: Prop) => {
         varient="ligth"
         className="w-full max-w-[90vw]"
         items={[
-          { value: "درمان های نوین",  link: "/FAQ" },
-          { value: "دارو ها",  link: "/FAQ" },
-          { value: "مشکلات حرکتی",  link: "/FAQ" },
-          { value: "اختلال خواب",  link: "/FAQ" },
-          { value: "تکلم و بلع",  link: "/FAQ" },
+          { value: "درمان های نوین",  link: "/FAQ/1"},
+          { value: "دارو ها",  link: "/FAQ/2" },
+          { value: "مشکلات حرکتی",  link: "/FAQ/3" },
+          { value: "اختلال خواب",  link: "/FAQ/4" },
+          { value: "تکلم و بلع",  link: "/FAQ/5" },
         ]}
       />
       <div className="rounded-[1.5rem] md:rounded-[2.1875rem] p-3 md:p-6 lg:p-8 border border-[#00000010] bg-white w-full md:scale-90 md:mt-[-2rem] dark:bg-slate-800 dark:border-slate-700/30">

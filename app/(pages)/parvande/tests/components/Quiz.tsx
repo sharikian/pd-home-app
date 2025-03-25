@@ -103,7 +103,7 @@ export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
                   value={item}
                   readonly
                   alignRight
-                  className={window.innerWidth < 768 ? "w-full" : ""}
+                  className={window.innerWidth < 768 ? "w-full" : "w-[150%]"}
                 />
                 <div
                   className={`flex justify-between items-center ${

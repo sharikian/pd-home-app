@@ -2,13 +2,12 @@
 import React, { JSX, useState } from "react";
 import Image from "next/image";
 import { Button, Notice, DropDown, Input } from "@/app/components";
-import { ArrowLeft, GreenDanger, Calendar } from "@/public/icons";
-import ParkRow from "@/public/imgs/wents/parkRow.png";
+import { ArrowLeft, GreenDanger, Park, Calendar } from "@/public/icons";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import gregorian_fa from "react-date-object/locales/gregorian_fa";
 
-export const Went = (): JSX.Element => {
+export const Teraphy = (): JSX.Element => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const toggleCollapse = () => {
@@ -32,11 +31,11 @@ export const Went = (): JSX.Element => {
           }`}
         />
         <Image
-          src={ParkRow}
+          src={Park}
           alt="❤️"
           className="w-6 h-6 md:w-8 md:h-8 dark:invert"
         />
-        <span>توان بخشی</span>
+        <span>فیزیوتراپی</span>
       </div>
 
       {!isCollapsed && (
@@ -59,13 +58,25 @@ export const Went = (): JSX.Element => {
               <div className="flex-1 min-w-[200px]">
                 <div className="flex flex-col gap-3">
                   <span className="text-[#1A604E] dark:text-emerald-400 text-end text-base md:text-lg">
-                    نحوه ویزیت
+                    متخصصین
                   </span>
                   <DropDown
                     placeholder="انتخاب کنید"
                     options={[]}
                     className="dark:bg-slate-700 dark:text-white"
                     variant="input-like"
+                  />
+                </div>
+              </div>
+
+              <div className="flex-1 min-w-[200px]">
+                <div className="flex flex-col gap-3">
+                  <span className="text-[#1A604E] dark:text-emerald-400 text-end text-base md:text-lg">
+                    اطلاعات
+                  </span>
+                  <Input
+                    placeholder=" "
+                    className="dark:bg-slate-700 dark:text-white"
                   />
                 </div>
               </div>

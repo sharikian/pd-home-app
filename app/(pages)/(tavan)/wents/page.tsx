@@ -1,5 +1,6 @@
 "use client"
 import { Went } from "./Went";
+import { Teraphy } from "./Teraphy";
 import { motion } from "framer-motion";
 
 const WentsPage = () => {
@@ -40,7 +41,7 @@ const WentsPage = () => {
         <Went />
       </motion.div>
       <motion.div variants={itemVariants}>
-        <Went />
+        <Teraphy />
       </motion.div>
     </motion.div>
   );

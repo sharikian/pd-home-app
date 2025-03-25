@@ -8,10 +8,11 @@ interface DropdownProps {
   placeholder?: string;
   className?: string;
   variant?: 'default' | 'input-like';
-  title?: string; // New prop to match Input
-  maxWidth?: string; // New prop to match Input
-  Size?: 'sm' | 'md' | 'lg'; // New prop to match Input
-  alignRight?: boolean
+  title?: string;
+  maxWidth?: string;
+  Size?: 'sm' | 'md' | 'lg';
+  alignRight?: boolean;
+  noBorder?: boolean;
 }
 
 export const DropDown: React.FC<DropdownProps> = ({
@@ -22,7 +23,8 @@ export const DropDown: React.FC<DropdownProps> = ({
   title,
   maxWidth = 'w-full max-w-[429px]',
   Size = 'md',
-  alignRight=false
+  alignRight = false,
+  noBorder = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -77,17 +79,15 @@ export const DropDown: React.FC<DropdownProps> = ({
             </div>
           </div>
         )}
-        <div className={`w-full rounded-[15px] bg-[#eaeef165] dark:bg-transparent ${currentSize.padding} relative`}>
+        <div className={`w-full rounded-[15px] ${!noBorder && "bg-[#eaeef165]"} dark:bg-transparent ${currentSize.padding} relative`}>
           <div
             className={`
               flex items-center justify-between px-[5px] py-0
-              w-full ${currentSize.inputHeight} rounded-[5px] border-[1.5px] border-solid
+              w-full ${currentSize.inputHeight} rounded-[5px] border-solid
               bg-white ${currentSize.fontSize}
-              border-[${variantStyles.primary.border}]
-              border-[2px]
+              ${noBorder ? 'border-none shadow-none' : `border-[1.5px] border-[${variantStyles.primary.border}]`}
               outline-none
               text-[${variantStyles.primary.border}]
-              placeholder:text-[${variantStyles.primary.placeholder}]
               text-right
               cursor-pointer
             `}
@@ -100,17 +100,32 @@ export const DropDown: React.FC<DropdownProps> = ({
               style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}
             />
             <div className="inline-flex items-center justify-center gap-2.5 p-2.5 relative flex-[0_0_auto]">
-              <p className="relative w-fit mt-[-1.00px] font-normal text-[${variantStyles.primary.border}] dark:text-emerald-100 text-right tracking-[0] leading-[normal]">
+              <p
+                className={`
+                  relative w-fit mt-[-1.00px] font-normal
+                  ${selectedOption ? `text-[${variantStyles.primary.border}]` : `text-[${variantStyles.primary.placeholder}]`}
+                  dark:text-emerald-100 text-right tracking-[0] leading-[normal]
+                `}
+              >
                 {selectedOption || placeholder}
               </p>
             </div>
           </div>
           {isOpen && (
-            <div className="absolute top-full left-0 w-full bg-white border-[1.5px] border-solid border-[#1a604e] rounded-[5px] mt-1 z-10">
+            <div
+              className={`
+                absolute top-full left-0 w-full bg-white
+                ${noBorder ? 'border-none shadow-none' : 'border-[1.5px] border-solid border-[#1a604e] shadow-md'}
+                rounded-[5px] mt-1 z-10
+              `}
+            >
               {options.map((option, index) => (
                 <div
                   key={index}
-                  className="px-[5px] py-2 cursor-pointer hover:bg-[#d5e0e6] text-primary dark:hover:bg-slate-600 transition-colors text-right text-[${variantStyles.primary.border}] ${currentSize.fontSize}"
+                  className={`
+                    px-[10px] py-2 cursor-pointer hover:bg-[#d5e0e6] dark:hover:bg-slate-600 transition-colors
+                    text-[${variantStyles.primary.border}] ${currentSize.fontSize} text-right
+                  `}
                   onClick={() => handleOptionClick(option)}
                 >
                   {option}
@@ -127,7 +142,7 @@ export const DropDown: React.FC<DropdownProps> = ({
   return (
     <div className={`relative w-full ${className}`}>
       <div
-        className={`flex flex-col items-start gap-2.5 p-2.5 relative bg-[#eaeef1] dark:bg-slate-700 rounded-[15px] overflow-hidden shadow-shadows border-r-2 dark:border-r-0 border-[#b9d0aa] dark:border-emerald-400 ${
+        className={`flex flex-col items-start gap-2.5 p-2.5 relative bg-[#eaeef1] dark:bg-slate-700 rounded-[15px] overflow-hidden shadow-shadows ${noBorder ? 'border-none' : 'border-r-2 dark:border-r-0 border-[#b9d0aa] dark:border-emerald-400'} ${
           isOpen ? 'rounded-b-none' : ''
         }`}
       >
@@ -152,7 +167,7 @@ export const DropDown: React.FC<DropdownProps> = ({
             {options.map((option, index) => (
               <div
                 key={index}
-                className="flex flex-col items-end gap-2.5 px-[5px] py-0.5 relative self-stretch w-full flex-[0_0_auto] rounded-[5px] overflow-hidden border-[1.5px] border-solid border-[#1a604e] dark:border-emerald-400 mt-2 cursor-pointer hover:bg-[#d5e0e6] dark:hover:bg-slate-600 transition-colors"
+                className={`flex flex-col items-end gap-2.5 px-[5px] py-0.5 relative self-stretch w-full flex-[0_0_auto] rounded-[5px] overflow-hidden ${noBorder ? 'border-none' : 'border-[1.5px] border-solid border-[#1a604e] dark:border-emerald-400'} mt-2 cursor-pointer hover:bg-[#d5e0e6] dark:hover:bg-slate-600 transition-colors`}
                 onClick={() => handleOptionClick(option)}
               >
                 <div className="inline-flex items-center justify-center gap-2.5 p-2.5 relative flex-[0_0_auto]">

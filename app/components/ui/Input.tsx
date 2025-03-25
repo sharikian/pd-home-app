@@ -12,7 +12,8 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: string;
   alignRight?: boolean;
   readonly?: boolean;
-  bgIndex?: number; // New prop to determine striped background
+  bgIndex?: number;
+  noBorder?: boolean;
 }
 
 export const Input = ({
@@ -27,7 +28,8 @@ export const Input = ({
   icon,
   alignRight = false,
   readonly = false,
-  bgIndex, // Added to props
+  bgIndex,
+  noBorder = false,
   ...rest
 }: InputProps) => {
   const variantStyles = {
@@ -66,18 +68,16 @@ export const Input = ({
   };
 
   const currentSize = sizeStyles[Size];
-
-  // Determine background color based on bgIndex
   const bgColor =
     bgIndex !== undefined
       ? bgIndex % 2 === 0
-        ? "bg-[#EAEEF1] dark:bg-[#2d333b]" // Odd rows (0, 2, 4, ...)
-        : "bg-[#d4dadf] dark:bg-[#3b444b]" // Even rows (1, 3, 5, ...)
-      : "bg-white"; // Default if no bgIndex provided
+        ? ""
+        : ""
+      : "bg-white";
 
   return (
     <div
-      className={`flex flex-col ${currentSize.container} relative ${maxWidth} ${
+      className={`flex flex-col ${currentSize.container} relative font-pelak  ${maxWidth} ${
         alignRight ? "ml-auto" : "mx-auto"
       }`}
     >
@@ -91,7 +91,7 @@ export const Input = ({
         </div>
       )}
       <div
-        className={`w-full rounded-[15px] bg-[#eaeef165] dark:bg-transparent ${currentSize.padding} relative`}
+        className={`w-full rounded-[15px] ${!noBorder && "bg-[#eaeef165]"} dark:bg-transparent ${currentSize.padding} relative`}
       >
         <input
           {...rest}
@@ -99,11 +99,10 @@ export const Input = ({
           placeholder={placeholder || "متن مورد نظر را وارد کنید"}
           readOnly={readonly}
           className={`
-            w-full ${currentSize.inputHeight} px-[5px] rounded-[5px] border-[1.5px] border-solid
-            ${bgColor} ${currentSize.fontSize} ${className}
-            border-[${variantStyles[variant].border}]
-            border-[2px]
+            w-full ${currentSize.inputHeight} px-[5px] rounded-[5px] ${bgColor} ${currentSize.fontSize} ${className}
+            ${noBorder ? "border-none shadow-none" : `border-[1.5px] border-solid border-[${variantStyles[variant].border}]`}
             outline-none
+            font-pelak
             text-[${variantStyles[variant].border}]
             placeholder:text-[${variantStyles[variant].placeholder}]
             ${centerize ? "text-center placeholder:text-center" : "text-right placeholder:text-right"}

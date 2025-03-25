@@ -33,11 +33,16 @@ export const NavBar = ({ className }: Props): JSX.Element => {
     { value: "پرونده", icon: FileCollection, link: "parvande" },
     { value: "مسیر توانبخشی", icon: ConnectionPointTwo, link: ["myplan", "wents"] },
     { value: "توصیه و آموزش ها", icon: BookOpen, link: "dashboard" },
-    { value: "مشاوره", icon: PeopleSpeak, link: "FAQ" },
+    { value: "مشاوره", icon: PeopleSpeak, link: ["FAQ/1", "FAQ/2", "FAQ/3", "FAQ/4", "FAQ/5"] },
   ];
 
   const getActiveItem = () => {
-    const currentPath = pathname?.split("/")[1] || "";
+    // Split the pathname into segments
+    const pathSegments = pathname?.split("/").filter(segment => segment) || [];
+    
+    // If there's only one segment (e.g., "/parvande"), use it; if more (e.g., "/FAQ/1"), join the first two segments
+    const currentPath = pathSegments.length >= 2 ? `${pathSegments[0]}/${pathSegments[1]}` : pathSegments[0] || "";
+
     const active = navItems.find((item) =>
       Array.isArray(item.link) ? item.link.includes(currentPath) : item.link === currentPath
     );
@@ -103,30 +108,33 @@ export const NavBar = ({ className }: Props): JSX.Element => {
       </div>
 
       {/* Mobile Bottom Toolbar */}
-      <div className="md:hidden fixed bottom-1 left-1 right-1 z-50 bg-[#EAEEF1] dark:bg-slate-700 shadow-[0_-8px_20px_rgba(0,0,0,0.15),0_2px_10px_rgba(0,0,0,0.1)] border border-[#00000010] dark:border-slate-600/50 px-1 py-1 flex justify-around items-center h-[60px] rounded-[16px]">
-        {navItems.map((item) => (
-          <MobileNavItem
-            key={item.value}
-            item={item}
-            isActive={activeItem === item.value}
-            link={getTargetLink(item.link)}
-          />
-        ))}
-        <button
-          onClick={handleLogout}
-          className="flex flex-col items-center justify-center p-1 w-[40px]"
-        >
-          <Image
-            className="h-[20px] w-[20px] transition duration-300"
-            alt="خروج"
-            src={MingcuteExitLine}
-            width={20}
-            height={20}
-          />
-          <span className="text-[#1A604E] dark:text-slate-200 text-[9px] font-medium mt-[1px]">
-            خروج
-          </span>
-        </button>
+      <div className="md:hidden fixed bottom-1 left-1 right-1 z-50 bg-[#EAEEF1] dark:bg-slate-700 shadow-[0_-8px_20px_rgba(0,0,0,0.15),0_2px_10px_rgba(0,0,0,0.1)] border border-[#00000010] dark:border-slate-600/50 px-2 py-2 flex justify-around items-center h-[80px] rounded-[9999px]">
+        {/* Reordered nav items: مشاوره, مسیر توانبخشی, خانه, پرونده, آموزش ها */}
+        <MobileNavItem
+          item={navItems[4]} // مشاوره
+          isActive={activeItem === navItems[4].value}
+          link={getTargetLink(navItems[4].link)}
+        />
+        <MobileNavItem
+          item={navItems[2]} // مسیر توانبخشی
+          isActive={activeItem === navItems[2].value}
+          link={getTargetLink(navItems[2].link)}
+        />
+        <MobileNavItem
+          item={navItems[0]} // خانه
+          isActive={activeItem === navItems[0].value}
+          link={getTargetLink(navItems[0].link)}
+        />
+        <MobileNavItem
+          item={navItems[1]} // پرونده
+          isActive={activeItem === navItems[1].value}
+          link={getTargetLink(navItems[1].link)}
+        />
+        <MobileNavItem
+          item={navItems[3]} // توصیه و آموزش ها
+          isActive={activeItem === navItems[3].value}
+          link={getTargetLink(navItems[3].link)}
+        />
       </div>
     </>
   );
@@ -174,29 +182,25 @@ const MobileNavItem = ({
   isActive: boolean;
   link?: string;
 }) => (
-  <Link href={`/${link}`} className="flex flex-col items-center justify-center p-1 w-[40px]">
+  <Link href={`/${link}`} className="flex flex-col items-center justify-center p-1 w-[70px]">
     <div
-      className={`flex items-center justify-center w-[36px] h-[36px] rounded-full transition-all duration-300 ease-in-out ${
-        isActive ? "bg-[#1A604E] scale-110" : ""
+      className={`flex items-center justify-center w-[48px] h-[48px] rounded-full transition-all duration-300 ease-in-out ${
+        isActive ? "bg-[#1A604E]" : ""
       }`}
     >
       <Image
-        className={`h-[20px] w-[20px] transition-all duration-300 ease-in-out ${
-          isActive ? "invert" : ""
-        }`}
+        className="h-[28px] w-[28px] transition-all duration-300 ease-in-out"
         alt={item.value}
         src={item.icon}
-        width={20}
-        height={20}
+        width={28}
+        height={28}
       />
     </div>
     {!isActive && (
       <span
-        className={`text-[#1A604E] dark:text-slate-200 text-[9px] font-medium mt-[1px] transition-opacity duration-300 ease-in-out ${
-          isActive ? "opacity-0" : "opacity-100"
-        }`}
+        className="text-[#1A604E] dark:text-slate-200 text-[9px] font-medium mt-1 transition-opacity duration-300 ease-in-out whitespace-normal w-full text-center leading-tight"
       >
-        {item.value.split(" ")[0]}
+        {item.value}
       </span>
     )}
   </Link>

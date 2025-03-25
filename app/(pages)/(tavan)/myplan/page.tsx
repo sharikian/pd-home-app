@@ -130,14 +130,14 @@ const MyPlan = () => {
         </>
       )}
       <motion.div
-        className="grid grid-cols-1 xl:grid-cols-5 gap-4 dark:bg-slate-900 p-2 sm:p-4"
+        className="grid grid-cols-1 xl:grid-cols-12 gap-4 dark:bg-slate-900 p-2 sm:p-4"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         {/* Experimental Section */}
         <motion.div
-          className="lg:col-span-1 p-2 sm:p-4 rounded-[0.8rem] text-[#1A604E] dark:text-emerald-400"
+          className="lg:col-span-2 p-2 sm:p-4 rounded-[0.8rem] text-[#1A604E] dark:text-emerald-400"
           variants={itemVariants}
         >
           <Experimental />
@@ -145,16 +145,16 @@ const MyPlan = () => {
 
         {/* Main Calendar Section */}
         <motion.div
-          className="lg:col-span-4 p-2 sm:p-4 rounded-[0.8rem] text-black dark:text-slate-200 border border-stone-300 dark:border-stone-600"
+          className="lg:col-span-10 p-2 sm:p-4 rounded-[0.8rem] text-black dark:text-slate-200 border border-stone-300 dark:border-stone-600"
           variants={itemVariants}
         >
           <motion.div
-            className="grid grid-cols-1 xl:grid-cols-10 gap-2"
+            className="grid grid-cols-1 xl:grid-cols-11 gap-2"
             variants={containerVariants}
           >
             {/* FullCalendar Container */}
             <motion.div
-              className={`xl:col-span-7 ${isDarkMode ? "fullcalendar-dark" : ""}`}
+              className={`xl:col-span-8 ${isDarkMode ? "fullcalendar-dark" : ""}`}
               variants={itemVariants}
             >
               <FullCalendar

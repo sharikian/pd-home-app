@@ -33,7 +33,7 @@ const FAQPage = () => {
 
   return (
     <motion.div 
-      className="flex flex-col gap-4 md:gap-8 w-full max-w-4xl mx-auto px-4 py-6 dark:bg-slate-800/90 dark:rounded-xl dark:p-6 backdrop-blur-sm"
+      className="flex flex-col gap-4 md:gap-8 w-[85%] mx-auto px-4 py-6 dark:bg-slate-800/90 dark:rounded-xl dark:p-6 backdrop-blur-sm"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
