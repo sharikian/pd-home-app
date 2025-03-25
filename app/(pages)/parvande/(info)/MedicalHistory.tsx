@@ -12,8 +12,14 @@ const MedicalHistory = () => {
     <div className="flex flex-col gap-4">
       {/* Header */}
       <div className="flex items-center justify-end gap-4">
-        <div className="text-lg font-bold text-primary">سابقه پزشکی</div>
-        <Image className="w-8 h-8" alt="Medical Icon" src={LoveHelp} />
+        <div className="text-lg font-bold text-primary dark:text-emerald-100">
+          سابقه پزشکی
+        </div>
+        <Image
+          className="w-8 h-8 dark:invert"
+          alt="Medical Icon"
+          src={LoveHelp}
+        />
       </div>
 
       {/* Inputs */}
@@ -37,7 +43,7 @@ const MedicalHistory = () => {
             "اسفند",
           ]}
           locale={gregorian_fa}
-          className="w-full p-2 border border-[#1A604E] rounded-[5px] text-right bg-white"
+          className="w-full p-2 border border-[#1A604E] dark:border-emerald-500 rounded-[5px] text-right bg-white dark:bg-slate-800"
           placeholder="1327/12/9"
           render={
             <Input
@@ -66,7 +72,7 @@ const MedicalHistory = () => {
             "اسفند",
           ]}
           locale={gregorian_fa}
-          className="w-full p-2 border border-[#1A604E] rounded-[5px] text-right bg-white"
+          className="w-full p-2 border border-[#1A604E] dark:border-emerald-500 rounded-[5px] text-right bg-white dark:bg-slate-800"
           placeholder="1327/12/9"
           render={
             <Input
@@ -85,7 +91,7 @@ const MedicalHistory = () => {
         className="w-full md:w-fit self-start dark:bg-emerald-800 dark:text-emerald-100 dark:hover:bg-emerald-700"
         icon={Plus}
       />
-      <hr className="h-[0.1rem] bg-slate-300" />
+      <hr className="h-[0.1rem] bg-slate-300 dark:bg-slate-600" />
     </div>
   );
 };

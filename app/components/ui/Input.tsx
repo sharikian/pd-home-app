@@ -35,11 +35,19 @@ export const Input = ({
   const variantStyles = {
     primary: {
       border: "#1A604E",
+      borderDark: "#10B981", // emerald-500 for dark mode
       placeholder: "#1A604EBA",
+      placeholderDark: "#10B98180", // Slightly transparent emerald-500 for dark mode
+      text: "#1A604E",
+      textDark: "#E2E8F0", // slate-200 for dark mode
     },
     warning: {
       border: "#D85562",
+      borderDark: "#EF4444", // red-500 for dark mode
       placeholder: "#D85562BA",
+      placeholderDark: "#EF444480", // Slightly transparent red-500 for dark mode
+      text: "#D85562",
+      textDark: "#E2E8F0", // slate-200 for dark mode
     },
   };
 
@@ -71,27 +79,29 @@ export const Input = ({
   const bgColor =
     bgIndex !== undefined
       ? bgIndex % 2 === 0
-        ? ""
-        : ""
-      : "bg-white";
+        ? "bg-white dark:bg-slate-800"
+        : "bg-white dark:bg-slate-800"
+      : "bg-white dark:bg-slate-800";
 
   return (
     <div
-      className={`flex flex-col ${currentSize.container} relative font-pelak  ${maxWidth} ${
+      className={`flex flex-col ${currentSize.container} relative font-pelak ${maxWidth} ${
         alignRight ? "ml-auto" : "mx-auto"
       }`}
     >
       {title && (
         <div className="w-full flex items-center justify-end p-1.5 sm:p-2.5">
           <div
-            className={`font-bold text-[${variantStyles[variant].border}] dark:text-emerald-600 ${currentSize.titleSize}`}
+            className={`font-bold text-[${variantStyles[variant].border}] dark:text-[${variantStyles[variant].borderDark}] ${currentSize.titleSize}`}
           >
             {title}
           </div>
         </div>
       )}
       <div
-        className={`w-full rounded-[15px] ${!noBorder && "bg-[#eaeef165]"} dark:bg-transparent ${currentSize.padding} relative`}
+        className={`w-full rounded-[15px] ${
+          !noBorder && "bg-[#eaeef165] dark:bg-transparent"
+        } ${currentSize.padding} relative`}
       >
         <input
           {...rest}
@@ -100,11 +110,15 @@ export const Input = ({
           readOnly={readonly}
           className={`
             w-full ${currentSize.inputHeight} px-[5px] rounded-[5px] ${bgColor} ${currentSize.fontSize} ${className}
-            ${noBorder ? "border-none shadow-none" : `border-[1.5px] border-solid border-[${variantStyles[variant].border}]`}
+            ${
+              noBorder
+                ? "border-none shadow-none"
+                : `border-[1.5px] border-solid border-[${variantStyles[variant].border}] dark:border-[${variantStyles[variant].borderDark}]`
+            }
             outline-none
             font-pelak
-            text-[${variantStyles[variant].border}]
-            placeholder:text-[${variantStyles[variant].placeholder}]
+            text-[${variantStyles[variant].text}] dark:text-[${variantStyles[variant].textDark}]
+            placeholder:text-[${variantStyles[variant].placeholder}] dark:placeholder:text-[${variantStyles[variant].placeholderDark}]
             ${centerize ? "text-center placeholder:text-center" : "text-right placeholder:text-right"}
             ${icon ? "pr-2" : ""}
           `}

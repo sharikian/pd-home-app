@@ -8,8 +8,14 @@ const InsuranceInfo = () => {
     <div className="flex flex-col gap-4">
       {/* Header */}
       <div className="flex items-center justify-end gap-4">
-        <div className="text-lg font-bold text-primary">مشخصات بیمه</div>
-        <Image className="w-8 h-8" alt="Insurance Icon" src={FileProtection} />
+        <div className="text-lg font-bold text-primary dark:text-emerald-100">
+          مشخصات بیمه
+        </div>
+        <Image
+          className="w-8 h-8 dark:invert"
+          alt="Insurance Icon"
+          src={FileProtection}
+        />
       </div>
 
       {/* Dropdowns */}
@@ -17,17 +23,17 @@ const InsuranceInfo = () => {
         <DropDown
           options={['ندارد', 'بیمه تکمیلی دیگر']}
           placeholder="نوع بیمه تکمیلی"
-          variant='input-like'
-          title='نوع بیمه تکمیلی'
+          variant="input-like"
+          title="نوع بیمه تکمیلی"
         />
         <DropDown
           options={['تامین اجتماعی', 'خدمات درمانی']}
           placeholder="نوع بیمه درمان"
-          variant='input-like'
-          title='نوع بیمه درمان'
+          variant="input-like"
+          title="نوع بیمه درمان"
         />
       </div>
-      <hr className="h-[0.1rem] bg-slate-300 mt-4" />
+      <hr className="h-[0.1rem] bg-slate-300 dark:bg-slate-600 mt-4" />
     </div>
   );
 };

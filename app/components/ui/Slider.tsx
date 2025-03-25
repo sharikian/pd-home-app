@@ -7,6 +7,7 @@ interface SliderProps {
   steps: number;
   defaultValue?: number;
   onChange?: (value: number) => void;
+  className?: string; // Added to allow external className prop
 }
 
 export const Slider: React.FC<SliderProps> = ({
@@ -15,6 +16,7 @@ export const Slider: React.FC<SliderProps> = ({
   steps = 10,
   defaultValue = 5,
   onChange,
+  className = "",
 }) => {
   const [value, setValue] = useState(defaultValue);
   const stepArray = Array.from(
@@ -34,7 +36,7 @@ export const Slider: React.FC<SliderProps> = ({
     <div
       className={`relative w-full ${
         window.innerWidth < 768 ? "px-4 py-8" : "px-8 py-12"
-      }`}
+      } ${className}`}
       dir="ltr"
     >
       {/* Step labels */}
@@ -48,7 +50,7 @@ export const Slider: React.FC<SliderProps> = ({
             key={step}
             className={`${
               window.innerWidth < 768 ? "w-6 text-base" : "w-8 text-xl"
-            } text-center font-bold text-gray-800`}
+            } text-center font-bold text-gray-800 dark:text-slate-200`}
           >
             {step}
           </div>
@@ -65,14 +67,14 @@ export const Slider: React.FC<SliderProps> = ({
         <div
           className={`absolute w-full ${
             window.innerWidth < 768 ? "h-1" : "h-2"
-          } bg-gray-200 top-1/2 -translate-y-1/2 rounded-full`}
+          } bg-gray-200 dark:bg-slate-600 top-1/2 -translate-y-1/2 rounded-full`}
         />
 
         {/* Colored progress track */}
         <div
           className={`absolute ${
             window.innerWidth < 768 ? "h-2" : "h-4"
-          } bg-[#1A604E] top-1/2 -translate-y-1/2 rounded-full`}
+          } bg-[#1A604E] dark:bg-emerald-500 top-1/2 -translate-y-1/2 rounded-full`}
           style={{
             width: `${percentage}%`,
             transition: "width 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -88,7 +90,7 @@ export const Slider: React.FC<SliderProps> = ({
               key={step}
               className={`${
                 window.innerWidth < 768 ? "w-1 h-1" : "w-2 h-2"
-              } bg-[#b9d0aa] rounded-full`}
+              } bg-[#b9d0aa] dark:bg-emerald-700 rounded-full`}
             />
           ))}
         </div>
@@ -106,12 +108,12 @@ export const Slider: React.FC<SliderProps> = ({
           <div
             className={`flex flex-col items-center justify-center ${
               window.innerWidth < 768 ? "gap-1.5 p-[5px]" : "gap-2.5 p-[8px]"
-            } bg-[#eaeef1] rounded-lg shadow-[-6px_7px_21px_-6px_#1a604e,2px_-1px_66.3px_18px_#ffffff] transition-transform duration-200 hover:scale-105`}
+            } bg-[#eaeef1] dark:bg-slate-700 rounded-lg shadow-[-6px_7px_21px_-6px_#1a604e,2px_-1px_66.3px_18px_#ffffff] dark:shadow-[-6px_7px_21px_-6px_#0a2e24,2px_-1px_66.3px_18px_#1e293b] transition-transform duration-200 hover:scale-105`}
           >
             <div
               className={`${
                 window.innerWidth < 768 ? "w-8 h-8" : "w-8 h-8"
-              } bg-[#b9d0aa] rounded-md shadow-[inset_-1px_1px_4px_#00000040,-1px_1px_4px_#ffffff]`}
+              } bg-[#b9d0aa] dark:bg-emerald-800 rounded-md shadow-[inset_-1px_1px_4px_#00000040,-1px_1px_4px_#ffffff] dark:shadow-[inset_-1px_1px_4px_#00000080,-1px_1px_4px_#1e293b]`}
             />
           </div>
         </div>

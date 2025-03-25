@@ -60,13 +60,13 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
   return (
     <div className="flex flex-col gap-8">
       <div
-        className="flex gap-2 flex-row-reverse items-center text-primary font-bold cursor-pointer"
+        className="flex gap-2 flex-row-reverse items-center text-primary dark:text-emerald-100 font-bold cursor-pointer"
         onClick={toggleCollapse}
       >
         <Image
           src={ArrowLeft}
           alt="Toggle collapse"
-          className={`w-4 h-4 transition-transform duration-300 ${
+          className={`w-4 h-4 transition-transform duration-300 dark:invert ${
             isCollapsed ? "rotate-90" : "rotate-0"
           }`}
         />
@@ -90,12 +90,14 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
             exit="closed"
           >
             {items.map((item, questionIndex) => (
-              <Container key={questionIndex}>
+              <Container key={questionIndex} className="dark:bg-slate-800 dark:border-emerald-500">
                 <div
                   className="flex flex-col justify-between gap-4 items-start"
                   dir="rtl"
                 >
-                  <h2 className="text-black text-xl">{item.title}</h2>
+                  <h2 className="text-black dark:text-slate-200 text-xl">
+                    {item.title}
+                  </h2>
                   <div
                     className={`flex flex-col flex-wrap justify-between items-start ${
                       window.innerWidth < 768 ? "gap-2 mx-4" : "gap-4 mx-8"
@@ -114,12 +116,12 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
                           active={
                             selectedAnswers[questionIndex] === answerIndex
                           }
-                          className="check-box-instance"
+                          className="check-box-instance dark:border-emerald-500"
                         />
                         <span
                           className={`${
                             window.innerWidth < 768 ? "text-xs" : "text-sm"
-                          } text-black`}
+                          } text-black dark:text-slate-200`}
                         >
                           {data}
                         </span>
@@ -129,7 +131,7 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
                 </div>
               </Container>
             ))}
-            <Container>
+            <Container className="dark:bg-slate-800 dark:border-emerald-500">
               <div
                 className={`flex ${
                   window.innerWidth < 768 ? "flex-col" : "flex-col-reverse"
@@ -139,7 +141,7 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
               >
                 <Slider min={0} max={10} steps={10} />
                 <h2
-                  className={`text-black ${
+                  className={`text-black dark:text-slate-200 ${
                     window.innerWidth < 768 ? "text-lg" : "text-xl"
                   }`}
                 >
@@ -148,12 +150,12 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
                 </h2>
               </div>
             </Container>
-            <Container>
+            <Container className="dark:bg-slate-800 dark:border-emerald-500">
               <div
                 className="flex flex-col justify-between gap-4 items-start"
                 dir="rtl"
               >
-                <h2 className="text-black text-xl">
+                <h2 className="text-black dark:text-slate-200 text-xl">
                   چه زمانی ادرار نشت می کند؟ (لطفاً تمام مواردی که برای شما
                   اعمال می شود را علامت بزنید)
                 </h2>
@@ -172,11 +174,11 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
                     "بدون هیچ دلیل واضحی نشت می کند",
                   ].map((data, answerIndex) => (
                     <div className="flex items-center gap-2" key={answerIndex}>
-                      <CheckBox className="check-box-instance" />
+                      <CheckBox className="check-box-instance dark:border-emerald-500" />
                       <span
                         className={`${
                           window.innerWidth < 768 ? "text-xs" : "text-sm"
-                        } text-black`}
+                        } text-black dark:text-slate-200`}
                       >
                         {data}
                       </span>
@@ -194,7 +196,7 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
               dir="rtl"
             >
               <h2
-                className={`text-black ${
+                className={`text-black dark:text-slate-200 ${
                   window.innerWidth < 768 ? "text-lg mt-0" : "text-xl mt-4"
                 }`}
               >
@@ -211,7 +213,7 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
             <Button
               text={"ثبت تست"}
               variant="secondary"
-              className="w-fit mt-2"
+              className="w-fit mt-2 dark:bg-emerald-800 dark:text-emerald-100 dark:hover:bg-emerald-700"
             />
           </motion.div>
         )}

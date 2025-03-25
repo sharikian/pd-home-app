@@ -73,8 +73,14 @@ const Parvande = () => {
       <motion.div variants={itemVariants} className="flex flex-col gap-4">
         {/* Header */}
         <div className="flex justify-end gap-4">
-          <div className="text-lg font-bold text-primary">پیگیری</div>
-          <Image className="w-8 h-8" alt="Personal Icon" src={MedicalFiles} />
+          <div className="text-lg font-bold text-primary dark:text-emerald-100">
+            پیگیری
+          </div>
+          <Image
+            className="w-8 h-8 dark:invert"
+            alt="Personal Icon"
+            src={MedicalFiles}
+          />
         </div>
         <SimpleActivityTable />
         {/* Add Button */}
@@ -87,16 +93,16 @@ const Parvande = () => {
       </motion.div>
       <motion.hr
         variants={itemVariants}
-        className="h-[0.1rem] bg-slate-300 mt-4 w-full"
+        className="h-[0.1rem] bg-slate-300 dark:bg-slate-600 mt-4 w-full"
       />
       {items.map((data, index) => (
         <Fragment key={index}>
           <motion.div variants={itemVariants}>
-            <Ques title={data[0]} icon={data[1]} />
+            <Ques title={data[0]} icon={data[1]} className="dark:bg-slate-800 dark:border-emerald-500 dark:text-emerald-100" />
           </motion.div>
           <motion.hr
             variants={itemVariants}
-            className="h-[0.1rem] bg-slate-300 mt-4 w-full"
+            className="h-[0.1rem] bg-slate-300 dark:bg-slate-600 mt-4 w-full"
           />
         </Fragment>
       ))}

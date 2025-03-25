@@ -42,10 +42,14 @@ const Parvande = () => {
         variants={itemVariants}
         className="flex justify-end gap-4 items-center"
       >
-        <div className="text-lg font-bold text-primary">
+        <div className="text-lg font-bold text-primary dark:text-emerald-100">
           فعالت ها در یک نگاه
         </div>
-        <Image className="w-8 h-8" alt="Personal Icon" src={ClockArrowDown} />
+        <Image
+          className="w-8 h-8 dark:invert"
+          alt="Personal Icon"
+          src={ClockArrowDown}
+        />
       </motion.div>
 
       {/* Search and Dropdown */}
@@ -68,7 +72,7 @@ const Parvande = () => {
           dir="rtl"
         >
           <h2
-            className={`text-black ${
+            className={`text-black dark:text-slate-200 ${
               window.innerWidth < 768 ? "text-lg" : "text-xl"
             }`}
           >

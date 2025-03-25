@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 interface QuesProps {
   title: string;
   icon: string | StaticImageData;
+  className?: string; // Added to allow external className prop
 }
 
 interface FormRowProps {
@@ -25,7 +26,8 @@ const FormRow: React.FC<FormRowProps> = ({ rowNumber, index = 0 }) => {
     flex items-center flex-col 
     ${window.innerWidth < 768 ? "gap-2 pt-4" : "gap-0"} 
     rounded-[15px] 
-    border-r-[2px] border-r-[#B9D0AA] border-l-[2px] border-l-[#B9D0AA]
+    border-r-[2px] border-r-[#B9D0AA] dark:border-r-emerald-400/50 
+    border-l-[2px] border-l-[#B9D0AA] dark:border-l-emerald-400/50
     shadow-[0_2px_4px_rgba(0,0,0,0.1)]
     ${index % 2 === 0 ? "bg-[#EAEEF1] dark:bg-[#2d333b]" : "bg-[#d4dadf] dark:bg-[#3b444b]"}
   `;
@@ -66,7 +68,7 @@ const FormRow: React.FC<FormRowProps> = ({ rowNumber, index = 0 }) => {
       }`}
       style={{ width: "-webkit-fill-available" }}
     >
-      <h2 className="text-black text-xl mr-4" dir="rtl">
+      <h2 className="text-black dark:text-slate-200 text-xl mr-4" dir="rtl">
         {rowNumber}
       </h2>
       <div className={containerStyles} dir="ltr">
@@ -116,7 +118,7 @@ const FormRow: React.FC<FormRowProps> = ({ rowNumber, index = 0 }) => {
   );
 };
 
-const Ques = ({ title, icon }: QuesProps) => {
+const Ques = ({ title, icon, className = "" }: QuesProps) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
   const toggleCollapse = (): void => {
@@ -149,15 +151,15 @@ const Ques = ({ title, icon }: QuesProps) => {
   ];
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className={`flex flex-col gap-8 ${className}`}>
       <div
-        className="flex gap-2 flex-row-reverse items-center text-primary font-bold cursor-pointer"
+        className="flex gap-2 flex-row-reverse items-center text-primary dark:text-emerald-100 font-bold cursor-pointer"
         onClick={toggleCollapse}
       >
         <Image
           src={ArrowLeft}
           alt="Toggle collapse"
-          className={`w-4 h-4 transition-transform duration-300 ${
+          className={`w-4 h-4 transition-transform duration-300 dark:invert ${
             isCollapsed ? "rotate-90" : "rotate-0"
           }`}
         />
@@ -190,7 +192,7 @@ const Ques = ({ title, icon }: QuesProps) => {
                 <div className="flex flex-col gap-12">
                   {labels.map((data, index) => (
                     <h2
-                      className="text-black text-xl whitespace-nowrap"
+                      className="text-black dark:text-slate-200 text-xl whitespace-nowrap"
                       dir="rtl"
                       key={index}
                     >

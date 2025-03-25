@@ -43,13 +43,13 @@ export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
     <div className="flex flex-col gap-8">
       {/* Header */}
       <div
-        className="flex gap-2 flex-row-reverse items-center text-primary font-bold cursor-pointer"
+        className="flex gap-2 flex-row-reverse items-center text-primary dark:text-emerald-100 font-bold cursor-pointer"
         onClick={toggleCollapse}
       >
         <Image
           src={ArrowLeft}
           alt="Toggle collapse"
-          className={`w-4 h-4 transition-transform duration-300 ${
+          className={`w-4 h-4 transition-transform duration-300 dark:invert ${
             isCollapsed ? "rotate-90" : "rotate-0"
           }`}
         />
@@ -78,16 +78,26 @@ export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
                 window.innerWidth < 768 ? "flex-col" : "flex-row-reverse"
               } justify-between items-center self-stretch gap-4 md:gap-0`}
             >
-              <h2 className="text-black text-xl">سوالات</h2>
+              <h2 className="text-black dark:text-slate-200 text-xl">
+                سوالات
+              </h2>
               <div
                 className={`flex justify-between items-center ${
                   window.innerWidth < 768 ? "gap-6" : "gap-14"
                 }`}
               >
-                <span className="text-black text-xl w-4 ml-4">۱</span>
-                <span className="text-black text-xl w-4">۲</span>
-                <span className="text-black text-xl w-4">۳</span>
-                <span className="text-black text-xl w-4">۴</span>
+                <span className="text-black dark:text-slate-200 text-xl w-4 ml-4">
+                  ۱
+                </span>
+                <span className="text-black dark:text-slate-200 text-xl w-4">
+                  ۲
+                </span>
+                <span className="text-black dark:text-slate-200 text-xl w-4">
+                  ۳
+                </span>
+                <span className="text-black dark:text-slate-200 text-xl w-4">
+                  ۴
+                </span>
               </div>
             </div>
             {items.map((item, index) => (
@@ -103,17 +113,17 @@ export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
                   value={item}
                   readonly
                   alignRight
-                  className={window.innerWidth < 768 ? "w-full" : "w-[150%]"}
+                  className={window.innerWidth < 768 ? "w-full" : "w-[160%]"}
                 />
                 <div
                   className={`flex justify-between items-center ${
                     window.innerWidth < 768 ? "gap-6" : "gap-10"
                   }`}
                 >
-                  <CheckBox className="check-box-instance" />
-                  <CheckBox className="check-box-instance" />
-                  <CheckBox className="check-box-instance" />
-                  <CheckBox className="check-box-instance" />
+                  <CheckBox className="check-box-instance dark:border-emerald-500" />
+                  <CheckBox className="check-box-instance dark:border-emerald-500" />
+                  <CheckBox className="check-box-instance dark:border-emerald-500" />
+                  <CheckBox className="check-box-instance dark:border-emerald-500" />
                 </div>
               </div>
             ))}
@@ -126,7 +136,7 @@ export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
               dir="rtl"
             >
               <h2
-                className={`text-black text-xl ${
+                className={`text-black dark:text-slate-200 text-xl ${
                   window.innerWidth < 768 ? "mt-0" : "mt-4"
                 }`}
               >
@@ -143,7 +153,7 @@ export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
             <Button
               text={"ثبت تست"}
               variant="secondary"
-              className="w-fit mt-2"
+              className="w-fit mt-2 dark:bg-emerald-800 dark:text-emerald-100 dark:hover:bg-emerald-700"
             />
           </motion.div>
         )}

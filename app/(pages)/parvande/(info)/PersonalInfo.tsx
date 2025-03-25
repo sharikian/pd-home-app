@@ -13,8 +13,14 @@ const PersonalInfo = () => {
     <div className="flex flex-col gap-4">
       {/* Header */}
       <div className="flex justify-end gap-4">
-        <div className="text-lg font-bold text-primary">مشخصات فردی</div>
-        <Image className="w-8 h-8" alt="Personal Icon" src={PersonalIcon} />
+        <div className="text-lg font-bold text-primary dark:text-emerald-100">
+          مشخصات فردی
+        </div>
+        <Image
+          className="w-8 h-8 dark:invert"
+          alt="Personal Icon"
+          src={PersonalIcon}
+        />
       </div>
 
       {/* Input Fields */}
@@ -37,7 +43,7 @@ const PersonalInfo = () => {
             "اسفند",
           ]}
           locale={gregorian_fa}
-          className="w-full p-2 border border-[#1A604E] rounded-[5px] text-right bg-white"
+          className="w-full p-2 border border-[#1A604E] dark:border-emerald-500 rounded-[5px] text-right bg-white dark:bg-slate-800"
           placeholder="1327/12/9"
           render={
             <Input title={"تولد"} placeholder="22/03/1385" icon={Calendar} />
@@ -49,18 +55,18 @@ const PersonalInfo = () => {
         <Input title="شغل" placeholder=" " />
         <Input title="تحصیلات" placeholder=" " />
       </div>
-      <hr className="h-[0.1rem] bg-slate-300" />
+      <hr className="h-[0.1rem] bg-slate-300 dark:bg-slate-600" />
 
       {/* Contact Information */}
       <div className="flex flex-col gap-4">
-        <div className="text-lg font-bold text-primary text-right">
+        <div className="text-lg font-bold text-primary dark:text-emerald-100 text-right">
           شماره تماس
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 w-full">
           {/* Column 1: Note (Centered, 1/3 width = 4/12 columns) */}
           <div className="col-span-1 md:col-span-4 flex items-center justify-center">
-            <div className="text-sm text-gray-600 text-end max-w-80">
+            <div className="text-sm text-gray-600 dark:text-slate-400 text-end max-w-80">
               درصورتی که شماره شما در هریک از پیام رسان ها با شماره تماس وارد
               شده متفاوت است، گزینه پیام رسان مورد نظر را غیرفعال کرده و شماره
               دیگر را وارد کنید
@@ -78,11 +84,15 @@ const PersonalInfo = () => {
               />
               <div className="flex items-center gap-20 mb-5">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-black">تلگرام</span>
+                  <span className="text-sm text-black dark:text-slate-200">
+                    تلگرام
+                  </span>
                   <CheckBox />
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-black">ایتا</span>
+                  <span className="text-sm text-black dark:text-slate-200">
+                    ایتا
+                  </span>
                   <CheckBox />
                 </div>
               </div>
@@ -97,11 +107,15 @@ const PersonalInfo = () => {
               />
               <div className="flex items-center gap-20 mb-5">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-black">تلگرام</span>
+                  <span className="text-sm text-black dark:text-slate-200">
+                    تلگرام
+                  </span>
                   <CheckBox />
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-black">ایتا</span>
+                  <span className="text-sm text-black dark:text-slate-200">
+                    ایتا
+                  </span>
                   <CheckBox />
                 </div>
               </div>
@@ -109,7 +123,7 @@ const PersonalInfo = () => {
           </div>
         </div>
       </div>
-      <hr className="h-[0.1rem] bg-slate-300" />
+      <hr className="h-[0.1rem] bg-slate-300 dark:bg-slate-600" />
     </div>
   );
 };

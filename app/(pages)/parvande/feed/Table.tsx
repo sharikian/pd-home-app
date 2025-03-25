@@ -36,9 +36,9 @@ const SimpleActivityTable: React.FC = () => {
           {headers.map((header, colIndex) => (
             <div
               key={colIndex}
-              className="flex flex-col border border-[#1A604E] rounded-lg p-2 bg-white"
+              className="flex flex-col border border-[#1A604E] dark:border-emerald-500 rounded-lg p-2 bg-white dark:bg-slate-800"
             >
-              <div className="text-lg font-medium text-black text-right pb-2">
+              <div className="text-lg font-medium text-black dark:text-slate-200 text-right pb-2">
                 {header}
               </div>
               {colIndex === 0 ? (
@@ -74,6 +74,7 @@ const SimpleActivityTable: React.FC = () => {
                       "اسفند",
                     ]}
                     locale={gregorian_fa}
+                    className="w-full p-2 border border-[#1A604E] dark:border-emerald-500 rounded-[5px] text-right bg-white dark:bg-slate-800"
                     placeholder="1327/12/9"
                     render={
                       <Input
@@ -93,7 +94,7 @@ const SimpleActivityTable: React.FC = () => {
                     handleInputChange("description", e.target.value)
                   }
                   placeholder="توضیحات را وارد کنید"
-                  className="w-full text-base font-medium text-black [direction:rtl]"
+                  className="w-full text-base font-medium text-black dark:text-slate-200 [direction:rtl]"
                   noBorder // No border, no shadow
                 />
               )}
@@ -113,7 +114,7 @@ const SimpleActivityTable: React.FC = () => {
                 {headers.map((text: string, index: number) => (
                   <th
                     key={index}
-                    className="p-2.5 text-2xl font-medium text-black text-right w-1/3"
+                    className="p-2.5 text-2xl font-medium text-black dark:text-slate-200 text-right w-1/3"
                   >
                     {text}
                   </th>
@@ -121,9 +122,9 @@ const SimpleActivityTable: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-white h-[87px]">
+              <tr className="bg-white dark:bg-slate-800 h-[87px]">
                 {[...Array(3)].map((_: unknown, colIndex: number) => {
-                  let cellClass: string = "p-2.5 border border-[#1A604E] relative"; // Reintroduced padding
+                  let cellClass: string = "p-2.5 border border-[#1A604E] dark:border-emerald-500 relative"; // Reintroduced padding
                   if (colIndex === 0)
                     cellClass += " rounded-tr-[15px] rounded-br-[15px]";
                   if (colIndex === 2)
@@ -165,6 +166,7 @@ const SimpleActivityTable: React.FC = () => {
                               "اسفند",
                             ]}
                             locale={gregorian_fa}
+                            className="w-full p-2 border border-[#1A604E] dark:border-emerald-500 rounded-[5px] text-right bg-white dark:bg-slate-800"
                             placeholder="1327/12/9"
                             render={
                               <Input
@@ -184,7 +186,7 @@ const SimpleActivityTable: React.FC = () => {
                             handleInputChange("description", e.target.value)
                           }
                           placeholder="توضیحات را وارد کنید"
-                          className="w-full text-lg font-medium text-black [direction:rtl]" // Keep it full width but with padding
+                          className="w-full text-lg font-medium text-black dark:text-slate-200 [direction:rtl]" // Keep it full width but with padding
                           noBorder // No border, no shadow
                         />
                       )}

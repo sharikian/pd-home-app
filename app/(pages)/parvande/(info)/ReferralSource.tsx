@@ -8,15 +8,17 @@ const ReferralSource = () => {
     <div className="flex flex-col gap-4">
       {/* Header */}
       <div className="flex items-center justify-end gap-4">
-        <p className="text-lg font-bold text-primary">نحوه آشنایی با خانه پارکینسون</p>
-        <Image className="w-8 h-8" alt="Heart Icon" src={Heart} />
+        <p className="text-lg font-bold text-primary dark:text-emerald-100">
+          نحوه آشنایی با خانه پارکینسون
+        </p>
+        <Image className="w-8 h-8 dark:invert" alt="Heart Icon" src={Heart} />
       </div>
 
       {/* Dropdown */}
       <DropDown
         options={['دوست', 'پزشک', 'اینترنت']}
         placeholder="گزینه مورد نظر را انتخاب کنید"
-        variant='input-like'
+        variant="input-like"
         alignRight
       />
     </div>
