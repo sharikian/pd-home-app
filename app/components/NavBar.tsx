@@ -10,6 +10,9 @@ import {
   HomeTwo,
   PeopleSpeak,
   MingcuteExitLine,
+  DocumentFolder,
+  Calendar,
+  UserDoctor,
 } from "@/public/icons";
 import Logo from "@/public/imgs/logo.png";
 import Image from "next/image";
@@ -17,6 +20,7 @@ import Link from "next/link";
 
 interface Props {
   className?: string;
+  isAdmin?: boolean;
 }
 
 interface NavItem {
@@ -25,10 +29,10 @@ interface NavItem {
   link: string | string[];
 }
 
-export const NavBar = ({ className }: Props): JSX.Element => {
+export const NavBar = ({ className, isAdmin = false }: Props): JSX.Element => {
   const pathname = usePathname();
 
-  const navItems: NavItem[] = [
+  const userNavItems: NavItem[] = [
     { value: "خانه", icon: HomeTwo, link: "" },
     { value: "پرونده", icon: FileCollection, link: "parvande" },
     { value: "مسیر توانبخشی", icon: ConnectionPointTwo, link: ["myplan", "wents"] },
@@ -36,13 +40,18 @@ export const NavBar = ({ className }: Props): JSX.Element => {
     { value: "مشاوره", icon: PeopleSpeak, link: ["FAQ/1", "FAQ/2", "FAQ/3", "FAQ/4", "FAQ/5"] },
   ];
 
-  const getActiveItem = () => {
-    // Split the pathname into segments
-    const pathSegments = pathname?.split("/").filter(segment => segment) || [];
-    
-    // If there's only one segment (e.g., "/parvande"), use it; if more (e.g., "/FAQ/1"), join the first two segments
-    const currentPath = pathSegments.length >= 2 ? `${pathSegments[0]}/${pathSegments[1]}` : pathSegments[0] || "";
+  const adminNavItems: NavItem[] = [
+    { value: "خانه", icon: HomeTwo, link: "dr" },
+    { value: "لیست بیماران", icon: DocumentFolder, link: "patients" },
+    { value: "مدیریت زمان", icon: Calendar, link: "timing" },
+    { value: "پروفایل", icon: UserDoctor, link: "profile" },
+  ];
 
+  const navItems = isAdmin ? adminNavItems : userNavItems;
+
+  const getActiveItem = () => {
+    const pathSegments = pathname?.split("/").filter(segment => segment) || [];
+    const currentPath = pathSegments.length >= 2 ? `${pathSegments[0]}/${pathSegments[1]}` : pathSegments[0] || "";
     const active = navItems.find((item) =>
       Array.isArray(item.link) ? item.link.includes(currentPath) : item.link === currentPath
     );
@@ -109,32 +118,44 @@ export const NavBar = ({ className }: Props): JSX.Element => {
 
       {/* Mobile Bottom Toolbar */}
       <div className="md:hidden fixed bottom-1 left-1 right-1 z-50 bg-[#EAEEF1] dark:bg-slate-700 shadow-[0_-8px_20px_rgba(0,0,0,0.15),0_2px_10px_rgba(0,0,0,0.1)] border border-[#00000010] dark:border-slate-600/50 px-2 py-2 flex justify-around items-center h-[80px] rounded-[9999px]">
-        {/* Reordered nav items: مشاوره, مسیر توانبخشی, خانه, پرونده, آموزش ها */}
-        <MobileNavItem
-          item={navItems[4]} // مشاوره
-          isActive={activeItem === navItems[4].value}
-          link={getTargetLink(navItems[4].link)}
-        />
-        <MobileNavItem
-          item={navItems[2]} // مسیر توانبخشی
-          isActive={activeItem === navItems[2].value}
-          link={getTargetLink(navItems[2].link)}
-        />
-        <MobileNavItem
-          item={navItems[0]} // خانه
-          isActive={activeItem === navItems[0].value}
-          link={getTargetLink(navItems[0].link)}
-        />
-        <MobileNavItem
-          item={navItems[1]} // پرونده
-          isActive={activeItem === navItems[1].value}
-          link={getTargetLink(navItems[1].link)}
-        />
-        <MobileNavItem
-          item={navItems[3]} // توصیه و آموزش ها
-          isActive={activeItem === navItems[3].value}
-          link={getTargetLink(navItems[3].link)}
-        />
+        {isAdmin ? (
+          navItems.map((item) => (
+            <MobileNavItem
+              key={item.value}
+              item={item}
+              isActive={activeItem === item.value}
+              link={getTargetLink(item.link)}
+            />
+          ))
+        ) : (
+          <>
+            <MobileNavItem
+              item={navItems[4]} // مشاوره
+              isActive={activeItem === navItems[4].value}
+              link={getTargetLink(navItems[4].link)}
+            />
+            <MobileNavItem
+              item={navItems[2]} // مسیر توانبخشی
+              isActive={activeItem === navItems[2].value}
+              link={getTargetLink(navItems[2].link)}
+            />
+            <MobileNavItem
+              item={navItems[0]} // خانه
+              isActive={activeItem === navItems[0].value}
+              link={getTargetLink(navItems[0].link)}
+            />
+            <MobileNavItem
+              item={navItems[1]} // پرونده
+              isActive={activeItem === navItems[1].value}
+              link={getTargetLink(navItems[1].link)}
+            />
+            <MobileNavItem
+              item={navItems[3]} // توصیه و آموزش ها
+              isActive={activeItem === navItems[3].value}
+              link={getTargetLink(navItems[3].link)}
+            />
+          </>
+        )}
       </div>
     </>
   );

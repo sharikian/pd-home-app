@@ -39,7 +39,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
       {screenSize.width <= 992 && (
         <Image className="fixed z-50 top-80" src={Mark} alt=">" />
       )}
-      <NavBar className="shadow-left fixed top-0 right-0 z-50 bg-white pt-3 dark:bg-slate-800" />
+      <NavBar className="shadow-left fixed top-0 right-0 z-50 bg-white pt-3 dark:bg-slate-800" isAdmin />
       <main className="flex-1 md:mr-[200px] mt-0 dark:bg-slate-900">
         <div className="flex w-full md:w-[86vw] lg:w-[91vw] flex-col items-center gap-4 md:gap-6">
           <Header

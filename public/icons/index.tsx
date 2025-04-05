@@ -47,6 +47,8 @@ export { default as Medicine } from "./medicine.svg";
 export { default as PlusBox } from "./plus-box.svg";
 export { default as ClockArrowDown } from "./clock-arrow-down.svg";
 export { default as SearchVisual } from "./search-visual.svg";
+export { default as DocumentFolder } from "./document-folder.svg";
+export { default as UserDoctor } from "./user-doctor.svg";
 
 
 interface Prop {
