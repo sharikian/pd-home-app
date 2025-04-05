@@ -158,7 +158,7 @@ const ActivityTable: React.FC = () => {
       <div
         className={`flex w-full ${
           window.innerWidth < 768 ? "flex-col" : "items-center justify-between"
-        } p-4 border-t border-[#1A604E] dark:border-emerald-500 gap-4`}
+        } p-4 border-[#1A604E] dark:border-emerald-500 gap-4`}
       >
         <div
           className={`flex ${

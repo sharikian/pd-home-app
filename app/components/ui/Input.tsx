@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
 import Image from "next/image";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -14,6 +14,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   readonly?: boolean;
   bgIndex?: number;
   noBorder?: boolean;
+  multiline?: boolean;
 }
 
 export const Input = ({
@@ -30,24 +31,25 @@ export const Input = ({
   readonly = false,
   bgIndex,
   noBorder = false,
+  multiline = false,
   ...rest
 }: InputProps) => {
   const variantStyles = {
     primary: {
       border: "#1A604E",
-      borderDark: "#10B981", // emerald-500 for dark mode
+      borderDark: "#10B981",
       placeholder: "#1A604EBA",
-      placeholderDark: "#10B98180", // Slightly transparent emerald-500 for dark mode
+      placeholderDark: "#10B98180",
       text: "#1A604E",
-      textDark: "#E2E8F0", // slate-200 for dark mode
+      textDark: "#E2E8F0",
     },
     warning: {
       border: "#D85562",
-      borderDark: "#EF4444", // red-500 for dark mode
+      borderDark: "#EF4444",
       placeholder: "#D85562BA",
-      placeholderDark: "#EF444480", // Slightly transparent red-500 for dark mode
+      placeholderDark: "#EF444480",
       text: "#D85562",
-      textDark: "#E2E8F0", // slate-200 for dark mode
+      textDark: "#E2E8F0",
     },
   };
 
@@ -103,27 +105,49 @@ export const Input = ({
           !noBorder && "bg-[#eaeef165] dark:bg-transparent"
         } ${currentSize.padding} relative`}
       >
-        <input
-          {...rest}
-          type={type}
-          placeholder={placeholder || "متن مورد نظر را وارد کنید"}
-          readOnly={readonly}
-          className={`
-            w-full ${currentSize.inputHeight} px-[5px] rounded-[5px] ${bgColor} ${currentSize.fontSize} ${className}
-            ${
-              noBorder
-                ? "border-none shadow-none"
-                : `border-[1.5px] border-solid border-[${variantStyles[variant].border}] dark:border-[${variantStyles[variant].borderDark}]`
-            }
-            outline-none
-            font-pelak
-            text-[${variantStyles[variant].text}] dark:text-[${variantStyles[variant].textDark}]
-            placeholder:text-[${variantStyles[variant].placeholder}] dark:placeholder:text-[${variantStyles[variant].placeholderDark}]
-            ${centerize ? "text-center placeholder:text-center" : "text-right placeholder:text-right"}
-            ${icon ? "pr-2" : ""}
-          `}
-        />
-        {icon && (
+        {multiline ? (
+          <textarea
+            {...(rest as TextareaHTMLAttributes<HTMLTextAreaElement>)}
+            placeholder={placeholder || "متن مورد نظر را وارد کنید"}
+            readOnly={readonly}
+            className={`
+              w-full ${currentSize.inputHeight} px-[5px] rounded-[5px] ${bgColor} ${currentSize.fontSize} ${className}
+              ${
+                noBorder
+                  ? "border-none shadow-none"
+                  : `border-[1.5px] border-solid border-[${variantStyles[variant].border}] dark:border-[${variantStyles[variant].borderDark}]`
+              }
+              outline-none
+              font-pelak
+              text-[${variantStyles[variant].text}] dark:text-[${variantStyles[variant].textDark}]
+              placeholder:text-[${variantStyles[variant].placeholder}] dark:placeholder:text-[${variantStyles[variant].placeholderDark}]
+              ${centerize ? "text-center placeholder:text-center" : "text-right placeholder:text-right"}
+              resize-none
+            `}
+          />
+        ) : (
+          <input
+            {...rest}
+            type={type}
+            placeholder={placeholder || "متن مورد نظر را وارد کنید"}
+            readOnly={readonly}
+            className={`
+              w-full ${currentSize.inputHeight} px-[5px] rounded-[5px] ${bgColor} ${currentSize.fontSize} ${className}
+              ${
+                noBorder
+                  ? "border-none shadow-none"
+                  : `border-[1.5px] border-solid border-[${variantStyles[variant].border}] dark:border-[${variantStyles[variant].borderDark}]`
+              }
+              outline-none
+              font-pelak
+              text-[${variantStyles[variant].text}] dark:text-[${variantStyles[variant].textDark}]
+              placeholder:text-[${variantStyles[variant].placeholder}] dark:placeholder:text-[${variantStyles[variant].placeholderDark}]
+              ${centerize ? "text-center placeholder:text-center" : "text-right placeholder:text-right"}
+              ${icon ? "pr-2" : ""}
+            `}
+          />
+        )}
+        {icon && !multiline && (
           <Image
             src={icon}
             className="absolute left-6 top-1/2 transform -translate-y-1/2 w-5 h-5"

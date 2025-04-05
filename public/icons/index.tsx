@@ -49,6 +49,12 @@ export { default as ClockArrowDown } from "./clock-arrow-down.svg";
 export { default as SearchVisual } from "./search-visual.svg";
 export { default as DocumentFolder } from "./document-folder.svg";
 export { default as UserDoctor } from "./user-doctor.svg";
+export { default as AccountClock } from "./account-clock.svg";
+export { default as AccountHeart } from "./account-heart.svg";
+export { default as AccountGroup } from "./account-group.svg";
+export { default as ClipBoard } from "./clipboard.svg";
+export { default as ListHeart } from "./list-heart.svg";
+export { default as ClipboardRevert } from "./clipboard-revert.svg";
 
 
 interface Prop {

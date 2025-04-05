@@ -47,7 +47,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
             userId={userId}
             className="px-2 md:px-6 lg:px-10 py-3 md:py-5"
           />
-          <div className="w-full px-2 md:px-4 lg:px-8">{children}</div>
+          <div className="w-full px-2 md:px-4 lg:px-20 mb-12">{children}</div>
         </div>
       </main>
     </div>
