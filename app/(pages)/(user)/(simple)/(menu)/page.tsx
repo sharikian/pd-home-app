@@ -2,7 +2,7 @@
 import { Together } from './Together';
 import { Activities } from './Activities';
 import { NotDoIt } from './NotDoIt';
-import { DatePicker } from '../../../components';
+import { DatePicker } from '@/app/components';
 import { ArrowDown } from '@/public/icons';
 import Image from 'next/image';
 import DoctorPic from '@/public/imgs/dashboard/doctor.png';

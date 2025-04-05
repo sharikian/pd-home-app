@@ -1,4 +1,4 @@
-"use client"; // Required for client-side components in Next.js
+"use client";
 
 import { useSession } from "next-auth/react";
 import { Header, NavBar } from "@/app/components";
@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import { Mark } from "@/public/icons";
 import Image from "next/image";
-import useScreenSize from "../hooks/useScreenSize";
+import useScreenSize from "@/app/hooks/useScreenSize";
 
 interface RootLayoutProps {
   children: ReactNode;
