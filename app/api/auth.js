@@ -1,8 +1,8 @@
 const admins = [
-    { username: "admin", password: "1234", id: "35ef" }
+    { username: "admin", password: "1234", id: "989021111111" }
   ];
   const users = [
-    { username: "user", password: "1234", id: "2fa3" }
+    { username: "user", password: "1234", id: "989023333333" }
   ];
   
   export default function handler(req, res) {

@@ -1,5 +1,5 @@
 import { ClipboardRevert, ListHeart, ClipBoard, Danger } from "@/public/icons";
-import ActivityTable from "../dr/components/Table";
+import ActivityTable from "../admin/components/Table";
 import Pagination from "./components/Pagination";
 import Image from "next/image";
 import { Button } from "@/app/components/";

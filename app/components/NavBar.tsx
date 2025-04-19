@@ -41,7 +41,7 @@ export const NavBar = ({ className, isAdmin = false }: Props): JSX.Element => {
   ];
 
   const adminNavItems: NavItem[] = [
-    { value: "خانه", icon: HomeTwo, link: "dr" },
+    { value: "خانه", icon: HomeTwo, link: "admin" },
     { value: "لیست بیماران", icon: DocumentFolder, link: "patients" },
     { value: "مدیریت زمان", icon: Calendar, link: "timing" },
     { value: "پروفایل", icon: UserDoctor, link: "profile" },

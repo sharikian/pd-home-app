@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 // In-memory data (could be replaced with a DB or file)
 let admins = [
-  { username: "admin", password: "1234", id: "35ef" }
+  { username: "admin", password: "1234", id: "989021111111" }
 ];
 
 export async function GET() {
