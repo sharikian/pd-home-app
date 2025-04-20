@@ -203,3 +203,16 @@ body {
 .teal .rmdp-day.rmdp-today span {
   background: #1a604e !important;
 }
+
+/* Contants */
+.rmdp-ep-arrow {
+  display: none;
+}
+
+.fc-scrollgrid-sync-table {
+  width: 111% !important;
+}
+
+.fc-col-header {
+  width: 100% !important;
+}

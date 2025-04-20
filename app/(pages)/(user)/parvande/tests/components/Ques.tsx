@@ -4,19 +4,39 @@ import Image, { StaticImageData } from "next/image";
 import { Input, DropDown, Button } from "@/app/components";
 import { ArrowLeft, Plus } from "@/public/icons";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "react-toastify";
 
 interface QuesProps {
   title: string;
   icon: string | StaticImageData;
-  className?: string; // Added to allow external className prop
+  className?: string;
+  formRows: FormRowData[]; // Added to receive form data
+  onChange: (formRows: FormRowData[]) => void; // Added to notify parent of changes
 }
 
 interface FormRowProps {
   rowNumber: number;
   index?: number;
+  formData: FormRowData;
+  onChange: (rowNumber: number, data: FormRowData) => void;
 }
 
-const FormRow: React.FC<FormRowProps> = ({ rowNumber, index = 0 }) => {
+interface FormRowData {
+  specialist: string;
+  information: string;
+  referralReason: string;
+  description: string;
+  visitDate: string;
+  briefResult: string;
+  fullReport: string;
+}
+
+const FormRow: React.FC<FormRowProps> = ({
+  rowNumber,
+  index = 0,
+  formData,
+  onChange,
+}) => {
   const fieldStyles = (fieldIndex: number) => `
     w-full
     ${fieldIndex % 2 === 0 ? "bg-[#EAEEF1] dark:bg-[#2d333b]" : "bg-[#d4dadf] dark:bg-[#3b444b]"}
@@ -56,10 +76,9 @@ const FormRow: React.FC<FormRowProps> = ({ rowNumber, index = 0 }) => {
     "گزارش کامل",
   ];
 
-  // Determine background color for textarea based on index (6th item)
-  const textareaBg = `
-    ${6 % 2 === 0 ? "bg-[#EAEEF1] dark:bg-[#2d333b]" : "bg-[#d4dadf] dark:bg-[#3b444b]"}
-  `;
+  const handleInputChange = (field: keyof FormRowData, value: string) => {
+    onChange(rowNumber, { ...formData, [field]: value });
+  };
 
   return (
     <div
@@ -76,53 +95,111 @@ const FormRow: React.FC<FormRowProps> = ({ rowNumber, index = 0 }) => {
           options={["1", "2", "3"]}
           placeholder={window.innerWidth < 768 ? labels[0] : "انتخاب کنید"}
           variant="input-like"
-          // bgIndex={0} // Assuming DropDown accepts bgIndex
+          value={formData.specialist}
+          onChange={(value) => handleInputChange("specialist", value)}
         />
         <div className={fieldStyles(1)}>
           <Input
             placeholder={window.innerWidth < 768 ? labels[1] : " "}
             bgIndex={1}
+            value={formData.information}
+            onChange={(e) => handleInputChange("information", e.target.value)}
           />
         </div>
         <div className={fieldStyles(2)}>
           <Input
             placeholder={window.innerWidth < 768 ? labels[2] : " "}
             bgIndex={2}
+            value={formData.referralReason}
+            onChange={(e) => handleInputChange("referralReason", e.target.value)}
           />
         </div>
         <div className={fieldStyles(3)}>
           <Input
             placeholder={window.innerWidth < 768 ? labels[3] : " "}
             bgIndex={3}
+            value={formData.description}
+            onChange={(e) => handleInputChange("description", e.target.value)}
           />
         </div>
         <div className={fieldStyles(4)}>
           <Input
             placeholder={window.innerWidth < 768 ? labels[4] : " "}
             bgIndex={4}
+            value={formData.visitDate}
+            onChange={(e) => handleInputChange("visitDate", e.target.value)}
           />
         </div>
         <div className={fieldStyles(5)}>
           <Input
             placeholder={window.innerWidth < 768 ? labels[5] : " "}
             bgIndex={5}
+            value={formData.briefResult}
+            onChange={(e) => handleInputChange("briefResult", e.target.value)}
           />
         </div>
         <textarea
-          className={`${textareaStyles} ${textareaBg}`}
+          className={`${textareaStyles} ${
+            6 % 2 === 0
+              ? "bg-[#EAEEF1] dark:bg-[#2d333b]"
+              : "bg-[#d4dadf] dark:bg-[#3b444b]"
+          }`}
           placeholder={window.innerWidth < 768 ? labels[6] : ""}
           style={{ direction: "rtl" }}
+          value={formData.fullReport}
+          onChange={(e) => handleInputChange("fullReport", e.target.value)}
         />
       </div>
     </div>
   );
 };
 
-const Ques = ({ title, icon, className = "" }: QuesProps) => {
+const Ques = ({
+  title,
+  icon,
+  className = "",
+  formRows,
+  onChange,
+}: QuesProps) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
   const toggleCollapse = (): void => {
-    setIsCollapsed((prev) => !prev);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setIsCollapsed((prev: any) => !prev);
+  };
+
+  // Handler for form row changes
+  const handleFormRowChange = (rowNumber: number, data: FormRowData) => {
+    const updatedFormRows = formRows.map((row, index) =>
+      index + 1 === rowNumber ? data : row
+    );
+    onChange(updatedFormRows);
+  };
+
+  // Handler for Add button
+  const handleAdd = () => {
+    const allRowsFilled = formRows.every((row) =>
+      Object.values(row).every((value) => value.trim() !== "")
+    );
+
+    if (!allRowsFilled) {
+      toast.error("لطفا تمام فیلدهای ردیف‌ها را پر کنید"); // Please fill all fields in the rows
+    } else {
+      toast.success("ارجاع ثبت شد"); // Referral registered
+      // Optionally add a new empty row
+      onChange([
+        ...formRows,
+        {
+          specialist: "",
+          information: "",
+          referralReason: "",
+          description: "",
+          visitDate: "",
+          briefResult: "",
+          fullReport: "",
+        },
+      ]);
+    }
   };
 
   const collapseVariants = {
@@ -201,8 +278,15 @@ const Ques = ({ title, icon, className = "" }: QuesProps) => {
                   ))}
                 </div>
               )}
-              <FormRow rowNumber={1} index={0} />
-              <FormRow rowNumber={2} index={1} />
+              {formRows.map((formData, index) => (
+                <FormRow
+                  key={index}
+                  rowNumber={index + 1}
+                  index={index}
+                  formData={formData}
+                  onChange={handleFormRowChange}
+                />
+              ))}
             </div>
             <Button
               text={"اضافه کردن"}
@@ -211,6 +295,7 @@ const Ques = ({ title, icon, className = "" }: QuesProps) => {
                 window.innerWidth < 768 ? "w-full" : "w-full md:w-fit"
               } mt-4 self-start dark:bg-emerald-800 dark:text-emerald-100 dark:hover:bg-emerald-700`}
               icon={Plus}
+              onClick={handleAdd}
             />
           </motion.div>
         )}

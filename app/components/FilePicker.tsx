@@ -7,8 +7,8 @@ import Image from "next/image";
 interface FilePickerProps {
   buttonName: string;
   title: string;
-  onFileSelected: (files: FileList) => void;
-  className?: string; // Added to allow external className prop
+  onFileSelected?: (files: FileList) => void;
+  className?: string;
 }
 
 export const FilePicker = ({
@@ -20,7 +20,7 @@ export const FilePicker = ({
   const [isDragging, setIsDragging] = useState(false);
 
   const handleFileInput = (files: FileList | null) => {
-    if (files && files.length > 0) {
+    if (files && files.length > 0 && onFileSelected) {
       onFileSelected(files);
     }
   };
@@ -40,7 +40,7 @@ export const FilePicker = ({
       e.preventDefault();
       setIsDragging(false);
       const files = e.dataTransfer.files;
-      if (files) {
+      if (files && onFileSelected) {
         onFileSelected(files);
       }
     },
@@ -56,13 +56,15 @@ export const FilePicker = ({
       {/* Title */}
       <div
         className={`${
-          window.innerWidth < 768 ? "w-full text-center" : "max-w-70 px-4 text-right"
+          window.innerWidth < 768
+            ? "w-full text-center"
+            : "max-w-70 px-4 text-right"
         } text-lg font-medium text-black dark:text-slate-200`}
       >
         {title}
       </div>
       <div
-        className="relative p-4 md:p-6"
+        className="relative p-6"
         style={{
           borderRadius: "0.3125rem",
           border: "0.2rem solid #1A604E",
@@ -85,12 +87,14 @@ export const FilePicker = ({
         <div
           className={`relative inline-flex ${
             window.innerWidth < 768 ? "h-[180px] w-full" : "h-[258px] w-[621px]"
-          } flex-col items-center justify-center gap-4 bg-white dark:bg-slate-800 border-[1.5px] border-[#1A604E] dark:border-emerald-500 rounded-[5px]`}
+          } flex-col items-center justify-center gap-4 bg-white dark:bg-slate-800 border-none dark:border-emerald-500 rounded-[5px]`}
         >
           {/* Upload icon */}
           <Image
             className={`${
-              window.innerWidth < 768 ? "h-[50px] w-[50px]" : "mt-4 h-[70px] w-[70px]"
+              window.innerWidth < 768
+                ? "h-[50px] w-[50px]"
+                : "mt-4 h-[70px] w-[70px]"
             } dark:invert`}
             alt="Upload folder"
             src={FolderUpload}

@@ -146,7 +146,7 @@ const LoginAuthPage = () => {
         </Link>
 
         <div className="text-center text-white dark:text-slate-100 max-w-md">
-          <h2 className="mb-4 text-3xl md:text-4xl font-bold mt-20 md:mt-0">
+          <h2 className="mb-4 text-3xl md:text-4xl font-bold mt-20 md:mt-0" dir="rtl">
             سلام دوست من!
           </h2>
           <p className="text-lg md:text-xl leading-relaxed mb-8">

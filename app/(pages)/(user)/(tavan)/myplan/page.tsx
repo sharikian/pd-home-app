@@ -3,7 +3,6 @@ import FullCalendar from "@fullcalendar/react";
 import faLocale from "@fullcalendar/core/locales/fa";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
-import multiMonthPlugin from "@fullcalendar/multimonth";
 import persian from "react-date-object/calendars/persian";
 import gregorian_fa from "react-date-object/locales/gregorian_fa";
 import { Calendar } from "react-multi-date-picker";
@@ -22,13 +21,14 @@ import { Chip } from "./Chip";
 import BloodIcon from '@/public/imgs/myplan/blood.svg';
 import { MRI } from "@/public/icons";
 import { Button, Input } from "@/app/components";
+import { toast } from "react-toastify";
 
 const MyPlan = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [selectedEvent, setSelectedEvent] = useState<any | null>(null); // State to track the clicked event
+  const [selectedEvent, setSelectedEvent] = useState<any | null>(null);
   const [openFilter, setOpenFilter] = useState<string | null>(null);
   const { isDarkMode } = useDarkMode();
   const screenSize = useScreenSize();
+  const [eventTitle, setEventTitle] = useState<string>(""); // State for event input
 
   const filters = {
     specialty: ["دندانپزشکی", "پوست و مو", "جراحی پلاستیک", "ارتوپدی"],
@@ -39,10 +39,9 @@ const MyPlan = () => {
     setOpenFilter((prev) => (prev === filterName ? null : filterName));
   };
 
-  // Define events for FullCalendar with chips and modal content
   const events = [
     {
-      start: '2025-03-17', // CT Scan on 17th
+      start: '2025-03-17',
       chipText: 'CT',
       icon: BloodIcon,
       chipVariant: 'secondary',
@@ -57,7 +56,7 @@ const MyPlan = () => {
       ),
     },
     {
-      start: '2025-03-04', // MRI on 4th
+      start: '2025-03-04',
       chipText: 'MRI',
       icon: MRI,
       chipVariant: 'danger',
@@ -108,6 +107,18 @@ const MyPlan = () => {
   // Handler to close modal
   const closeModal = () => {
     setSelectedEvent(null);
+    setEventTitle(""); // Reset event title on close
+  };
+
+  // Handler for adding a new event
+  const handleAddEvent = () => {
+    if (eventTitle.trim() === "") {
+      toast.error("لطفا عنوان رویداد را وارد کنید"); // Please enter the event title
+    } else {
+      toast.success("رویداد با موفقیت اضافه شد"); // Event added successfully
+      // Add logic here to save the event (e.g., update events array)
+      closeModal();
+    }
   };
 
   return (
@@ -115,16 +126,27 @@ const MyPlan = () => {
       {selectedEvent && (
         <>
           {selectedEvent.extendedProps.chipText === "CT" && (
-            <Modal onClose={closeModal}/>
+            <Modal onClose={closeModal}>
+              {selectedEvent.extendedProps.modalContent}
+            </Modal>
           )}
           {selectedEvent.extendedProps.chipText === "MRI" && (
-            <DangerModal onClose={closeModal}/>
+            <DangerModal onClose={closeModal}>
+              {selectedEvent.extendedProps.modalContent}
+            </DangerModal>
           )}
           {selectedEvent.extendedProps.chipText === "Add Event" && (
             <Modal onClose={closeModal}>
-              <h1 style={{color: 'black', fontSize:'2rem'}}>رویداد وارد کنید</h1>
-              <Input title={"رویداد"}/>
-              <Button text={"افزودن"}/>
+              <h1 style={{ color: 'black', fontSize: '2rem' }}>رویداد وارد کنید</h1>
+              <Input
+                title={"رویداد"}
+                value={eventTitle}
+                onChange={(e) => setEventTitle(e.target.value)}
+              />
+              <Button
+                text={"افزودن"}
+                onClick={handleAddEvent}
+              />
             </Modal>
           )}
         </>
@@ -135,15 +157,12 @@ const MyPlan = () => {
         initial="hidden"
         animate="visible"
       >
-        {/* Experimental Section */}
         <motion.div
           className="lg:col-span-2 p-2 sm:p-4 rounded-[0.8rem] text-[#1A604E] dark:text-emerald-400"
           variants={itemVariants}
         >
           <Experimental />
         </motion.div>
-
-        {/* Main Calendar Section */}
         <motion.div
           className="lg:col-span-10 p-2 sm:p-4 rounded-[0.8rem] text-black dark:text-slate-200 border border-stone-300 dark:border-stone-600"
           variants={itemVariants}
@@ -152,19 +171,18 @@ const MyPlan = () => {
             className="grid grid-cols-1 xl:grid-cols-11 gap-2"
             variants={containerVariants}
           >
-            {/* FullCalendar Container */}
             <motion.div
               className={`xl:col-span-8 ${isDarkMode ? "fullcalendar-dark" : ""}`}
               variants={itemVariants}
             >
               <FullCalendar
-                plugins={[dayGridPlugin, listPlugin, multiMonthPlugin]}
+                plugins={[dayGridPlugin, listPlugin]}
                 initialView="dayGridMonth"
                 locale={faLocale}
                 headerToolbar={{
                   end:
                     screenSize.width > 768
-                      ? "dayGridMonth,dayGridWeek,multiMonthYear"
+                      ? "dayGridMonth,dayGridWeek"
                       : "dayGridMonth",
                   start: "prev,next",
                   center: "title",
@@ -180,26 +198,21 @@ const MyPlan = () => {
                   weekday: screenSize.width > 768 ? "long" : "narrow",
                 }}
                 events={events}
-                eventContent={(eventInfo) => {
-                  return (
-                    <Chip
-                      icon={eventInfo.event.extendedProps.icon}
-                      text={eventInfo.event.extendedProps.chipText}
-                      varient={eventInfo.event.extendedProps.chipVariant}
-                    />
-                  );
-                }}
-                eventClick={handleEventClick} // Added eventClick handler
+                eventContent={(eventInfo) => (
+                  <Chip
+                    icon={eventInfo.event.extendedProps.icon}
+                    text={eventInfo.event.extendedProps.chipText}
+                    varient={eventInfo.event.extendedProps.chipVariant}
+                  />
+                )}
+                eventClick={handleEventClick}
               />
             </motion.div>
-
-            {/* Sidebar Section */}
             <motion.div
               className="xl:col-span-3 h-full mt-4 xl:mt-0"
               variants={itemVariants}
             >
               <div className="grid grid-rows-[auto] lg:grid-rows-[10%_40%_50%] gap-2 h-full relative">
-                {/* Add Event Button */}
                 <motion.div
                   className="p-2 lg:p-4 !pt-0 border-b border-stone-300 dark:border-stone-600"
                   variants={itemVariants}
@@ -235,8 +248,6 @@ const MyPlan = () => {
                     </svg>
                   </button>
                 </motion.div>
-
-                {/* Calendar Section */}
                 <motion.div
                   className="p-2 lg:p-4 hidden md:block border-b border-stone-300 dark:border-stone-600"
                   variants={itemVariants}
@@ -264,8 +275,6 @@ const MyPlan = () => {
                     } ${screenSize.width < 1024 ? "w-full" : ""}`}
                   />
                 </motion.div>
-
-                {/* Filter Section */}
                 <motion.div
                   className="p-2 pt-4 lg:pt-2 lg:p-4 flex align-start flex-col gap-3 lg:gap-4 md:mt-18"
                   variants={itemVariants}
@@ -277,7 +286,6 @@ const MyPlan = () => {
                     className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 gap-4 items-end"
                     variants={containerVariants}
                   >
-                    {/* Specialty Filter */}
                     <motion.div className="w-full" variants={itemVariants}>
                       <div
                         className="flex gap-2 dark:text-slate-300 cursor-pointer justify-end"
@@ -337,8 +345,6 @@ const MyPlan = () => {
                         </div>
                       </div>
                     </motion.div>
-
-                    {/* Visit Status Filter */}
                     <motion.div className="w-full" variants={itemVariants}>
                       <div
                         className="flex gap-2 dark:text-slate-300 cursor-pointer justify-end"

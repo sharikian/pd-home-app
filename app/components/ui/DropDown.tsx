@@ -13,6 +13,8 @@ interface DropdownProps {
   Size?: 'sm' | 'md' | 'lg';
   alignRight?: boolean;
   noBorder?: boolean;
+  onChange?: (option: string) => void;
+  value?: string;
 }
 
 export const DropDown: React.FC<DropdownProps> = ({
@@ -25,15 +27,20 @@ export const DropDown: React.FC<DropdownProps> = ({
   Size = 'md',
   alignRight = false,
   noBorder = false,
+  onChange,
+  value,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState<string | null>(value || null);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
     setIsOpen(false);
+    if (onChange) {
+      onChange(option); // Only call onChange if it exists
+    }
   };
 
   const variantStyles = {

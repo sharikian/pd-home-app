@@ -6,13 +6,40 @@ import { ArrowLeft, GreenDanger, Park, Calendar } from "@/public/icons";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import gregorian_fa from "react-date-object/locales/gregorian_fa";
+import "react-multi-date-picker/styles/colors/green.css";
+import { toast } from "react-toastify";
+import { DateObject } from "react-multi-date-picker";
 
 export const Teraphy = (): JSX.Element => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [specialist, setSpecialist] = useState<string>(""); // State for specialist
+  const [information, setInformation] = useState<string>(""); // State for information
+  const [selectedDate, setSelectedDate] = useState<DateObject | null>(null); // State for date
+  const [visitTime, setVisitTime] = useState<string>(""); // State for time
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };
+
+  // Handler for registering visit
+  const handleRegisterVisit = () => {
+    if (!specialist) {
+      toast.error("لطفا متخصص را انتخاب کنید"); // Please select the specialist
+    } else if (!information.trim()) {
+      toast.error("لطفا اطلاعات را وارد کنید"); // Please enter the information
+    } else if (!selectedDate) {
+      toast.error("لطفا تاریخ را انتخاب کنید"); // Please select the date
+    } else if (!visitTime) {
+      toast.error("لطفا ساعت را انتخاب کنید"); // Please select the time
+    } else {
+      toast.success("زمان ویزیت با موفقیت ثبت شد"); // Visit time registered successfully
+      // Add logic here to save the visit (e.g., API call)
+    }
+  };
+
+  // Sample options (replace with actual options)
+  const specialistOptions = ["دکتر احمدی", "دکتر حسینی", "دکتر محمدی"];
+  const timeOptions = ["09:00", "10:00", "11:00", "12:00"];
 
   return (
     <div className="flex flex-col gap-4 md:gap-8 p-4 md:p-0 dark:bg-slate-800 dark:p-4 dark:rounded-xl">
@@ -62,9 +89,11 @@ export const Teraphy = (): JSX.Element => {
                   </span>
                   <DropDown
                     placeholder="انتخاب کنید"
-                    options={[]}
+                    options={specialistOptions}
                     className="dark:bg-slate-700 dark:text-white"
                     variant="input-like"
+                    value={specialist}
+                    onChange={(value) => setSpecialist(value)}
                   />
                 </div>
               </div>
@@ -77,6 +106,8 @@ export const Teraphy = (): JSX.Element => {
                   <Input
                     placeholder=" "
                     className="dark:bg-slate-700 dark:text-white"
+                    value={information}
+                    onChange={(e) => setInformation(e.target.value)}
                   />
                 </div>
               </div>
@@ -104,8 +135,10 @@ export const Teraphy = (): JSX.Element => {
                       "اسفند",
                     ]}
                     locale={gregorian_fa}
-                    className="w-full p-2 border border-[#1A604E] rounded-[5px] text-right bg-white"
+                    className="w-full p-2 border border-[#1A604E] rounded-[5px] text-right bg-white green"
                     placeholder="1327/12/9"
+                    value={selectedDate}
+                    onChange={(date) => setSelectedDate(date as DateObject)}
                     render={
                       <Input
                         placeholder=" "
@@ -123,9 +156,11 @@ export const Teraphy = (): JSX.Element => {
                   </span>
                   <DropDown
                     placeholder="انتخاب کنید"
-                    options={[]}
+                    options={timeOptions}
                     className="dark:bg-slate-700 dark:text-white"
                     variant="input-like"
+                    value={visitTime}
+                    onChange={(value) => setVisitTime(value)}
                   />
                 </div>
               </div>
@@ -135,6 +170,7 @@ export const Teraphy = (): JSX.Element => {
               text={"ثبت زمان ویزیت"}
               variant="secondary"
               className="w-full md:w-fit self-start dark:bg-emerald-800 dark:text-emerald-100 dark:hover:bg-emerald-700"
+              onClick={handleRegisterVisit}
             />
           </>
         </>

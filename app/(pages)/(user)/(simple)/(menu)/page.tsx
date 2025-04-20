@@ -52,15 +52,14 @@ const DashBoardPage = () => {
           <Image
             src={OmidPic}
             alt="omid dashte bash"
-            fill
-            className="rounded-3xl dark:brightness-90 object-cover"
+            className="rounded-3xl dark:brightness-90 object-cover h-full"
           />
         </div>
         <motion.div 
           variants={itemVariants} 
           className="w-full lg:w-2/5 h-full"
         >
-          <Together className="h-full" />
+          <Together/>
         </motion.div>
       </motion.div>
 

@@ -31,7 +31,7 @@ export const Header = ({ userName, userId, className }: Props): JSX.Element => {
                 src={SettingTwo}
               />
             </Link>
-            <Link href="/FAQ" className="shrink-0">
+            <Link href="/FAQ/1" className="shrink-0">
               <Image
                 className="h-8 w-8 transition-opacity hover:opacity-80 md:h-9 md:w-9"
                 alt="Help"

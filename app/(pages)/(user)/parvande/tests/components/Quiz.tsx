@@ -5,6 +5,7 @@ import { CheckBox } from "@/app/components/ui/CheckBox";
 import { Button, Input } from "@/app/components";
 import { ArrowLeft } from "@/public/icons";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "react-toastify";
 
 interface QuizProps {
   title: string;
@@ -15,8 +16,46 @@ interface QuizProps {
 export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
+  // State for checkbox selections (one selected answer per question)
+  const [answers, setAnswers] = useState<{ [key: string]: number | null }>(
+    items.reduce((acc, item) => ({ ...acc, [item]: null }), {})
+  );
+
+  // State for result input
+  const [result, setResult] = useState<string>("");
+
   const toggleCollapse = (): void => {
     setIsCollapsed((prev) => !prev);
+  };
+
+  // Handler for checkbox click
+  const handleCheckboxChange = (question: string, optionIndex: number) => {
+    setAnswers((prev) => ({
+      ...prev,
+      [question]: prev[question] === optionIndex ? null : optionIndex,
+    }));
+  };
+
+  // Handler for result input
+  const handleResultChange = (value: string) => {
+    setResult(value);
+  };
+
+  // Handler for Register Test button
+  const handleRegister = () => {
+    const allQuestionsAnswered = items.every(
+      (item) => answers[item] !== null
+    );
+    const isResultFilled = result.trim() !== "";
+
+    if (!allQuestionsAnswered) {
+      toast.error("لطفا برای هر سوال یک گزینه را انتخاب کنید"); // Please select one option for each question
+    } else if (!isResultFilled) {
+      toast.error("لطفا نتیجه تست را وارد کنید"); // Please enter the test result
+    } else {
+      toast.success("تست ثبت شد"); // Test registered
+      // Add logic here to process the answers and result if needed
+    }
   };
 
   const collapseVariants = {
@@ -120,10 +159,15 @@ export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
                     window.innerWidth < 768 ? "gap-6" : "gap-10"
                   }`}
                 >
-                  <CheckBox className="check-box-instance dark:border-emerald-500" />
-                  <CheckBox className="check-box-instance dark:border-emerald-500" />
-                  <CheckBox className="check-box-instance dark:border-emerald-500" />
-                  <CheckBox className="check-box-instance dark:border-emerald-500" />
+                  {[0, 1, 2, 3].map((optionIndex) => (
+                    <CheckBox
+                      key={optionIndex}
+                      className="check-box-instance dark:border-emerald-500"
+                      active={answers[item] === optionIndex}
+                      defaultActive={false}
+                      onClick={() => handleCheckboxChange(item, optionIndex)}
+                    />
+                  ))}
                 </div>
               </div>
             ))}
@@ -147,6 +191,8 @@ export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
                   title=""
                   placeholder=" "
                   className={window.innerWidth < 768 ? "w-full" : ""}
+                  value={result}
+                  onChange={(e) => handleResultChange(e.target.value)}
                 />
               </div>
             </div>
@@ -154,6 +200,7 @@ export const Quiz: React.FC<QuizProps> = ({ title, items, icon = "" }) => {
               text={"ثبت تست"}
               variant="secondary"
               className="w-fit mt-2 dark:bg-emerald-800 dark:text-emerald-100 dark:hover:bg-emerald-700"
+              onClick={handleRegister}
             />
           </motion.div>
         )}

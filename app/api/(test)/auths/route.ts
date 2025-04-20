@@ -4,7 +4,7 @@ const admins = [
   { username: "admin", password: "1234", id: "989021111111" }
 ];
 const users = [
-  { username: "user", password: "1234", id: "989023333333" }
+  { username: "user", password: "1234", id: "9023333333" }
 ];
 
 export async function POST(request: NextRequest) {

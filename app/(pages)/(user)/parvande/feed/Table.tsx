@@ -6,6 +6,7 @@ import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import gregorian_fa from "react-date-object/locales/gregorian_fa";
 import { Calendar } from "@/public/icons";
+import "react-multi-date-picker/styles/colors/green.css"
 
 const SimpleActivityTable: React.FC = () => {
   const options: string[] = ["آنلاین", "حضوری"];
@@ -74,7 +75,7 @@ const SimpleActivityTable: React.FC = () => {
                       "اسفند",
                     ]}
                     locale={gregorian_fa}
-                    className="w-full p-2 border border-[#1A604E] dark:border-emerald-500 rounded-[5px] text-right bg-white dark:bg-slate-800"
+                    className="w-full p-2 border border-[#1A604E] dark:border-emerald-500 rounded-[5px] text-right bg-white dark:bg-slate-800 green"
                     placeholder="1327/12/9"
                     render={
                       <Input
@@ -166,7 +167,7 @@ const SimpleActivityTable: React.FC = () => {
                               "اسفند",
                             ]}
                             locale={gregorian_fa}
-                            className="w-full p-2 border border-[#1A604E] dark:border-emerald-500 rounded-[5px] text-right bg-white dark:bg-slate-800"
+                            className="w-full p-2 border border-[#1A604E] dark:border-emerald-500 rounded-[5px] text-right bg-white dark:bg-slate-800 green"
                             placeholder="1327/12/9"
                             render={
                               <Input

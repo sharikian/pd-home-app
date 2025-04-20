@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 let users = [
-  { username: "user", password: "1234", id: "989023333333" }
+  { username: "user", password: "1234", id: "9023333333" }
 ];
 
 export async function GET() {

@@ -5,6 +5,7 @@ import { CheckBox } from "@/app/components/ui/CheckBox";
 import { Button, Container, Input, Slider } from "@/app/components";
 import { ArrowLeft } from "@/public/icons";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "react-toastify";
 
 interface QuizItem {
   title: string;
@@ -23,14 +24,28 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
   icon = "",
 }) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+
+  // State for single-choice questions
   const [selectedAnswers, setSelectedAnswers] = useState<(number | null)[]>(
     items.map(() => null)
   );
+
+  // State for slider value
+  const [sliderValue, setSliderValue] = useState<number | null>(null);
+
+  // State for multi-choice section
+  const [leakReasons, setLeakReasons] = useState<boolean[]>(
+    new Array(7).fill(false) // 7 options in the multi-choice section
+  );
+
+  // State for result input
+  const [result, setResult] = useState<string>("");
 
   const toggleCollapse = (): void => {
     setIsCollapsed((prev) => !prev);
   };
 
+  // Handler for single-choice checkbox click
   const handleCheckboxClick = (questionIndex: number, answerIndex: number) => {
     setSelectedAnswers((prev) =>
       prev.map((selected, idx) =>
@@ -41,6 +56,46 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
           : selected
       )
     );
+  };
+
+  // Handler for slider change
+  const handleSliderChange = (value: number) => {
+    setSliderValue(value);
+  };
+
+  // Handler for multi-choice checkbox click
+  const handleLeakReasonChange = (index: number) => {
+    setLeakReasons((prev) =>
+      prev.map((checked, idx) => (idx === index ? !checked : checked))
+    );
+  };
+
+  // Handler for result input
+  const handleResultChange = (value: string) => {
+    setResult(value);
+  };
+
+  // Handler for Register Test button
+  const handleRegister = () => {
+    const allQuestionsAnswered = selectedAnswers.every(
+      (answer) => answer !== null
+    );
+    const isSliderAnswered = sliderValue !== null;
+    const isLeakReasonSelected = leakReasons.some((checked) => checked);
+    const isResultFilled = result.trim() !== "";
+
+    if (!allQuestionsAnswered) {
+      toast.error("لطفا برای هر سوال یک گزینه را انتخاب کنید"); // Please select one option for each question
+    } else if (!isSliderAnswered) {
+      toast.error("لطفا میزان تداخل نشت ادرار را مشخص کنید"); // Please specify the level of urine leak interference
+    } else if (!isLeakReasonSelected) {
+      toast.error("لطفا حداقل یک دلیل برای نشت ادرار انتخاب کنید"); // Please select at least one reason for urine leak
+    } else if (!isResultFilled) {
+      toast.error("لطفا نتیجه تست را وارد کنید"); // Please enter the test result
+    } else {
+      toast.success("تست ثبت شد"); // Test registered
+      // Add logic here to process the answers, slider value, leak reasons, and result
+    }
   };
 
   const collapseVariants = {
@@ -90,7 +145,10 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
             exit="closed"
           >
             {items.map((item, questionIndex) => (
-              <Container key={questionIndex} className="dark:bg-slate-800 dark:border-emerald-500">
+              <Container
+                key={questionIndex}
+                className="dark:bg-slate-800 dark:border-emerald-500"
+              >
                 <div
                   className="flex flex-col justify-between gap-4 items-start"
                   dir="rtl"
@@ -113,9 +171,8 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
                         }}
                       >
                         <CheckBox
-                          active={
-                            selectedAnswers[questionIndex] === answerIndex
-                          }
+                          active={selectedAnswers[questionIndex] === answerIndex}
+                          defaultActive={false}
                           className="check-box-instance dark:border-emerald-500"
                         />
                         <span
@@ -139,7 +196,12 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
                   window.innerWidth < 768 ? "start" : "end"
                 }`}
               >
-                <Slider min={0} max={10} steps={10} />
+                <Slider
+                  min={0}
+                  max={10}
+                  steps={10}
+                  onChange={handleSliderChange}
+                />
                 <h2
                   className={`text-black dark:text-slate-200 ${
                     window.innerWidth < 768 ? "text-lg" : "text-xl"
@@ -173,8 +235,20 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
                     "وقتی که ادرارتان تمام شده و لباس پوشیده اید",
                     "بدون هیچ دلیل واضحی نشت می کند",
                   ].map((data, answerIndex) => (
-                    <div className="flex items-center gap-2" key={answerIndex}>
-                      <CheckBox className="check-box-instance dark:border-emerald-500" />
+                    <div
+                      className="flex items-center gap-2"
+                      key={answerIndex}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleLeakReasonChange(answerIndex);
+                      }}
+                    >
+                      <CheckBox
+                        active={leakReasons[answerIndex]}
+                        defaultActive={false}
+                        className="check-box-instance dark:border-emerald-500"
+                        onClick={() => handleLeakReasonChange(answerIndex)}
+                      />
                       <span
                         className={`${
                           window.innerWidth < 768 ? "text-xs" : "text-sm"
@@ -207,6 +281,8 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
                   title=""
                   placeholder=" "
                   className={window.innerWidth < 768 ? "w-full" : ""}
+                  value={result}
+                  onChange={(e) => handleResultChange(e.target.value)}
                 />
               </div>
             </div>
@@ -214,6 +290,7 @@ export const VerticalQuiz: React.FC<QuizProps> = ({
               text={"ثبت تست"}
               variant="secondary"
               className="w-fit mt-2 dark:bg-emerald-800 dark:text-emerald-100 dark:hover:bg-emerald-700"
+              onClick={handleRegister}
             />
           </motion.div>
         )}

@@ -17,22 +17,24 @@ export const FAQ = ({
 }: FAQProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Define animation variants using maxHeight
   const contentVariants = {
     open: {
-      height: "auto",
+      maxHeight: 1000, // Adjust this value based on your content's maximum height
       opacity: 1,
-      transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
+      transition: { duration: 0.4, ease: "easeInOut" },
     },
     closed: {
-      height: 0,
+      maxHeight: 0,
       opacity: 0,
-      transition: { duration: 0.3, ease: [0.55, 0.05, 0.95, 0.25] },
+      transition: { duration: 0.3, ease: "easeInOut" },
     },
   };
 
   return (
     <div
-      className={`w-full mx-auto flex items-start cursor-pointer gap-2.5 shadow-shadows p-2.5 overflow-hidden rounded-[15px] bg-[#eaeef1] relative transition-all duration-300 ${className}`}
+      // Removed transition-all duration-300 to avoid conflicts
+      className={`w-full mx-auto flex items-start cursor-pointer gap-2.5 shadow-shadows p-2.5 overflow-hidden rounded-[15px] bg-[#eaeef1] relative ${className}`}
       onClick={() => setIsOpen(!isOpen)}
     >
       <div
@@ -59,11 +61,12 @@ export const FAQ = ({
           variants={contentVariants}
           className="overflow-hidden"
         >
-          <motion.p
+          {/* Changed motion.p to regular p since animation is on the container */}
+          <p
             className="w-full font-bold text-black dark:text-slate-300 text-md leading-normal [direction:rtl] px-4 md:px-[19px] pb-[11px] break-words"
           >
             {description}
-          </motion.p>
+          </p>
         </motion.div>
       </div>
     </div>

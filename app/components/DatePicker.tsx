@@ -106,7 +106,7 @@ export const DatePicker = () => {
             className="bg-transparent py-2 md:px-4 rounded-lg border border-gray-200 dark:border-slate-500
                      dark:text-slate-200 dark:bg-slate-700"
           >
-            {Array.from({ length: 401 }, (_, i) => i + 1200).map(year => (
+            {Array.from({ length: 2026 - new Date().getFullYear() }, (_, i) => i + 1404).map(year => (
               <option key={year} value={year}>{year}</option>
             ))}
           </select>

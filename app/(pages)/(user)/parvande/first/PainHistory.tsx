@@ -2,6 +2,8 @@ import Image from "next/image";
 import { FileCollection, Plus } from "@/public/icons";
 import { CheckBox } from "@/app/components/ui/CheckBox";
 import { Button } from "@/app/components";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const PainHistory = () => {
   const items = [
@@ -16,6 +18,29 @@ const PainHistory = () => {
     { text: "افسردگی" },
     { text: "BPH" },
   ];
+
+  // State to track selected diseases
+  const [selectedDiseases, setSelectedDiseases] = useState<string[]>([]);
+
+  // Handler for checkbox changes
+  const handleCheckboxChange = (disease: string) => {
+    setSelectedDiseases((prev) =>
+      prev.includes(disease)
+        ? prev.filter((item) => item !== disease)
+        : [...prev, disease]
+    );
+  };
+
+  // Handler for Add button click
+  const handleAdd = () => {
+    if (selectedDiseases.length === 0) {
+      toast.error("لطفا حداقل یک بیماری را انتخاب کنید"); // Please select at least one disease
+    } else {
+      toast.success("سابقه بیماری اضافه شد"); // Disease history added
+      // Add logic here to process the selected diseases if needed
+    }
+  };
+
   return (
     <div className="flex flex-col gap-8">
       {/* Header */}
@@ -35,7 +60,12 @@ const PainHistory = () => {
                              xxs:w-full               // 1 item per row at xxs
                              min-w-[120px] flex-row-reverse"
           >
-            <CheckBox className="check-box-instance" />
+            <CheckBox
+              className="check-box-instance"
+              active={selectedDiseases.includes(item.text)}
+              defaultActive={false}
+              onClick={() => handleCheckboxChange(item.text)}
+            />
             <span className="text-sm text-black">{item.text}</span>
           </div>
         ))}
@@ -46,6 +76,7 @@ const PainHistory = () => {
         variant="secondary"
         className="w-full md:w-fit self-start dark:bg-emerald-800 dark:text-emerald-100 dark:hover:bg-emerald-700"
         icon={Plus}
+        onClick={handleAdd}
       />
       <hr className="h-[0.1rem] bg-slate-300 mt-2" />
     </div>

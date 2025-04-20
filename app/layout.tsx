@@ -5,8 +5,8 @@ import { ToastContainer } from "react-toastify";
 import Providers from "./providers";
 
 const pelak = localFont({
-  src: "../public/fonts/Pelak.woff2",
-  variable: "--font-prlak-bold",
+  src: "../public/fonts/PelakFA-Medium.woff2",
+  variable: "--font-pelak-bold",
 });
 
 export const metadata: Metadata = {

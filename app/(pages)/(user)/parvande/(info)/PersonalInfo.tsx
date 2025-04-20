@@ -7,6 +7,7 @@ import Image from "next/image";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import gregorian_fa from "react-date-object/locales/gregorian_fa";
+import "react-multi-date-picker/styles/colors/green.css"
 
 const PersonalInfo = () => {
   return (
@@ -43,10 +44,11 @@ const PersonalInfo = () => {
             "اسفند",
           ]}
           locale={gregorian_fa}
-          className="w-full p-2 border border-[#1A604E] dark:border-emerald-500 rounded-[5px] text-right bg-white dark:bg-slate-800"
+          className="w-full p-2 border border-[#1A604E] dark:border-emerald-500 rounded-[5px] text-right bg-white dark:bg-slate-800 green"
           placeholder="1327/12/9"
+          
           render={
-            <Input title={"تولد"} placeholder="22/03/1385" icon={Calendar} />
+            <Input title={"تولد"} placeholder="1404/02/03" icon={Calendar} />
           }
         />
         <Input title="کد ملی" placeholder=" " />
